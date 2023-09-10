@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list-header>
+    <ion-label>Options</ion-label>
+  </ion-list-header>
+  <!-- <ion-buttons> -->
+  <ion-item button detail="false" (click)="newFile()">
+    <ion-icon name="document-text-outline"></ion-icon>&nbsp;&nbsp;&nbsp;New File
+  </ion-item>
+  <ion-item button detail="false" (click)="updateFile()">
+    <ion-icon name="document-text-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Save
+  </ion-item>
+  <ion-item button detail="false" (click)="saveAs()">
+    <ion-icon name="document-text-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Save As
+  </ion-item>
+  <ion-item button detail="false" (click)="saveAsPassword()">
+    <ion-icon name="document-text-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Save As
+    Password
+  </ion-item>
+  <ion-item button detail="false" (click)="print('current')">
+    <ion-icon name="print-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Print
+  </ion-item>
+  <ion-item button detail="false" (click)="print('all')">
+    <ion-icon name="print-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Print Workbook
+  </ion-item>
+  <ion-item button detail="false" (click)="addLogo()">
+    <ion-icon name="image-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Add/Remove Logo
+    <ion-spinner item-right name="ios" *ngIf="!request.logo.done"></ion-spinner>
+  </ion-item>
+  <!-- <ion-item button detail="false">
+      
+    </ion-item>
+    <ion-item button detail="false">
+      
+    </ion-item> -->
+  <!-- </ion-buttons> -->
+
+  <ion-list-header>
+    <ion-label>Share</ion-label>
+  </ion-list-header>
+
+  <!-- <ion-buttons> -->
+  <ion-item button detail="false" (click)="email('current')">
+    <ion-icon name="mail-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Email
+  </ion-item>
+  <ion-item button detail="false" (click)="email('all')">
+    <ion-icon name="mail-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Email Workbook
+  </ion-item>
+  <ion-item button detail="false" (click)="exportAsCsv()">
+    <ion-icon name="document-text-outline"></ion-icon
+    >&nbsp;&nbsp;&nbsp;&nbsp;Export as CSV
+  </ion-item>
+  <ion-item button detail="false" (click)="exportAsPDF('one')">
+    <ion-icon name="document-text-outline"></ion-icon
+    >&nbsp;&nbsp;&nbsp;&nbsp;Export as PDF
+    <ion-spinner item-right name="ios" *ngIf="!request.pdf.done"></ion-spinner>
+  </ion-item>
+  <ion-item button detail="false" (click)="exportAsPDF('all')">
+    <ion-icon name="document-text-outline"></ion-icon
+    >&nbsp;&nbsp;&nbsp;&nbsp;Export Workbook as PDF
+    <ion-spinner
+      item-right
+      name="ios"
+      *ngIf="!request.allpdf.done"
+    ></ion-spinner>
+  </ion-item>
+  <ion-item button detail="false" (click)="share()">
+    <ion-icon name="share"></ion-icon>&nbsp;&nbsp;&nbsp;Share
+    <ion-spinner
+      item-right
+      name="ios"
+      *ngIf="!request.sharepdf.done"
+    ></ion-spinner>
+  </ion-item>
+  <!-- </ion-buttons> -->
+
+  <ion-list-header>
+    {{ applicationName }} WEB
+  </ion-list-header>
+  <ion-item
+    ><ion-label>
+      <ion-icon *ngIf="setting.status" name="cloud-done-outline"></ion-icon>
+      <ion-icon *ngIf="!setting.status" name="log-in-outline"></ion-icon>
+      &nbsp;&nbsp;&nbsp;{{ setting.label }}
+    </ion-label>
+    <ion-toggle
+      item-right
+      checked="{{ setting.status }}"
+      [(ngModel)]="setting.status"
+      (ionChange)="toggleSettings(setting)"
+    ></ion-toggle>
+  </ion-item>
+
+  <ion-item button detail="false" (click)="saveToServer()">
+    <ion-icon name="cloud-upload-outline"></ion-icon>&nbsp;&nbsp;&nbsp;Save to
+    Server
+    <ion-spinner item-right name="ios" *ngIf="!request.save.done"></ion-spinner>
+  </ion-item>
+  <br />
+  <ion-list-header>
+    <ion-label>
+      SUPPORT
+    </ion-label>
+  </ion-list-header>
+  <ion-item button detail="false" (click)="write()">
+    <ion-icon name="create"></ion-icon>&nbsp;&nbsp;&nbsp;Write to Us
+  </ion-item>
+  <ion-item button detail="false" (click)="refer()">
+    <ion-icon name="link"></ion-icon>&nbsp;&nbsp;&nbsp;Refer to a friend
+  </ion-item>
+  <ion-item button detail="false" (click)="visit()">
+    <ion-icon name="open"></ion-icon>&nbsp;&nbsp;&nbsp;Visit Us
+  </ion-item>
+</ion-content>

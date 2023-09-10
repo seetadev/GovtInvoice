@@ -1,0 +1,47 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ selectedFile }}<span *ngIf="selectedFile == 'Untitled'">(*)</span>
+    </ion-title>
+    <div class="wide-as-needed">
+      <ion-buttons slot="start">
+        <ion-button
+          color="primary"
+          *ngFor="let footer of footers"
+          (click)="activateFooter(footer)"
+          style="width: 25%;"
+        >
+          {{footer.name}}
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<!-- <ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content> -->
+<ion-content>
+  <div
+    id="workbookControl"
+    #workbookControl
+    style="background-color: #80a9f3;"
+  ></div>
+  <div id="tableeditor" #tableeditor></div>
+  <div id="msg" onclick="this.innerHTML='&nbsp;';"></div>
+</ion-content>

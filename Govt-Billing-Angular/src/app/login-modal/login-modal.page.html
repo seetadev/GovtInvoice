@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="onCancel()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <form #loginForm="ngForm" (ngSubmit)="doAction('login')">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" ngModel name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" ngModel name="password"></ion-input>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              type="submit"
+              [disabled]="!loginForm.valid"
+              expand="block"
+              shape="round"
+              >Log in</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <ion-buttons>
+        <ion-button
+          type="submit"
+          [disabled]="!loginForm.valid"
+          expand="block"
+          shape="round"
+          color="primary"
+          fill="secondary"
+          >Log in</ion-button
+        >
+      </ion-buttons> -->
+    </form>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            (click)="doAction('register')"
+            [disabled]="!loginForm.valid"
+            expand="block"
+            shape="round"
+            >Register</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- <form class="list" [formGroup]="loginForm" (ngSubmit)="doAction('login')" novalidate> -->
+    <!-- <ion-item>
+	    <ion-label stacked>Email</ion-label>
+	    <ion-input type="text" formControlName="email"></ion-input>
+	  </ion-item> -->
+    <!-- <ion-item>
+	    <ion-label stacked>Password</ion-label>
+	    <ion-input type="password" formControlName="password"></ion-input>
+	  </ion-item> -->
+    <!-- <ion-buttons>
+	    <button ion-button type="submit" [disabled]="!loginForm.valid" block round>Log in</button>
+	  </ion-buttons>
+	</form> -->
+
+    <!-- <button ion-button (click)="doAction('register')" [disabled]="!loginForm.valid" block round>Register</button> -->
+
+    <br />
+    <div class="spin"><ion-spinner *ngIf="!request.done"></ion-spinner></div>
+  </ion-list>
+</ion-content>

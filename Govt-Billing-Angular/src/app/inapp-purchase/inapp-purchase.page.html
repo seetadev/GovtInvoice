@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>In-app purchase</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="showActionForInapp(item)">
+      <ion-icon *ngIf="item.status" [name]="item.icon" slot="start"></ion-icon>
+      <ion-icon *ngIf="!item.status" [name]="item.icon" slot="start"></ion-icon>
+      <h2>{{ item.desc }}</h2>
+      <h3>Price: $ {{ item.price }}</h3>
+      <h3 *ngIf="item.status">
+        In-app Active:
+        <ion-text>
+          <span *ngIf="item.units > 3" color="primary"
+            >{{ item.units }} units left</span
+          >
+        </ion-text>
+        <ion-text>
+          <span *ngIf="item.units <= 3" color="danger"
+            >{{ item.units }} units left</span
+          >
+        </ion-text>
+      </h3>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="!loaded">
+  <ion-toolbar>
+    <div class="spin">
+      <ion-label
+        ><ion-spinner></ion-spinner> &nbsp;Loading products...</ion-label
+      >
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,2 @@
+    "gulf-editor-socialcalc": "git+https://github.com/gulf/gulf-editor-socialcalc.git",
+    "socialcalc": "git+https://github.com/marcelklehr/socialcalc.git",
