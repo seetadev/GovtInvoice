@@ -11,6 +11,12 @@ use the plugin like https://github.com/EinfachHans/capacitor-email-composer
 
 3. Integrate deep linking or other community plugins of your choice from https://capacitorjs.com/docs/plugins/community into the Govt Billing and Invoicing system.
 
+# Developer Templates using Ionic React and Angular
+
+Ionic React version: https://github.com/seetadev/GovtInvoice/tree/main/Govt-Billing-React
+
+Ionic Angular version: https://github.com/seetadev/GovtInvoice/tree/main/Govt-Billing-Angular
+
 # Learning Resources for Ionic React:
 Getting Started: https://ionicframework.com/react
 1. https://www.youtube.com/watch?v=xn-qpnT2n3Q
