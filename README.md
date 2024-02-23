@@ -1,8 +1,7 @@
-# Tutorials and Sample project for students interested in HCI, Design and Software Engineering
+# Public Goods Initiative to improve transparency and security in procurement and supply of goods at government institutions
 
-### Reference: Apple Opportunity 
+## Invoice and Billing system for Government Universities 
 
-## Invoice and Billing system for Government Schools and Private Schools on Apple's ios platform
 Billing and Invoicing System on ios, android or as a PWA.
 
 Problem Statement: Develop a cross platform ios, Android or PWA application using hybrid frameworks like ionic, react native, flutter, native script or Appgyer framework for the project "Billing and Invoicing system for Government schools/ Private schools" using the project repository: https://github.com/seetadev/GovtInvoice. You may use the web version and convert it to a deep linking mobile project using the google drive link: https://drive.google.com/file/d/1BcPLWBuTlax2dZoebw7P_dAePuYXiE2Q/view?usp=drive_link (please comment the AWS-SDK component). The further objectives of the project:
