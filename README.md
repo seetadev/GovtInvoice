@@ -8,9 +8,9 @@ Billing and Invoicing System on ios, android or as a PWA.
 
 
 
-# For Early Stage OSS Contributors, PGF Volunteers
+# OSS Contributors, PGF Volunteers
 
-Problem Statement: Develop a cross platform ios, Android or PWA application using hybrid frameworks like ionic, react native, flutter, native script or Appgyer framework for the project "Billing and Invoicing system for Government schools/ Private schools" using the project repository: https://github.com/seetadev/GovtInvoice. You may use the web version and convert it to a deep linking mobile project using the google drive link: https://drive.google.com/file/d/1BcPLWBuTlax2dZoebw7P_dAePuYXiE2Q/view?usp=drive_link (please comment the AWS-SDK component). The further objectives of the project:
+Problem Statement - Develop a cross platform ios, Android or PWA application using hybrid frameworks like ionic, react native, flutter, native script or Appgyer framework for the project "Billing and Invoicing system for Government schools/ Private schools" using the project repository: https://github.com/seetadev/GovtInvoice. You may use the web version and convert it to a deep linking mobile project using the google drive link: https://drive.google.com/file/d/1BcPLWBuTlax2dZoebw7P_dAePuYXiE2Q/view?usp=drive_link (please comment the AWS-SDK component). The further objectives of the project:
 
 1. Save to cloud feature: Please find the screenshots attached for a workflow which is documented for dropbox on ionic angular. You could use a firebase or AWS with ionic react if you wish. Please visit https://drive.google.com/drive/u/2/folders/1ORr1D9dQifuX-fkRux49ZDnu1_u7oAJE
 
