@@ -1,4 +1,6 @@
-# Public Goods Initiative to improve transparency and security in procurement and supply of goods at government institutions
+# About
+
+Public Goods Initiative to improve transparency and security in procurement and supply of goods at government institutions
 
 ## Invoice and Billing system for Government Universities 
 
