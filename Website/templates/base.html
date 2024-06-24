@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{ APP_TITLE }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='screen.css') }}"
+      type="text/css"
+    />
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div class="container">
+      <hr class="space" />
+      <h2><a href="/">Aspiring Investments</a></h2>
+
+      {% if session['user'] %} user: {{session['user']}}
+      <a href="/logout">logout</a>
+      {% endif %}
+
+      <hr />
+      {% block body %}{% endblock %} {% block bottom %}{% endblock %}
+      <hr class="space" />
+      <hr />
+
+      <div>
+        <p class="last" align="center">
+          <a href="/">About</a> &nbsp | &nbsp <a href="/">Feedback</a> &nbsp |
+          &nbsp
+          <a href="/">FAQ</a>
+        </p>
+        <p class="small" align="center">&copy; 2011</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block head %} {% endblock %} {% block body %}
+<form method="POST" action="{{ url_for('login_post') }}">
+  <center>
+    Email: <input type="text" name="email" size="20" /><br />
+    Password: <input type="password" name="password" size="15" /><br />
+    <br />
+    <input type="submit" value="Login" />
+    <br /><br />
+    <a href="{{ url_for('register_get') }}">Register</a>&nbsp;&nbsp;<a
+      href="{{ url_for('lostpw_get') }}"
+      >Forgot Password</a
+    >
+  </center>
+</form>
+{% endblock %}

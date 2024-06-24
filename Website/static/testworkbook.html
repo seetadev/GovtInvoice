@@ -1,0 +1,78 @@
+<!--
+playground to test multiple sheets in a page
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SocialCalc 0.8.1</title>
+<script type="text/javascript" src="socialcalcconstants.js"></script>
+<script type="text/javascript" src="socialcalc-3.js"></script>
+<script type="text/javascript" src="socialcalctableeditor.js"></script>
+<script type="text/javascript" src="formatnumber2.js"></script>
+<script type="text/javascript" src="formula1.js"></script>
+<script type="text/javascript" src="socialcalcpopup.js"></script>
+<script type="text/javascript" src="socialcalcspreadsheetcontrol.js"></script>
+<script type="text/javascript" src="socialcalcworkbook.js"></script>
+<script type="text/javascript" src="socialcalcworkbookcontrol.js"></script>
+<script type="text/javascript" src="json2.js"></script>
+<script
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"
+type="text/javascript"></script>
+<script type="text/javascript" src="highslide/highslide/highslide-with-html.js"></script>
+<link rel="stylesheet" type="text/css" href="highslide/highslide/highslide.css" />
+
+<!--
+	2) Optionally override the settings defined at the top
+	of the highslide.js file. The parameter hs.graphicsDir is important!
+-->
+
+<script type="text/javascript">
+	hs.graphicsDir = 'highslide/highslide/graphics/';
+	hs.outlineType = 'rounded-white';
+	hs.showCredits = false;
+	hs.wrapperClassName = 'draggable-header';
+</script>
+
+
+<style>
+body, td, input, texarea {font-family:verdana,helvetica,sans-serif;font-size:small;}
+.smaller {font-size:smaller;}
+</style>
+</head>
+
+
+<body style="background-color:#FFF;" onresize="spreadsheet.DoOnResize();">
+
+<div id="workbookControl" style="background-color:#80A9F3;">
+</div>
+
+<div style="margin:8px 0px 10px 0px;">
+ <div id="tableeditor" style="margin:8px 0px 10px 0px;">editor goes here</div>
+</div>
+ <div id="msg" onclick="this.innerHTML='&nbsp;';"></div>
+
+
+<script>
+
+ SocialCalc.Callbacks.broadcast = function(a,b) {
+}
+
+
+var spreadsheet = new SocialCalc.SpreadsheetControl();
+
+var workbook = new SocialCalc.WorkBook(spreadsheet);
+workbook.InitializeWorkBook("sheet1");
+
+spreadsheet.InitializeSpreadsheetControl("tableeditor");
+spreadsheet.ExecuteCommand('redisplay', '');
+
+
+var workbookcontrol = new SocialCalc.WorkBookControl(workbook,"workbookControl","sheet1");
+workbookcontrol.InitializeWorkBookControl();
+
+spreadsheet.DoOnResize()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!--
+playground to test multiple sheets in a page
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TestMultiSheet</title>
+
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalcconstants.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalc-3.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalctouch.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalctableeditor.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='formatnumber2.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='formula1.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalcpopup.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalcspreadsheetcontrol.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalcworkbook.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalcworkbookcontrol.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='socialcalcimages.js') }}"></script>
+
+<script type="text/javascript" src="{{ url_for('static',filename='json2.js') }}"></script>
+<script src="{{ url_for('static',filename='jquery.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='jquery.sparkline.min.js') }}">
+</script>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='excanvas.min.js') }}">
+</script>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='jquery.flot.min.js') }}">
+</script>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='jquery.flot.pie.js') }}">
+</script>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='jquery.flot.stack.js') }}">
+    </script>
+<script type="text/javascript"
+        src="{{ url_for('static',filename='jquery.flot.valuelabels.js') }}">
+</script>
+<script type="text/javascript"
+        src="{{ url_for('static',filename='jquery.flot.threshold.multiple.js') }}">
+</script>
+    
+
+<script type="text/javascript" src="{{ url_for('static',filename='Highcharts-2/js/highcharts.js') }}"></script>
+
+
+<script type="text/javascript"
+    src="{{ url_for('static',filename='normalizedata.js') }}">
+</script>
+
+<script type="text/javascript"
+    src="{{ url_for('static',filename='msndatasource.js') }}">
+</script>
+
+<script type="text/javascript"
+    src="{{ url_for('static',filename='smartmoneydatasource.js') }}">
+</script>
+
+<script type="text/javascript"
+    src="{{ url_for('static',filename='statements.js') }}">
+</script>
+<script type="text/javascript" src="{{ url_for('static',filename='highslide/highslide/highslide-with-html.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='highslide/highslide/highslide.css') }}" />
+<script type="text/javascript">
+	hs.graphicsDir = "{{ url_for('static',filename='highslide/highslide/graphics/')}}";
+	hs.outlineType = 'rounded-white';
+	hs.showCredits = false;
+	hs.wrapperClassName = 'draggable-header';
+</script>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='autosave.js') }}">
+</script>
+
+
+<style>
+body, td, input, texarea {font-family:verdana,helvetica,sans-serif;font-size:small;}
+.smaller {font-size:smaller;}
+.thumb {
+	height: 75px;
+	border: 1px solid #000000;
+	margin: 10px 5px 0px 0px;
+	}
+
+</style>
+</head>
+
+
+<body style="background-color:#FFF;" onresize="spreadsheet.DoOnResize();">
+
+
+<!-- Beginning of div for Image Import -->
+<div id="EmbedImage" style="display: none; position: absolute; top: 20%; left: 25%; height: 60%; width: 50%; border-style: solid; border-width: 2px; background-color: #404040;">
+	<div style="position: relative; top:5%; left: 5%;">
+		<table>
+		<tr>
+			<h3 style="color:#FFFFFF;"> Insert Image </h3>
+		</tr>
+		<tr>
+			<text style="color:#FFFFFF;">Embed In:</text><input id ="image-embed-range" type="text"/>
+		</tr>
+		<tr>
+		<td>
+		<input type="radio" name="choice" onclick="SocialCalc.Images.showImgForm('local')"><text style="color:#FFFFFF;">Upload an Image</text></input>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio"  name="choice" onclick="SocialCalc.Images.showImgForm('url')"><text style="color:#FFFFFF;">Image by URL </text></input>
+		</td>
+		</tr>
+		<tr>
+		<td>
+			<div id="localImgForm" style="display:none;"> 
+				<div class="example" style="display: inline;">
+					<text style="color:#FFFFFF;">Image Path:</text><input type="file" id="img-file-inp" name="files1[]"/> <br/>
+					<img id="file-image-holder" src="" style="align: center; display:none;" />
+					<div id="file-text-holder" style="width: 100%; height: 200px; display:inline;"> 
+					<br/>
+					<p style="font-family: 'Times New Roman';font-size: 13px; text-align:center; color: #FFFFFF;">
+					If you upload a image file, you'll see the image preview here. Large images may take a while to appear.
+					</p>
+					<p style="font-family: 'Times New Roman';font-size: 12px; text-align:center; color: #FFFFFF;">
+					(Disclaimer: We take no responsibility for any copyright infringements.)
+					</p>
+					</div>
+				</div>
+			</div>
+			<div id="urlImgForm" style="display: none;"> 
+				<text style="color:#FFFFFF;">Image URL:</text><input id="imgurl" type="text" style="width: 60%;" name="imgurl"/>
+				<button id="img-url-inp"> Done </button>
+				<br/>
+					<img id="url-image-holder" class="thumb" src="" style="align: center; display:none;" />
+					<div id="url-text-holder" style="width: 100%; height: 200px; display:inline;"> 
+						<br/>
+						<p style="font-family: 'Times New Roman';font-size: 13px; text-align:center; color: #FFFFFF;">
+							If your URL is correct, you'll see the preview here. Large images may take a few minutes to appear.
+						</p>
+						<p style="font-family: 'Times New Roman';font-size: 12px; text-align:center; color: #FFFFFF;">
+							(Disclaimer: We take no responsibility for any copyright infringements.)
+						</p>
+				</div>
+			</div>
+		</td>
+		</tr>
+		</table>
+	<button id="image-embed-submit-button" style = "align: center; display:none;"> Embed</button>
+	<button id="image-embed-cancel-button" style = "align: center; display:none;"> Cancel</button>
+	</div>
+<script type="text/javascript">
+<!--
+	document.getElementById('img-file-inp').addEventListener('change', SocialCalc.Images.handleFileSelect, false);
+	document.getElementById('img-url-inp').addEventListener('click', SocialCalc.Images.getUrlImage, false);
+	document.getElementById('image-embed-submit-button').addEventListener('click', SocialCalc.Images.Embed, false);
+	document.getElementById('image-embed-cancel-button').addEventListener('click', SocialCalc.Images.hideImgForm, false);
+-->
+</script>
+</div>
+
+<!-- End of div for Image Import -->
+
+
+
+
+
+
+
+
+
+<h3><a href="/">Aspiring Investments</a>&nbsp;&nbsp;&nbsp;Editing
+<span id="filenameholder">{{ entry["fname"] }}</span> in session {{ entry["session"] }}</h3>
+
+
+<div id="workbookControl" style="background-color:#80A9F3;">
+</div>
+
+<div style="margin:8px 0px 10px 0px;">
+ <div id="tableeditor" style="margin:8px 0px 10px 0px;">Loading editor</div>
+</div>
+ <div id="msg" onclick="this.innerHTML='&nbsp;';"></div>
+
+<textarea name="savestr" id="sheetdata" style="display:none;">
+{{ entry["sheetstr"] }}
+</textarea>
+
+
+<script>
+
+var sheetnamemscedata = "{{ entry['sheetmscestr'] }}";
+Aspiring.AutoSave.selectedFile = "{{ entry['fname'] }}";
+
+ 
+  SocialCalc.Constants.defaultImagePrefix = "{{ url_for('static',filename='images/sc-') }}";
+  SocialCalc.Popup.imagePrefix = "{{ url_for('static',filename='images/sc-') }}";
+
+var spreadsheet = new SocialCalc.SpreadsheetControl();
+
+// setup upload tab
+   spreadsheet.tabs.splice(spreadsheet.tabnums.sort, 5);
+
+   spreadsheet.tabnums = {};
+   for (var i=0; i<spreadsheet.tabs.length; i++) {
+      spreadsheet.tabnums[spreadsheet.tabs[i].name] = i;
+      }
+
+
+//Upload
+  
+ spreadsheet.tabnums["import"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "import", text: "Import", html:
+     '<div  id="%id.importtools" style="display:none;">'+
+     '<form id = "uploadfile" action = "/import" method = "post" enctype = "multipart/form-data" onsubmit="return uploadcheck()" name = "uploadfile">'+
+      '<table cellspacing="0" cellpadding="0" style="background-color:#FFF;"><tr><td>'+
+      '    <input type="file" id="fileUpload" name ="upload" >'+
+      '   </td>'+ 
+      '   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "Import">'+    
+      '    <input type="text" id = "ext" name = "ext" readonly="readonly" style="display:none;">'+ 
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+   //spreadsheet.views["upload"] = {name: "upload", divStyle: "border:1px solid black;overflow:auto;", values: {},
+   //   html: 'Upload View'
+   //   };
+
+ spreadsheet.tabnums["insert"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "insert", text: "insert", html:
+     '<div  id="%id.inserttools" style="display:none">'+
+     '<form id = "insert" action = "/insert" method = "post" onsubmit="return insertcheck()">'+
+      '<table cellspacing="0" cellpadding="0"><tr><td>'+
+      '<input type="text" id = "insertentry" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td>'+ 
+      '   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "MscFileName">'+    
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+      
+      
+ spreadsheet.tabnums["export"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "export", text: "Export", html:
+     '<div  id="%id.exporttools" style="display:none">'+
+     '<form id = "downloadfile" action = "/downloadfile" method = "post"  enctype = "multipart/form-data" onsubmit="return downloadcheck()">'+
+      '<table cellspacing="0" cellpadding="0"><tr><td>'+
+      '<select id="downloadtype" name="type">'+
+      '<option value="Excel2007">Excel2007</option>'+
+      '<option value="Excel5">Excel5</option>'+
+      '<option value="CSV">CSV</option>'+
+      '<option value="PDF">PDF</option>'+
+      '<option value="HTML">HTML</option>'+
+      '<option value="MSCE">MSCE</option>'+
+      '<option value="MSC">MSC</option>'+	
+      '</select>'+
+      '   </td>'+ 
+      '   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "Export">'+    
+      '    <input type="text" id = "downloadcontent" name = "content" style="display:none;">'+ 
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+
+
+ spreadsheet.tabnums["getticker"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "ticker", text: "LoadTickerData", html:
+     '<div  id="%id.tickertools" style="display:none">'+
+     '<form id = "tickerload" action = "/getticker" method = "post" onsubmit="return tickercheck()">'+
+      '<table cellspacing="0" cellpadding="0"><tr><td>'+
+      '<input type="text" id = "tickerentry" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td>'+ 
+      '   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "LoadTicker">'+    
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+
+/*      
+ spreadsheet.tabnums["get10year"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "tenyear", text: "Load10yearData", html:
+     '<div  id="%id.tenyeartools" style="display:none">'+
+     '<form id = "tenyearload" action = "/tenyeardata" method = "post" onsubmit="return tenyearcheck()">'+
+      '<table cellspacing="0" cellpadding="0"><tr><td>'+
+      '<input type="text" id = "tenyearentry" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td>'+ 
+      '   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "LoadTicker">'+    
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+*/
+      
+ spreadsheet.tabnums["saveas"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "saveas", text: "Save", html:
+     '<div  id="%id.saveastools" style="display:none">'+
+     '<form id = "saveas" action = "/save" method = "post" onsubmit="return savecheck()">'+
+      '<table cellspacing="0" cellpadding="0"><tr><td>'+
+      '<input type="text" id = "saveasentry" value = {{ entry["fname"] }} onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td>'+ 
+      '   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "SaveAs">'+    
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+
+spreadsheet.tabnums["runas"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "runas", text: "Run", html:
+     '<div  id="%id.runastools" style="display:none">'+
+     '<form id = "runas"  onsubmit="return runascheck();">'+
+      '<table cellspacing="0" cellpadding="0"><tr><td>'+
+	'<span><font color="white">Enter Sheet Names separated by commas</font></span></td></tr><tr><td>'+
+      '<textarea id="sheetnamesid" name="sheets"></textarea>'+
+     '    <input type="submit" value = "Run As WebApp">'+    
+      '</td></tr></table></form></div>',
+      onclickFocus: true
+      });
+
+      
+/***************************************************************
+ spreadsheet.tabnums["share"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "share", text: "Share", html:
+     '<div  id="%id.sharetools" style="display:none">'+
+     '</div>',
+      onclickFocus: true,
+      view: "share"
+      });
+  spreadsheet.views["share"] = {name: "share", divStyle: "border:1px solid black;overflow:auto;", values: {},
+      html:      '<form id = "shareview" action = "/share" method = "post" onsubmit="return sharecheck()">'+
+      '<br><br><br>'+
+      '<table cellspacing="0" cellpadding="0">'+
+      '<tr><td>From Name:</td><td> <input type="text" id = "sharefrom" size = "30" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td></tr><br>'+ 
+      '<tr><td>To Email:</td><td> <input type="text" id = "shareto" size = "30" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td></tr><br>'+ 
+      '<tr><td>Message:</td><td> <textarea id = "sharemessage" cols = "50" rows="10" wrap="virtual" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '</textarea></td></tr>'+ 
+      '<tr><td></td>   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "Submit">'+ '<INPUT type="reset" name="reset" value="Reset">' +  
+      '</td></tr>'+
+      '</table></form></div>'
+
+   };
+
+function sharecheck(){
+
+  var message = {}
+  message.from = (document.getElementById('sharefrom')).value
+  message.to = (document.getElementById('shareto')).value
+  message.msg = (document.getElementById('sharemessage')).value
+  message.data = SocialCalc.WorkBookControlSaveSheet()
+					  
+
+  $.postJSON("/share", message, function(response) {
+   msg = response["data"]
+   //var el = document.getElementById('shareto')
+   //el.value=''
+   //var el1 = document.getElementById('sharemessage')
+   //el1.value=''
+   alert("Sent Email to "+msg)
+
+  });
+
+
+  return false;
+}
+
+      
+
+
+ spreadsheet.tabnums["embed"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "embed", text: "Embed", html:
+     '<div  id="%id.embedtools" style="display:none">'+
+     '</div>',
+      onclickFocus: true,
+      view: "embed"
+      });
+  spreadsheet.views["embed"] = {name: "embed", divStyle: "border:1px solid black;overflow:auto;", values: {},
+      html:      '<form id = "embedview" action = "/embed" method = "post" onsubmit="return embedcheck()">'+
+      '<br><br><br>'+
+      '<table cellspacing="0" cellpadding="0">'+
+      '<tr><td><textarea id = "embedlink" cols = "50" rows="4" wrap="virtual" style="display:none">'+
+      '</textarea></td></tr>'+ 
+      '<tr><td><input type="submit" id="embedsubmit" value = "Generate Embed Link">'+ 
+      '</td></tr>'+
+      '</table></form></div>'
+
+   };
+
+function embedcheck(){
+
+  var message = {}
+  message.data = SocialCalc.WorkBookControlSaveSheet()
+
+  $.postJSON("/embed", message, function(response) {
+   msg = response["data"]
+   //alert(msg)
+   var el = document.getElementById('embedlink')
+   el.value=msg
+   el.style.display = "block"
+   var el1 = document.getElementById('embedsubmit')
+   el1.style.display = "none"
+  });
+
+
+  return false;
+}
+
+
+ spreadsheet.tabnums["collaborate"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "collaborate", text: "Collaborate", html:
+     '<div  id="%id.collaboratetools" style="display:none">'+
+     '</div>',
+      onclickFocus: true,
+      view: "collaborate"
+      });
+  spreadsheet.views["collaborate"] = {name: "collaborate", divStyle: "border:1px solid black;overflow:auto;", values: {},
+      html:      '<form id = "collaborateview" action = "/collaborate" method = "post" onsubmit="return collaboratecheck()">'+
+      '<br><br><br>'+
+      '<table cellspacing="0" cellpadding="0">'+
+      '<tr><td>From Name:</td><td> <input type="text" id = "collabfrom" size = "30" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td></tr><br>'+ 
+      '<tr><td>To Email:</td><td> <input type="text" id = "collabto" size = "30" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '   </td></tr><br>'+ 
+      '<tr><td>Message:</td><td> <textarea id = "collabmessage" cols = "50" rows="10" wrap="virtual" onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '</textarea></td></tr>'+ 
+      '<tr><td></td>   <td style="vertical-align:top;padding-right:6px;">'+
+      '    <input type="submit" value = "Submit">'+ '<INPUT type="reset" name="reset" value="Reset">' +  
+      '</td></tr>'+
+      '</table></form></div>'
+
+   };
+***********************************/
+spreadsheet.tabnums["editablecells"] = spreadsheet.tabs.length;
+ spreadsheet.tabs.push({name: "editablecells", text: "EditableCells", html:
+     '<div  id="%id.editablecellstools" style="display:none">'+
+     '</div>',
+      onclickFocus: true,
+     onclick: function(s,t) {
+         var editablecellsstr = ""
+         if (SocialCalc.EditableCells.allow) {
+            for (i in SocialCalc.EditableCells.cells) {
+               editablecellsstr = editablecellsstr + i + "\n";
+               //alert(i);
+            }
+         }
+        for (i in SocialCalc.EditableCells.constraints) {
+            var lis = SocialCalc.EditableCells.constraints[i]
+            var cstr = "c:"+i
+            for (var j=0; j < lis.length; j++) {
+               cstr = cstr + ":" + lis[j]
+             } 
+             editablecellsstr = editablecellsstr + cstr + "\n";
+               //alert(i);
+         }
+     
+         var ele = document.getElementById("editablecells");
+         if (ele) {
+           ele.value = editablecellsstr;
+         } else {
+           alert("text area not found!");
+         }
+     },
+     view: "editablecells"
+      });
+  spreadsheet.views["editablecells"] = {name: "editablecells", divStyle: "border:1px solid black;overflow:auto;", values: {},
+      html:      '<form id = "editablecellsform" action = "/noaction" method = "post" onsubmit="return editablecellscheck()">'+
+      '<br><br><br>'+
+      '<table cellspacing="0" cellpadding="0">'+
+     '<br>EditableCells'+
+     '<br> enter in format: sheetname!cell\nsheetname!cell'+
+     '<tr><td>'	+
+     '<textarea id = "editablecells" cols = "80" rows="20" wrap="virtual" onfocus="SocialCalc.CmdGotFocus(this);">'+
+     '</textarea></td></tr>'+ 
+      '<tr><td></td>   <td  style="vertical-align:top;padding-right:6px;">'+
+           '    <input type="submit" value = "Submit">'+ '<INPUT type="reset" name="reset" value="Reset">' +  
+        '</td></tr>'+
+      '</table></form>'
+
+   };
+
+      
+function collaboratecheck(){
+
+  var message = {}
+  message.from = (document.getElementById('collabfrom')).value
+  message.to = (document.getElementById('collabto')).value
+  message.msg = (document.getElementById('collabmessage')).value
+  message.session = getCookie("session")
+					    
+
+  $.postJSON("/collaborate", message, function(response) {
+   msg = response["data"]
+   //var el = document.getElementById('shareto')
+   //el.value=''
+   //var el1 = document.getElementById('sharemessage')
+   //el1.value=''
+   alert("Sent Email to "+msg)
+
+  });
+
+
+  return false;
+}
+
+
+
+
+function savecheck(){
+  var fname = document.getElementById('saveasentry').value;
+
+  //alert(ticker);
+
+  if (fname == '') { alert('empty file name'); return false;}
+
+  var message = {}
+  message.fname = fname
+  //message.data = encodeURIComponent(SocialCalc.WorkBookControlSaveSheet())
+  message.data = SocialCalc.WorkBookControlSaveSheet()
+
+  //alert(message.fname)
+
+			
+  $.postJSON("/save", message, function(response) {
+   msg = response["data"]
+   alert(msg)
+  });
+
+  Aspiring.AutoSave.updateFileName(fname);
+
+  return false;
+}
+
+function runascheck(){
+
+  var sheetstr = "";
+  var sheets = document.getElementById("sheetnamesid").value;
+     
+  if (sheets) {
+      alert(sheets);
+      sheetstr = "&sheets="+encodeURIComponent(sheets)      
+  } else {
+      alert("please enter comma separated sheet names")
+  }
+
+  var link = '/runas?file={{ entry["fname"] }}'+sheetstr;
+  alert(link);            
+  window.open(link,'{{ entry["fname"] }}');
+
+      
+ return false;
+}
+
+      
+function insertcheck(){
+
+  var message = {}
+  message.filename = (document.getElementById('insertentry')).value
+
+  $.postJSON("/insert", message, function(response) {
+   result = response["result"]
+   if (result == "ok") {
+      data = response["data"]
+     SocialCalc.WorkBookControlInsertWorkbook(data);
+      alert("done");
+   } else {
+      alert(" file not found "+message.filename);
+   }
+ });
+
+
+  return false;
+}
+
+
+function uploadcheck(){
+  var file = document.getElementById('fileUpload').value;
+  if(file == "")
+   { alert("You must select a file to upload");
+     return false;
+   }
+  return true;
+}
+
+function downloadcheck(){
+
+ var ele =  document.getElementById('downloadtype');
+//  alert(ele.selectedIndex);
+  if (ele.selectedIndex == -1) {
+      alert("Please select type for download file");
+      return false;
+  }
+ // alert("selected type: "+ele.options[ele.selectedIndex].value);
+  if (ele.options[ele.selectedIndex].value == "MSCE") {
+      document.getElementById('downloadcontent').value = encodeURIComponent(SocialCalc.WorkBookControlSaveSheet())
+  } if ((ele.options[ele.selectedIndex].value == "HTML") || (ele.options[ele.selectedIndex].value == "PDF")) {
+      var control = SocialCalc.GetCurrentWorkBookControl();
+      var html = control.workbook.spreadsheet.CreateSheetHTML();      
+      document.getElementById('downloadcontent').value = html
+  } else {
+      document.getElementById('downloadcontent').value = SocialCalc.WorkBookControlSaveSheet()
+  }
+      return true;
+
+}
+
+
+function tickercheck(){
+  var ticker = document.getElementById('tickerentry').value;
+
+  alert(ticker);
+
+  if (ticker == '') { alert('empty ticker'); return false;}
+
+  // this is to load directly from the browser
+  // run the browser using "--disable-web-security" option
+  Aspiring.loadFinancialStatements(ticker);  
+  return false;
+
+  // this is to load from the web server
+  var message = {}
+  message.ticker = ticker
+
+  //alert(message.ticker)
+
+  $.postJSON("/ticker", message, function(response) {
+   if (response["result"] == "fail") {
+      alert("ticker data not found");
+      return;
+   }
+   SocialCalc.SpinnerWaitCreate();
+   msg = response["data"]
+   tickdata = response["tick"]
+   //alert(msg)
+   insertTickerIntoWorkbook(msg)
+   insertTickDataIntoWorkbook(tickdata)
+   //alert(player.idInSession)
+   if (player.idInSession == "1") {
+	SocialCalc.Callbacks.broadcast('snapshot', {
+					 to: "all",
+					    snapshot: SocialCalc.WorkBookControlSaveSheet()
+					    });
+		    }
+   
+});
+  return false;
+}
+
+function tenyearcheck(){
+
+  var ticker = document.getElementById('tenyearentry').value;
+
+  //alert(ticker);
+
+  if (ticker == '') { alert('empty ticker'); return false;}
+
+  var message = {}
+  message.ticker = ticker
+
+  //alert(message.ticker)
+  SocialCalc.SpinnerWaitCreate();
+  $.postJSON("/tenyeardata", message, function(response) {
+   if (response["result"] == "fail") {
+      SocialCalc.SpinnerWaitHide();
+      alert("ticker data not found");
+      return;
+   }
+  msg = response["data"]
+  //  alert(msg)
+  SocialCalc.SpinnerWaitHide();
+  insertTickerIntoWorkbook(msg)
+  });
+  return false;
+}
+
+
+function editablecellscheck()  {
+
+  var editablecells = document.getElementById('editablecells').value;      
+
+  // parse the editablecells, if one or more found, then, set the
+  //     editable cells attribute
+  alert(editablecells);
+  var cellslist = editablecells.split("\n");
+  SocialCalc.EditableCells.allow = false;
+  if (cellslist.length > 0) {
+     SocialCalc.EditableCells.cells = {};
+     SocialCalc.EditableCells.constraints = {};
+
+     for (i in cellslist) {
+         if (cellslist[i].slice(0,2) == "r:") {
+            // this is a range of editable cells
+            var lis = cellslist[i].slice(2).split(":");
+            //alert(lis[0]+","+lis[1]+","+lis[2]);
+            var obj1 = SocialCalc.coordToCr(lis[1]);
+            var obj2 = SocialCalc.coordToCr(lis[2]);
+            var count = 0;
+            var i=0;
+            var j=0;
+            for (i=obj1.col;i<=obj2.col;i++) {
+               for (j=obj1.row; j<=obj2.row; j++) {
+                  SocialCalc.EditableCells.cells[lis[0]+"!"+SocialCalc.crToCoord(i,j)]=
+         true;
+                  //alert(lis[0]+"!"+SocialCalc.crToCoord(i,j));
+                  count++;
+               }
+            }
+            if (count > 0) {
+              SocialCalc.EditableCells.allow = true;
+            }
+            alert(JSON.stringify(SocialCalc.EditableCells));
+         }
+         else if (cellslist[i].slice(0,2) == "c:") {
+            // this is a constraint
+            var lis = cellslist[i].slice(2).split(":")
+            SocialCalc.EditableCells.constraints[lis[0]] = lis.slice(1);
+            //alert(lis);
+         } else if ( cellslist[i].split("!").length > 1 ) {
+             SocialCalc.EditableCells.cells[cellslist[i]] =  true;
+             SocialCalc.EditableCells.allow = true;
+         }
+     }
+     console.log(SocialCalc.EditableCells);
+  }
+ return false;
+}
+
+
+function MyEndsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+var workbook = new SocialCalc.WorkBook(spreadsheet);
+workbook.InitializeWorkBook("sheet1");
+
+spreadsheet.InitializeSpreadsheetControl("tableeditor");
+spreadsheet.ExecuteCommand('redisplay', '');
+
+
+var workbookcontrol = new SocialCalc.WorkBookControl(workbook,"workbookControl","sheet1");
+workbookcontrol.InitializeWorkBookControl();
+
+var fname = '{{ entry["fname"] }}'
+
+if (MyEndsWith(fname,".msce") || MyEndsWith(fname, ".MSCE")) {
+  SocialCalc.WorkBookControlLoad(decodeURIComponent(sheetnamemscedata))
+} else {
+   SocialCalc.WorkBookControlLoad(document.getElementById("sheetdata").value)
+}
+
+spreadsheet.DoOnResize();
+
+var sheetstr = document.getElementById("sheetdata").value;
+
+// broadcast a snapshot after a delay
+
+
+					    
+
+
+function insertTickerIntoWorkbook(msg) {
+  // load the 3 sheets into the workbook
+  var control = SocialCalc.GetCurrentWorkBookControl();
+  SocialCalc.WorkBookControlInsertWorkbook(msg);
+}
+
+function insertTickDataIntoWorkbook(data) {
+  // this is osv specific
+  var control = SocialCalc.GetCurrentWorkBookControl();
+  var cmdstr="set B3 text t ticker"+"\n"+"set C3 text t "+data["ticker"]+"\n"+
+             "set B5 text t price"+"\n"+"set C5 value n "+data["price"]+"\n"+
+             "set B6 text t 52 Week High"+"\n"+"set C6 value n "+data["52_week_high"]+"\n"+
+             "set B7 text t 52 Week Low"+"\n"+"set C7 value n "+data["52_week_low"]+"\n"+
+             "set B8 text t 50 day moving avg"+"\n"+"set C8 value n "+data["50day_moving_avg"]+"\n"+
+             "set B9 text t 200 day moving avg"+"\n"+"set C9 value n "+data["200day_moving_avg"]+"\n"+
+             "set B10 text t Volume"+"\n"+"set C10 value n "+data["volume"]+"\n"+
+             "set B11 text t Avg. Daily Volume"+"\n"+"set C11 value n "+data["avg_daily_volume"]+"\n"+
+             "set B12 text t Short Ratio"+"\n"+"set C12 value n "+data["short_ratio"]+"\n";
+
+  cmd = {cmdtype:"scmd", id:"sheet6", cmdstr: cmdstr, saveundo: false};
+  control.ExecuteWorkBookControlCommand(cmd, false);  
+
+  SocialCalc.WorkBookRecalculateAll();
+
+}
+
+</script>
+<script src="{{ url_for('static',filename='updater.js') }}" type="text/javascript"></script>
+
+<script>
+function broadcastInitLoadData(data) {
+SocialCalc.Callbacks.broadcast('snapshot', {
+to: "all",
+snapshot: data
+});
+//alert("broadcasting");
+}
+
+$(document).ready(function(){
+  var timeoutFn = function() {
+    broadcastInitLoadData(document.getElementById("sheetdata").value);
+  }
+  window.setTimeout(timeoutFn, 200);
+});
+
+</script>
+
+</body>
+</html>
+

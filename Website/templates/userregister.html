@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block head %} {% endblock %} {% block body %}
+<form method="POST" action="{{ url_for('register_post') }}">
+  <center>
+    Email: <input type="text" name="email" size="20" /><br />
+    Password: <input type="password" name="password" size="15" /><br />
+    Retype Password: <input type="password" name="repassword" size="15" /><br />
+    <br />
+    <input type="submit" value="Register" />
+  </center>
+</form>
+{% endblock %}
