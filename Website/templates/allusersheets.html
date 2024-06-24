@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block head %}
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='paging.js') }}"
+></script>
+<style type="text/css">
+  .pg-normal {
+    color: black;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .pg-selected {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+<script>
+  function doedit(p) {
+    document.getElementById("pagename").value = p;
+    document.getElementById("edit").value = "yes";
+  }
+
+  function doview(p) {
+    document.getElementById("pagename").value = p;
+    document.getElementById("view").value = "yes";
+  }
+  function doremove(p) {
+    document.getElementById("pagename").value = p;
+    document.getElementById("delete").value = "yes";
+  }
+</script>
+{% endblock %} {% block body %}
+
+<div class="span-7">
+  <hr class="space" />
+</div>
+<div class="span-8" align="center">
+  <form action="{{ url_for('usersheet_post') }}" method="POST">
+    <div>
+      <table id="template-apps">
+        {% for entry in entries %}
+        <tr>
+          <td>{{ entry.fname }}</td>
+          <td>
+            <input
+              class="smaller"
+              type="submit"
+              value="Edit"
+              onclick="doedit('{{ entry.fname }}');"
+            />
+          </td>
+          <td>
+            <input
+              class="smaller"
+              type="submit"
+              value="View"
+              onclick="doview('{{ entry.fname }}');"
+            />
+          </td>
+          <td>
+            <input
+              class="smaller"
+              type="submit"
+              value="Delete"
+              onclick="doremove('{{ entry.fname }}');"
+            />
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <div id="pageNavPosition"></div>
+
+      <input id="pagename" name="pagename" type="hidden" value="" />
+      <input id="edit" name="edit" type="hidden" value="no" />
+      <input id="view" name="view" type="hidden" value="no" />
+      <input id="delete" name="delete" type="hidden" value="no" />
+    </div>
+    <br />
+  </form>
+</div>
+
+<div class="span-7 last">
+  <hr class="space" />
+</div>
+
+<script type="text/javascript">
+  var pager;
+  document.addEventListener("DOMContentLoaded", function () {
+    pager = new Pager("template-apps", 15);
+    pager.init();
+    pager.showPageNav("pager", "pageNavPosition");
+    pager.showPage(1);
+  });
+</script>
+
+{% endblock %}

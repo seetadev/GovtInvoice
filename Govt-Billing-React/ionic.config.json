@@ -1,7 +1,7 @@
 {
-  "name": "ionicReactApp",
+  "name": "GovtInvoiceNew",
   "integrations": {
     "capacitor": {}
   },
-  "type": "react"
+  "type": "react-vite"
 }

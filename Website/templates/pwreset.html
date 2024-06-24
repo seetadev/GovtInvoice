@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block head %} {% endblock %} {% block body %}
+<form method="POST" action="/pwreset">
+  <center>
+    Reset password for: {{ reguser }}
+    <br />
+    <input type="hidden" name="email" value="{{ reguser }}" /><br />
+    Password:<input type="password" name="password" size="15" /><br />
+    Retype Password:<input type="password" name="repassword" size="15" /><br />
+    <br />
+    <input type="submit" value="Reset Password" />
+    <br />
+    <br />
+  </center>
+</form>
+{% endblock %}

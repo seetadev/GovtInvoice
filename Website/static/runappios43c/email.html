@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+<link rel="stylesheet"  href="lib/jquery/_assets/css/jqm-docs.css"/> 
+<link rel="stylesheet"  href="lib/jquery/jquery.mobile.css" /> 
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery/_assets/js/jqm-docs.js"></script>
+<script type="text/javascript"
+src="lib/jquery/jquery.mobile.js"></script>
+<style>
+* {
+   -webkit-user-select: text;
+}
+</style>
+
+<script type="text/javascript">
+	// $("#emailPage").live("pagebeforeshow", showHtml);
+	// var showHtml = function() {
+	// 	alert("In showHtml function");
+	// 	var control = SocialCalc.GetCurrentWorkBookControl();
+ //        var content = control.workbook.spreadsheet.CreateSheetHTML();
+ //        document.getElementById("mailHtml").innerHTML = content;
+	// }
+	// $('#emailPage').live('pagebeforeshow', function() {
+	// 	showHtml();
+	// });
+</script>
+</head>
+
+<body> 
+
+<div data-role="page" data-theme="d" id="emailPage">
+	<div data-role="content">
+	    <!-- email form here -->   
+		<form onsubmit="return false;">
+			<h2> Email </h2>
+	  
+			<div data-role="fieldcontain">
+			  <label for="emailto">To:</label>
+			  <input type="text" name="emailto" id="emailto" value=""  />
+			</div>
+			<div data-role="fieldcontain">
+			  <label for="emailSubject">Subject:</label>
+			  <input type="text" name="emailSubject" id="emailSubject" value=""  />
+			</div>
+			<div data-role="fieldcontain">
+			  <label for="emailText">Message:</label>
+			  <input type="text" name="emailText" id="emailText" value=""  />
+			</div>
+
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<button onclick="changePage('#indexPage');" style="margin-left:30%;">Cancel</button>
+				<button onclick="paypalHttpsLink('Email')" style="margin-left:30%;">Donate</button>
+				<button onclick="sendEmail();" style="margin-left:30%;">Send Email</button>
+			</fieldset>
+
+			<div id="mailHtml"></div>
+	  </form>
+
+	</div> <!-- content -->
+	</div> <!-- page -->
+
+	
+</body>
+</html>

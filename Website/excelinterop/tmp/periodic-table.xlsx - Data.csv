@@ -1,0 +1,131 @@
+Atomic Number,Name,Symbol,† Atomic Weight,Atomic Weight Estimated,Atomic Weight Display,† Phase at STP,Type,Group,Group 2,Period,† Electron Configuration,Ground-state Level,† Ionization Energy (eV),* Melting Point (°C),* Boiling Point (°C),Crystal Structure,Atomic Radius (display),Metallic Radius (pm),* Covalent radius (pm),* Atomic Radius (calculated)  (pm),"* Van der Waals Radius, (pm)",* Electro-negativity (Pauling),* Density (g/cm3),* Electron Affinity (kJ/mol),"* Thermal Conductivity, W/(m K)",* Electrical Resistivity (Ωm),* CAS Number,Possible Oxidation States,Discoverer,Discovery (Year)
+1,Hydrogen,H,1.00794,,1.00794,Gas,Non Metal,1,IA,1,1s1,2S1/2,13.5984,-259.14,-252.87,hex,(v) 37,,37,53,120,2.2,0.0899,72.8,0.1805,#N/A,CAS1333-74-0,"+1,-1","Cavendish, Henry",1766
+2,Helium,He,4.002602,,4.002602,Gas,Noble Gas,18,VIIIA,1,1s2,1S0,24.5874,#N/A,-268.93,,(v) 32,,32,31,140,#N/A,0.1785,#N/A,0.1513,#N/A,CAS7440-59-7,0,"Ramsey, Sir William & Cleve, Per Teodor",1895
+3,Lithium,Li,6.941,,6.941,Solid,Alkali Metal,1,IA,2,[He] 2s1,2S1/2,5.3917,180.54,1342,BCC,(m) 152,152,134,167,182,0.98,0.535,59.6,85,0.000000094,CAS7439-93-2,+1,"Arfvedson, Johan August",1817
+4,Beryllium,Be,9.012182,,9.012182,Solid,Alkaline Earth Metal,2,IIA,2,[He] 2s2,1S0,9.3227,1287,2470,HCP,(m) 112,112,90,112,153,1.57,1.848,#N/A,190,0.00000004,CAS7440-41-7,+2,"Vauquelin, Nicholas Louis",1797
+5,Boron,B,10.811,,10.811,Solid,Metalloids,13,IIIA,2,[He] 2s2 2p1,2P°1/2,8.298,2075,4000,rhom.,(v) 82,,82,87,192,2.04,2.46,26.7,27,10000,CAS7440-42-8,+3,"Davy, Sir Humphry & Thénard, Louis-Jaques  & Gay-Lussac, Louis-Joseph",1808
+6,Carbon,C,12.0107,,12.0107,Solid,Non Metal,14,IVA,2,[He] 2s2 2p2,3P0,11.2603,3550,4027,hex,(v) 77,,77,67,170,2.55,2.26,153.9,140,0.00001,CAS7440-44-0,"+2,4/-4",unknown,ancient
+7,Nitrogen,N,14.0067,,14.0067,Gas,Non Metal,15,VA,2,[He] 2s2 2p3,4S°3/2,14.5341,-210.1,-195.79,hex,(v) 75,,75,56,155,3.04,1.251,7,0.02583,#N/A,CAS7727-37-9,"+1,2,3,4,5/-1,2,3","Rutherford, Daniel",1772
+8,Oxygen,O,15.9994,,15.9994,Gas,Non Metal,16,VIA,2,[He] 2s2 2p4,3P2,13.6181,-218.3,-182.9,§cubic,(v) 73,,73,48,152,3.44,1.429,141,0.02658,#N/A,CAS7782-44-7,-2,"Priestley, Joseph & Scheele, Carl Wilhelm",1774
+9,Fluorine,F,18.9984032,,18.9984032,Gas,Halogen,17,VIIA,2,[He] 2s2 2p5,2P°3/2,17.4228,-219.6,-188.12,§cubic,(v) 71,,71,42,147,3.98,1.696,328,0.0277,#N/A,CAS7782-41-4,-1,"Moissan, Henri",1886
+10,Neon,Ne,20.1797,,20.1797,Gas,Noble Gas,18,VIIIA,2,[He] 2s2 2p6,1S0,21.5645,-248.59,-246.08,FCC,(v) 69,,69,38,154,#N/A,0.9,#N/A,0.0491,#N/A,CAS7440-01-9,0,"Ramsay, William & Travers, Morris",1898
+11,Sodium,Na,22.98977,,22.98977,Solid,Alkali Metal,1,IA,3,[Ne] 3s1,2S1/2,5.1391,97.72,883,BCC,(m) 186,186,154,190,227,0.93,0.968,52.8,140,0.000000047,CAS7440-23-5,+1,"Davy, Sir Humphry",1807
+12,Magnesium,Mg,24.305,,24.305,Solid,Alkaline Earth Metal,2,IIA,3,[Ne] 3s2,1S0,7.6462,650,1090,HCP,(m) 160,160,130,145,173,1.31,1.738,#N/A,160,0.000000044,CAS7439-95-4,+2,"Black, Joseph",1755
+13,Aluminum,Al,26.981538,,26.981538,Solid,Poor Metal,13,IIIA,3,[Ne] 3s2 3p1,2P°1/2,5.9858,660.32,2519,FCC,(m) 143,143,118,118,184,1.61,2.7,42.5,235,0.000000026,CAS7429-90-5,+3,"Oersted, Hans Christian",1825
+14,Silicon,Si,28.0855,,28.0855,Solid,Metalloids,14,IVA,3,[Ne] 3s2 3p2,3P0,8.1517,1414,2900,cubic,(v) 111,,111,111,210,1.9,2.33,133.6,150,0.001,CAS7440-21-3,"+2,4/-4","Berzelius, Jöns Jacob",1824
+15,Phosphorus,P,30.97361,,30.97361,Solid,Non Metal,15,VA,3,[Ne] 3s2 3p3,4S°3/2,10.4867,44.2,280.5,§,(v) 106,,106,98,180,2.19,1.823,72,0.236,0.0000001,CAS7723-14-0,"+3,5/-3","Brandt, Hennig",1669
+16,Sulfur,S,32.065,,32.065,Solid,Non Metal,16,VIA,3,[Ne] 3s2 3p4,3P2,10.36,115.21,444.72,FCO,(v) 102,,102,88,180,2.58,1.96,200,0.205,#N/A,CAS7704-34-9,"+4,6/-2",unknown,ancient
+17,Chlorine,Cl,35.453,,35.453,Gas,Halogen,17,VIIA,3,[Ne] 3s2 3p5,2P°3/2,12.9676,-101.5,-34.04,BCO,(v) 99,,99,79,175,3.16,3.214,349,0.0089,#N/A,CAS7782-50-5,"+1,5,7/-1","Scheele, Carl Wilhelm",1774
+18,Argon,Ar,39.948,,39.948,Gas,Noble Gas,18,VIIIA,3,[Ne] 3s2 3p6,1S0,15.7596,-189.3,-185.8,FCC,(v) 97,,97,71,188,#N/A,1.784,#N/A,0.01772,#N/A,CAS7440-37-1,0,"Ramsay, Sir William & Strutt, John (Lord Rayleigh)",1894
+19,Potassium,K,39.0983,,39.0983,Solid,Alkali Metal,1,IA,4,[Ar] 4s1,2S1/2,4.3407,63.38,759,BCC,(m) 227,227,196,243,275,0.82,0.856,48.4,100,0.00000007,CAS7440-09-7,+1,"Davy, Sir Humphry",1807
+20,Calcium,Ca,40.078,,40.078,Solid,Alkaline Earth Metal,2,IIA,4,[Ar] 4s2,1S0,6.1132,842,1484,FCC,(m) 197,197,174,194,231,1,1.55,2.37,200,0.000000034,CAS7440-70-2,+2,"Davy, Sir Humphry",1808
+21,Scandium,Sc,44.95591,,44.95591,Solid,Transition Metal,3,IIIB,4,[Ar] 3d1 4s2,2D3/2,6.5615,1541,2830,HCP,(m) 162,162,144,184,211,1.36,2.985,18.1,16,0.00000055,CAS7440-20-2,+3,"Nilson, Lars Fredrik",1879
+22,Titanium,Ti,47.867,,47.867,Solid,Transition Metal,4,IVB,4,[Ar] 3d2 4s2,3F2,6.8281,1668,3287,HCP,(m) 147,147,136,176,#N/A,1.54,4.507,7.6,22,0.0000004,CAS7440-32-6,"+2,3,4","Gregor, William",1791
+23,Vanadium,V,50.9415,,50.9415,Solid,Transition Metal,5,VB,4,[Ar] 3d3 4s2,4F3/2,6.7462,1910,3407,BCC,(m) 134,134,125,171,#N/A,1.63,6.11,50.6,31,0.0000002,CAS7440-62-2,"+2,3,4,5","Del Rio, Andrés Manuel (1801) & Sefström, Nils Gabriel (1830)",1801
+24,Chromium,Cr,51.9961,,51.9961,Solid,Transition Metal,6,VIB,4,[Ar] 3d5 4s1,7S3,6.7665,1907,2671,BCC,(m) 128,128,127,166,#N/A,1.66,7.14,64.3,94,0.00000013,CAS7440-47-3,"+2,3,6",Vauquelin,1797
+25,Manganese,Mn,54.938049,,54.938049,Solid,Transition Metal,7,VIIB,4,[Ar] 3d5 4s2,6S5/2,7.434,1246,2061,§cubic,(m) 127,127,139,161,#N/A,1.55,7.47,#N/A,7.8,0.0000016,CAS7439-96-5,"+2,3,4,7","Gahn, Johan Gottlieb",1774
+26,Iron,Fe,55.845,,55.845,Solid,Transition Metal,8,VIIIB,4,[Ar] 3d6 4s2,5D4,7.9024,1538,2861,BCC,(m) 126,126,125,156,#N/A,1.83,7.874,15.7,80,0.000000097,CAS7439-89-6,"+2,3",unknown,ancient
+27,Cobalt,Co,58.9332,,58.9332,Solid,Transition Metal,9,VIIIB,4,[Ar] 3d7 4s2,4F9/2,7.881,1495,2927,HCP,(m) 125,125,126,152,#N/A,1.88,8.9,63.7,100,0.00000006,CAS7440-48-4,"+2,3","Brandt, Georg",1735
+28,Nickel,Ni,58.6934,,58.6934,Solid,Transition Metal,10,VIIIB,4,[Ar] 3d8 4s2,3F4,7.6398,1455,2913,FCC,(m) 124,124,121,149,163,1.91,8.908,112,91,0.00000007,CAS7440-02-0,"+2,3","Cronstedt, Alex Fredrik",1751
+29,Copper,Cu,63.546,,63.546,Solid,Transition Metal,11,IB,4,[Ar] 3d10 4s1,2S1/2,7.7264,1084.62,2927,FCC,(m) 128,128,138,145,140,1.9,8.92,118.4,400,0.000000017,CAS7440-50-8,"+1,2",unknown,ancient
+30,Zinc,Zn,65.409,,65.409,Solid,Transition Metal,12,IIB,4,[Ar] 3d10 4s2,1S0,9.3942,419.53,907,§hex,(m) 134,134,131,142,139,1.65,7.14,#N/A,120,0.000000059,CAS7440-66-6,+2,unknown,ancient
+31,Gallium,Ga,69.723,,69.723,Solid,Poor Metal,13,IIIA,4,[Ar] 3d10 4s2 4p1,2P°1/2,5.9993,29.76,2204,§BCO,(m) 135,135,126,136,187,1.81,5.904,28.9,29,0.00000014,CAS7440-55-3,+3,"Lecoq de Boisbaudran, Paul-Émile",1875
+32,Germanium,Ge,72.64,,72.64,Solid,Metalloids,14,IVA,4,[Ar] 3d10 4s2 4p2,3P0,7.8994,938.3,2820,§cubic,(v) 122,,122,125,211,2.01,5.323,119,60,0.0005,CAS7440-56-4,"+2,4","Winkler, Clemens A.",1886
+33,Arsenic,As,74.9216,,74.9216,Solid,Metalloids,15,VA,4,[Ar] 3d10 4s2 4p3,4S°3/2,9.7886,817,614,rhom.,(v) 119,,119,114,185,2.18,5.727,78,50,0.0000003,CAS7440-38-2,"+3,5/-3",unknown,ancient
+34,Selenium,Se,78.96,,78.96,Solid,Non Metal,16,VIA,4,[Ar] 3d10 4s2 4p4,3P2,9.7524,221,685,§hex,(v) 116,,116,103,190,2.55,4.819,195,0.52,#N/A,CAS7782-49-2,"+4,6/-2","Berzelius, Jöns Jacob",1817
+35,Bromine,Br,79.904,,79.904,Liquid,Halogen,17,VIIA,4,[Ar] 3d10 4s2 4p5,2P°3/2,11.8138,-7.3,59,BCO,(v) 114,,114,94,185,2.96,3.12,324.6,0.12,#N/A,CAS7726-95-6,"+1,5/-1","Balard, Antoine-Jérôme",1826
+36,Krypton,Kr,83.798,,83.798,Gas,Noble Gas,18,VIIIA,4,[Ar] 3d10 4s2 4p6,1S0,13.9996,-157.36,-153.22,FCC,(v) 110,,110,88,202,3,3.75,#N/A,0.00943,#N/A,CAS7439-90-9,0,"Ramsay, Sir William & Travers, Morris",1898
+37,Rubidium,Rb,85.4678,,85.4678,Solid,Alkali Metal,1,IA,5,[Kr] 5s1,2S1/2,4.1771,39.31,688,BCC,(m) 248,248,211,265,303,0.82,1.532,46.9,58,0.00000012,CAS7440-17-7,+1,"Bunsen, Robert Wilhelm & Kirchhoff, Gustav Robert",1861
+38,Strontium,Sr,87.62,,87.62,Solid,Alkaline Earth Metal,2,IIA,5,[Kr] 5s2,1S0,5.6949,777,1382,FCC,(m) 215,215,192,219,249,0.95,2.63,5.03,35,0.00000013,CAS7440-24-6,+2,"Crawford, Adair",1790
+39,Yttrium,Y,88.90585,,88.90585,Solid,Transition Metal,3,IIIB,5,[Kr] 4d1 5s2,2D3/2,6.2173,1526,3345,HCP,(m) 180,180,162,212,#N/A,1.22,4.472,29.6,17,0.00000056,CAS7440-65-5,+3,"Gadolin, Johan",1789
+40,Zirconium,Zr,91.224,,91.224,Solid,Transition Metal,4,IVB,5,[Kr] 4d2 5s2,3F2,6.6339,1855,4409,HCP,(m) 160,160,148,206,#N/A,1.33,6.511,41.1,23,0.00000042,CAS7440-67-7,+4,"Klaproth, Martin Heinrich",1789
+41,Niobium,Nb,92.90638,,92.90638,Solid,Transition Metal,5,VB,5,[Kr] 4d4 5s1,6D1/2,6.7589,2477,4744,BCC,(m) 146,146,137,198,#N/A,1.6,8.57,86.1,54,0.00000015,CAS7440-03-1,"+3,5","Hatchet, Charles",1801
+42,Molybdenum,Mo,95.94,,95.94,Solid,Transition Metal,6,VIB,5,[Kr] 4d5 5s1,7S3,7.0924,2623,4639,BCC,(m) 139,139,145,190,#N/A,2.16,10.28,71.9,139,0.00000005,CAS7439-98-7,+6,"Scheele, Carl Welhelm",1778
+43,Technetium,Tc,98,x,(98),Synthetic,Transition Metal,7,VIIB,5,[Kr] 4d5 5s2,6S5/2,7.28,2157,4265,HCP,(m) 136,136,156,183,#N/A,1.9,11.5,53,51,0.0000002,CAS7440-26-8,"+4,7","Perrier, Carlo & Segrè, Emilio",1937
+44,Ruthenium,Ru,101.07,,101.07,Solid,Transition Metal,8,VIIIB,5,[Kr] 4d7 5s1,5F5,7.3605,2334,4150,HCP,(m) 134,134,126,178,#N/A,2.2,12.37,101.3,120,0.000000071,CAS7440-18-8,+3,"Klaus, Karl Karlovich",1844
+45,Rhodium,Rh,102.9055,,102.9055,Solid,Transition Metal,9,VIIIB,5,[Kr] 4d8 5s1,4F9/2,7.4589,1964,3695,FCC,(m) 134,134,135,173,#N/A,2.28,12.45,109.7,150,0.000000043,CAS7440-16-6,+3,"Wollaston, William Hyde",1803
+46,Palladium,Pd,106.42,,106.42,Solid,Transition Metal,10,VIIIB,5,[Kr] 4d10,1S0,8.3369,1554.9,2963,FCC,(m) 137,137,131,169,163,2.2,12.023,53.7,72,0.0000001,CAS7440-05-3,"+2,4","Wollaston, William Hyde",1803
+47,Silver,Ag,107.8682,,107.8682,Solid,Transition Metal,11,IB,5,[Kr] 4d10 5s1,2S1/2,7.5762,961.78,2162,FCC,(m) 144,144,153,165,172,1.93,10.49,125.6,430,0.000000016,CAS7440-22-4,+1,unknown,ancient
+48,Cadmium,Cd,112.411,,112.411,Solid,Transition Metal,12,IIB,5,[Kr] 4d10 5s2,1S0,8.9938,321.07,767,§hex,(m) 151,151,148,161,158,1.69,8.65,#N/A,97,0.00000007,CAS7440-43-9,+2,"Stromeyer, Prof. Friedrich",1817
+49,Indium,In,114.818,,114.818,Solid,Poor Metal,13,IIIA,5,[Kr] 4d10 5s2 5p1,2P°1/2,5.7864,156.6,2072,§tetra.,(m) 167,167,144,156,193,1.78,7.31,28.9,82,0.00000008,CAS7440-74-6,+3,"Reich, Ferdinand & Richter, Hieronymus",1863
+50,Tin,Sn,118.71,,118.71,Solid,Poor Metal,14,IVA,5,[Kr] 4d10 5s2 5p2,3P0,7.3439,231.93,2602,§tetra.,(v) 141,,141,145,217,1.96,7.31,107.3,67,0.00000011,CAS7440-31-5,"+2,4",unknown,ancient
+51,Antimony,Sb,121.76,,121.76,Solid,Metalloids,15,VA,5,[Kr] 4d10 5s2 5p3,4S°3/2,8.6084,630.63,1587,§rhom.,(v) 138,,138,133,206,2.05,6.697,103.2,24,0.0000004,CAS7440-36-0,"+3,5/-3",unknown,ancient
+52,Tellurium,Te,127.6,,127.6,Solid,Metalloids,16,VIA,5,[Kr] 4d10 5s2 5p4,3P2,9.0096,449.51,988,hex,(v) 135,,135,123,206,2.1,6.24,190.2,3,0.0001,CAS13494-80-9,"+4,6/-2","Müller von Reichenstein, Franz Joseph",1782
+53,Iodine,I,126.90447,,126.90447,Solid,Halogen,17,VIIA,5,[Kr] 4d10 5s2 5p5,2P°3/2,10.4513,113.7,184.3,BCO,(v) 133,,133,115,198,2.66,4.94,295.2,0.449,#N/A,CAS7553-56-2,"+1,5,7/-1","Courtois, Bernard",1811
+54,Xenon,Xe,131.293,,131.293,Gas,Noble Gas,18,VIIIA,5,[Kr] 4d10 5s2 5p6,1S0,12.1298,-111.8,-108,FCC,(v) 130,,130,108,216,2.6,5.9,#N/A,0.00565,#N/A,CAS7440-63-3,0,"Ramsay, William & Travers, Morris William",1898
+55,Cesium,Cs,132.90545,,132.90545,Solid,Alkali Metal,1,IA,6,[Xe] 6s1,2S1/2,3.8939,28.44,671,BCC,(m) 265,265,225,298,343,0.79,1.879,45.5,36,0.0000002,CAS7440-46-2,+1,"Kirchhoff, Gustav & Bunsen, Robert",1860
+56,Barium,Ba,137.327,,137.327,Solid,Alkaline Earth Metal,2,IIA,6,[Xe] 6s2,1S0,5.2117,727,1870,BCC,(m) 222,222,198,253,268,0.89,3.51,13.95,18,0.00000035,CAS7440-39-3,+2,"Davy, Sir Humphry",1808
+57,Lanthanum,La,138.9055,,138.9055,Solid,Rare Earth Metal,3,Lanthanides,6,[Xe] 5d1 6s2,2D3/2,5.5769,920,3464,§hex,(m) 187,187,169,#N/A,#N/A,1.1,6.146,48,13,0.00000061,CAS7439-91-0,+3,"Mosander, Carl Gustav",1839
+58,Cerium,Ce,140.116,,140.116,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f1 5d1 6s2,1G°4,5.5387,798,3360,FCC,(m) 182,182,#N/A,#N/A,#N/A,1.12,6.689,50,11,0.00000074,CAS7440-45-1,"+3,4","Hisinger, Wilhelm & Berzelius, Jöns Jacob/Klaproth, Martin Heinrich",1803
+59,Praseodymium,Pr,140.90765,,140.90765,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f3 6s2,4I°9/2,5.473,931,3290,§hex,(m) 182,182,#N/A,247,#N/A,1.13,6.64,50,13,0.0000007,CAS7440-10-0,+3,"Von Welsbach, Baron Auer",1885
+60,Neodymium,Nd,144.24,,144.24,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f4 6s2,5I4,5.525,1021,3100,§hex,(m) 181,181,#N/A,206,#N/A,1.14,7.01,50,17,0.00000064,CAS7440-00-8,+3,"Von Welsbach, Baron Auer",1885
+61,Promethium,Pm,145,x,(145),Synthetic,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f5 6s2,6H°5/2,5.582,1100,3000,HCP,(m) 183,183,#N/A,205,#N/A,#N/A,7.264,50,15,0.00000075,CAS7440-12-2,+3,"Marinsky, Jacob A. & Coryell, Charles D. & Glendenin, Lawerence. E.",1944
+62,Samarium,Sm,150.36,,150.36,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f6 6s2,7F0,5.6437,1072,1803,§hex,(m) 180,180,#N/A,238,#N/A,1.17,7.353,50,13,0.00000094,CAS7440-19-9,"+2,3","Lecoq de Boisbaudran, Paul-Émile",1879
+63,Europium,Eu,151.964,,151.964,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f7 6s2,8S°7/2,5.6704,822,1527,BCC,(m) 180,180,#N/A,231,#N/A,#N/A,5.244,50,14,0.0000009,CAS7440-53-1,"+2,3","Demarçay, Eugène-Antole",1901
+64,Gadolinium,Gd,157.25,,157.25,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f7 5d1 6s2,9D°2,6.1498,1313,3250,HCP,(m) 180,180,#N/A,233,#N/A,1.2,7.901,50,11,0.0000013,CAS7440-54-2,+3,"De Marignac, Charles Galissard",1880
+65,Terbium,Tb,158.92534,,158.92534,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f9 6s2,6H°15/2,5.8638,1356,3230,HCP,(m) 177,177,#N/A,225,#N/A,#N/A,8.219,50,11,0.0000012,CAS7440-27-9,+3,"Mosander, Carl Gustav",1843
+66,Dysprosium,Dy,162.5,,162.5,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f10 6s2,5I8,5.9389,1412,2567,HCP,(m) 178,178,#N/A,228,#N/A,1.22,8.551,50,11,0.00000091,CAS7429-91-6,+3,"Lecoq de Boisbaudran, Paul-Émile",1886
+67,Holmium,Ho,164.93032,,164.93032,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f11 6s2,4I°15/2,6.0215,1474,2700,HCP,(m) 176,176,#N/A,#N/A,#N/A,1.23,8.795,50,16,0.00000094,CAS7440-60-0,+3,"Cleve, Per Theodor",1879
+68,Erbium,Er,167.259,,167.259,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f12 6s2,3H6,6.1077,1497,2868,HCP,(m) 176,176,#N/A,226,#N/A,1.24,9.066,50,15,0.00000086,CAS7440-52-0,+3,"Mosander, Carl Gustav",1842
+69,Thulium,Tm,168.93421,,168.93421,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f13 6s2,2F°7/2,6.1843,1545,1950,HCP,(m) 176,176,#N/A,222,#N/A,1.25,9.321,50,17,0.0000007,CAS7440-30-4,+3,"Cleve, Per Teodor",1879
+70,Ytterbium,Yb,173.04,,173.04,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f14 6s2,1S0,6.2542,819,1196,FCC,(m) 176,176,#N/A,222,#N/A,#N/A,6.57,50,39,0.00000028,CAS7440-64-4,"+2,3","De Marignac, Jean Charles Galissard",1878
+71,Lutetium,Lu,174.967,,174.967,Solid,Rare Earth Metal,101,Lanthanides,6,[Xe] 4f14 5d1 6s2,2D3/2,5.4259,1663,3402,HCP,(m) 174,174,160,217,#N/A,1.27,9.841,50,16,0.00000056,CAS7439-94-3,+3,"Urbain, Georges",1907
+72,Hafnium,Hf,178.49,,178.49,Solid,Transition Metal,4,IVB,6,[Xe] 4f14 5d2 6s2,3F2,6.8251,2233,4603,HCP,(m) 159,159,150,208,#N/A,1.3,13.31,0,23,0.0000003,CAS7440-58-6,+4,"Coster, Dirk & De Hevesy, George Charles",1923
+73,Tantalum,Ta,180.9479,,180.9479,Solid,Transition Metal,5,VB,6,[Xe] 4f14 5d3 6s2,4F3/2,7.5496,3017,5458,BCC,(m) 146,146,138,200,#N/A,1.5,16.65,31,57,0.00000013,CAS7440-25-7,+5,"Ekeberg, Anders Gustav",1802
+74,Tungsten,W,183.84,,183.84,Solid,Transition Metal,6,VIB,6,[Xe] 4f14 5d4 6s2,5D0,7.864,3422,5555,BCC,(m) 139,139,146,193,#N/A,2.36,19.25,78.6,170,0.00000005,CAS7440-33-7,+6,"Elhuyar, Juan José & Elhuyar, Fausto",1783
+75,Rhenium,Re,186.207,,186.207,Solid,Transition Metal,7,VIIB,6,[Xe] 4f14 5d5 6s2,6S5/2,7.8335,3186,5596,HCP,(m) 137,137,159,188,#N/A,1.9,21.02,14.5,48,0.00000018,CAS7440-15-5,"+4,67","Noddack, Walter & Berg, Otto Carl & Tacke, Ida",1925
+76,Osmium,Os,190.23,,190.23,Solid,Transition Metal,8,VIIIB,6,[Xe] 4f14 5d6 6s2,5D4,8.4382,3033,5012,HCP,(m) 135,135,128,185,#N/A,2.2,22.61,106.1,88,0.000000081,CAS7440-04-2,"+3,4","Tennant, Smithson",1803
+77,Iridium,Ir,192.217,,192.217,Solid,Transition Metal,9,VIIIB,6,[Xe] 4f14 5d7 6s2,4F9/2,8.967,2466,4428,FCC,(m) 136,136,137,180,#N/A,2.2,22.65,151,150,0.000000047,CAS7439-88-5,"+3,4","Tennant, Smithson",1803
+78,Platinum,Pt,195.078,,195.078,Solid,Transition Metal,10,VIIIB,6,[Xe] 4f14 5d9 6s1,3D3,8.9588,1768.3,3825,FCC,(m) 139,139,128,177,175,2.28,21.09,205.3,72,0.00000011,CAS7440-06-4,"+2,4","Ulloa, Antonio de",1735
+79,Gold,Au,196.96655,,196.96655,Solid,Transition Metal,11,IB,6,[Xe] 4f14 5d10 6s1,2S1/2,9.2255,1064.18,2856,FCC,(m) 144,144,144,174,166,2.54,19.3,222.8,320,0.000000022,CAS7440-57-5,"+1,3",unknown,ancient
+80,Mercury,Hg,200.59,,200.59,Liquid,Transition Metal,12,IIB,6,[Xe] 4f14 5d10 6s2,1S0,10.4375,-38.83,356.73,§rhom.,(m) 151,151,149,171,155,2,13.534,#N/A,8.3,0.00000096,CAS7439-97-6,"+1,2",unknown,ancient
+81,Thallium,Tl,204.3833,,204.3833,Solid,Poor Metal,13,IIIA,6,[Hg] 6p1,2P01/2,6.1082,304,1473,HCP,(m) 170,170,148,156,196,1.62,11.85,19.2,46,0.00000015,CAS7440-28-0,"+1,3","Crookes, William",1861
+82,Lead,Pb,207.2,,207.2,Solid,Poor Metal,14,IVA,6,[Hg] 6p2,3P0,7.4167,327.46,1749,FCC,(m) 175,175,147,154,202,2.33,11.34,35.1,35,0.00000021,CAS7439-92-1,"+2,4",unknown,ancient
+83,Bismuth,Bi,208.98038,,208.98038,Solid,Poor Metal,15,VA,6,[Hg] 6p3,4S03/2,7.2855,271.3,1564,§rhom.,(v) 146,,146,143,207,2.02,9.78,91.2,8,0.0000013,CAS7440-69-9,"+3,5","Geoffroy, Claude ",ancient
+84,Polonium,Po,209,x,(209),Solid,Metalloids,16,VIA,6,[Hg] 6p4,3P2,8.414,254,962,§cubic,,,#N/A,135,197,2,9.196,183.3,#N/A,0.00000043,CAS7440-08-6,"+2,4","Curie, Marie & Pierre",1898
+85,Astatine,At,210,x,(210),Solid,Halogen,17,VIIA,6,[Hg] 6p5,2P03/2,#N/A,302,#N/A,,,,#N/A,#N/A,202,2.2,#N/A,270.1,2,#N/A,CAS7440-68-8,,"Corson, Dale R. & Mackenzie, K. R.",1940
+86,Radon,Rn,222,x,(222),Gas,Noble Gas,18,VIIIA,6,[Hg] 6p6,1S0,10.7485,-71,-61.7,,(v) 145,,145,120,220,#N/A,9.73,#N/A,0.00361,#N/A,CAS10043-92-2,0,"Dorn, Friedrich Ernst",1900
+87,Francium,Fr,223,x,(223),Solid,Alkali Metal,1,IA,7,[Rn] 7s1,2S1/2,4.0727,#N/A,#N/A,,,,#N/A,#N/A,348,0.7,#N/A,#N/A,#N/A,#N/A,CAS7440-73-5,+1,"Perey, Marguerite",1939
+88,Radium,Ra,226,x,(226),Solid,Alkaline Earth Metal,2,IIA,7,[Rn] 7s2,1S0,5.2784,700,1737,BCC,,,#N/A,#N/A,283,0.9,5,#N/A,19,0.000001,CAS7440-14-4,+2,"Curie, Marie & Pierre",1898
+89,Actinium,Ac,227,x,(227),Solid,Rare Earth Metal,3,Actinides,7,[Rn] 6d1 7s2,2D3/2,5.17,1050,3200,FCC,,,#N/A,#N/A,#N/A,1.1,10.07,#N/A,12,#N/A,CAS7440-34-8,+3,"Debierne, André",1899
+90,Thorium,Th,232.0381,,232.0381,Solid,Rare Earth Metal,102,Actinides,7,[Rn] 6d2 7s2,3F2,6.3067,1750,4820,FCC,(m) 179,179,#N/A,#N/A,#N/A,1.3,11.724,#N/A,54,0.00000015,CAS7440-29-1,+4,"Berzelius, Jöns Jacob",1829
+91,Protactinium,Pa,231.03588,,231.03588,Solid,Rare Earth Metal,102,Actinides,7,[Rn] 5f2 6d1 7s2,4K11/2,5.89,1572,4000,§tetra,(m) 163,163,#N/A,#N/A,#N/A,1.5,15.37,#N/A,47,0.00000018,CAS7440-13-3,"+4,5","Göhring, Otto & Fajans, Kasimir",1913
+92,Uranium,U,238.02891,,238.02891,Solid,Rare Earth Metal,102,Actinides,7,[Rn] 5f3 6d1 7s2,5L°6,6.1941,1135,3927,BCO,(m) 156,156,#N/A,#N/A,186,1.38,19.05,#N/A,27,0.00000028,CAS7440-61-1,"+3,4,5,6","Klaproth, Martin Heinrich",1789
+93,Neptunium,Np,237,x,(237),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f4 6d1 7s2,6L11/2,6.2657,644,4000,SO,(m) 155,155,#N/A,#N/A,#N/A,1.36,20.45,#N/A,6,0.0000012,CAS7439-99-8,"+3,4,5,6","McMillan, Edwin M. & Abelson, Philip H.",1940
+94,Plutonium,Pu,244,x,(244),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f6 7s2,7F0,6.0260,640,3230,§mono.,(m) 159,159,#N/A,#N/A,#N/A,1.28,19.816,#N/A,6,0.0000015,CAS7440-07-5,"+3,4,5,6","Glenn T. Seaborg, Joseph W. Kennedy, Edward M. McMillan, Arthur C. Wohl",1940
+95,Americium,Am,243,x,(243),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f7 7s2,8S°7/2,5.9738,1176,2011,HCP,(m) 173,173,#N/A,#N/A,#N/A,1.3,#N/A,#N/A,10,#N/A,CAS7440-35-9,"+3,4,5,6","Glenn T. Seaborg, Ralph A. James, Leon O. Morgan, Albert Ghiorso",1944
+96,Curium,Cm,247,x,(247),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f7 6d 7s2,9D°2,5.9914,1345,3110,HCP,(m) 174,174,#N/A,#N/A,#N/A,1.3,13.51,#N/A,#N/A,#N/A,CAS7440-51-9,+3,"Glenn T. Seaborg, Ralph A. James, Albert Ghiorso",1944
+97,Berkelium,Bk,247,x,(247),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f9 7s2,6H°15/2,6.1979,1050,#N/A,hex,(m) 170,170,#N/A,#N/A,#N/A,1.3,14.78,#N/A,10,#N/A,CAS7440-40-6,"+3,4","Stanley G. Thompson, Glenn T. Seaborg, Kenneth Street, Jr., Albert Ghiorso",1949
+98,Californium,Cf,251,x,(251),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f10 7s2,5I8,6.2817,900,#N/A,hex,,,#N/A,#N/A,#N/A,1.3,15.1,#N/A,#N/A,#N/A,CAS7440-71-3,+3,"Stanley G. Thompson, Glenn T. Seaborg, Kenneth Street, Jr., Albert Ghiorso",1950
+99,Einsteinium,Es,252,x,(252),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f11 7s2,4I°15/2,6.42,860,#N/A,,,,#N/A,#N/A,#N/A,1.3,#N/A,#N/A,#N/A,#N/A,CAS7429-92-7,+3,Albert Ghiorso et. al.,1952
+100,Fermium,Fm,257,x,(257),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f12 7s2,3H6,6.5,1527,#N/A,,,,#N/A,#N/A,#N/A,1.3,#N/A,#N/A,#N/A,#N/A,CAS7440-72-4,+3,Albert Ghiorso et. al.,1952
+101,Mendelevium,Md,258,x,(258),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f13 7s2,2F°7/2,6.58,827,#N/A,,,,#N/A,#N/A,#N/A,1.3,#N/A,#N/A,#N/A,#N/A,CAS7440-11-1,"+2,3","Stanley G. Thompson, Glenn T. Seaborg, Bernard G. Harvey, Gregory R. Choppin, Albert Ghiorso",1955
+102,Nobelium,No,259,x,(259),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f14 7s2,1S0,6.65,827,#N/A,,,,#N/A,#N/A,#N/A,1.3,#N/A,#N/A,#N/A,#N/A,CAS10028-14-5,"+2,3","Albert Ghiorso, Glenn T. Seaborg, Torbørn Sikkeland, John R. Walton",1958
+103,Lawrencium,Lr,262,x,(262),Synthetic,Rare Earth Metal,102,Actinides,7,[Rn] 5f14 7s2 7p ?,2P°1/2 ?,4.9 ?,1627,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS22537-19-5,+3,"Albert Ghiorso, Torbjørn Sikkeland, Almon E. Larsh, Robert M. Latimer",1961
+104,Rutherfordium,Rf,261,x,(261),Synthetic,Transition Metal,4,IVB,7,[Rn] 5f14 6d2 7s2 ?,3F2 ?,6.0 ?,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS53850-36-5,+4,"Scientists at Dubna, Russia (1964)/Albert Ghiorso et. al. (1969)",1964
+105,Dubnium,Db,262,x,(262),Synthetic,Transition Metal,5,VB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS53850-35-4,,"Scientists at Dubna, Russia (1967)/Lawrence Berkeley Laboratory (1970)",1967
+106,Seaborgium,Sg,266,x,(266),Synthetic,Transition Metal,6,VIB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54038-81-2,,Albert Ghiorso et. al.,1974
+107,Bohrium,Bh,264,x,(264),Synthetic,Transition Metal,7,VIIB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54037-14-8,,"Scientists at Dubna, Russia",1976
+108,Hassium,Hs,277,x,(277),Synthetic,Transition Metal,8,VIIIB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54037-57-9,,"Armbruster, Paula & Muenzenberg, Dr. Gottfried",1984
+109,Meitnerium,Mt,268,x,(268),Synthetic,Transition Metal,9,VIIIB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54038-01-6,,"Armbruster, Paula & Muenzenberg, Dr. Gottfried",1982
+110,Darmstadtium,Ds,281,x,(281),Synthetic,Transition Metal,10,VIIIB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54083-77-1,,"Armbruster, Paula & Muenzenberg, Dr. Gottfried",1994
+111,Roentgenium,Rg,272,x,(272),Synthetic,Transition Metal,11,IB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54386-24-2,,"Hofmann, Sigurd et. al.",1994
+112,Copernicium,Cn,285,x,(285),Synthetic,Transition Metal,12,IIB,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54084-26-3,,"Armbruster, Paula & Muenzenberg, Dr. Gottfried",1996
+113,Ununtrium,Uut,#N/A,,#N/A,Synthetic,Transition Metal,13,IIIA,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54084-70-7,,Y. T. Oganessian et. al.,2004
+114,Ununquadium,Uuq,289,x,(289),Synthetic,Transition Metal,14,IVA,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54085-16-4,,"Scientists at Dubna, Russia",1998
+115,Ununpentium,Uup,#N/A,,#N/A,Synthetic,Transition Metal,,,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54085-64-2,,Y. T. Oganessian et. al.,2004
+116,Ununhexium,Uuh,292,x,(292),Synthetic,Transition Metal,16,VIA,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54100-71-9,,"Scientists at Dubna, Russia",2001
+117,Ununseptium,Uus,#N/A,,#N/A,Synthetic,Transition Metal,,,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS87658-56-8,,Yet to be produced,NA
+118,Ununoctium,Uuo,#N/A,,#N/A,Synthetic,Transition Metal,,,7,, ,#N/A,#N/A,#N/A,,,,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,CAS54144-19-3,,Y. T. Oganessian et. al.,2006
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,References:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,† NIST.gov,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,* Mathematica (references.wolfram.com),,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Various including:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://education.jlab.org/qa/discover_ele.html,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://www.lenntech.com/periodic-chart-elements/inventor-surname.htm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://www.sciencegeek.net/tables/lbltable.pdf,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://ptable.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://en.wikipedia.org/wiki/Atomic_radii_of_the_elements_(data_page),,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://environmentalchemistry.com/yogi/periodic/crystal.html,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,http://www.periodictable.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
