@@ -56,24 +56,22 @@ class DownloadFileHander:
                 content = f.read()
 
         elif type == "PDF":
-            # TODO
-            return "TODO"
-            # logging.info("type is PDF")
-            # fullfname = "/home/ubuntu/tmp/tmp"
-            # inpfile = fullfname + ".html"
+            logging.info("type is PDF")
+            fullfname = "excelinterop/tmp/tmp"
+            inpfile = fullfname + ".html"
 
-            # with codecs.open(inpfile, encoding='utf-8', mode="w+") as f:
-            #     f.write(content)
+            with codecs.open(inpfile, encoding='utf-8', mode="w+") as f:
+                f.write(content)
 
-            # outfile = fullfname + "." + suffix.get(type, "pdf")
-            # logging.info(outfile)
-            # logging.info(inpfile)
-            # cmdname = "/usr/local/bin/wkhtmltopdf.sh"
-            # output = subprocess.getoutput(f"{cmdname} {inpfile} {outfile}")
-            # logging.info(output)
+            outfile = fullfname + "." + suffix.get(type, "pdf")
+            logging.info(outfile)
+            logging.info(inpfile)
+            cmdname = "wkhtmltopdf"
+            output = subprocess.getoutput(f"{cmdname} {inpfile} {outfile}")
+            logging.info(output)
 
-            # with open(outfile, 'rb') as f:
-            #     content = f.read()
+            with open(outfile, 'rb') as f:
+                content = f.read()
 
         else:
             # This assumes the content is directly returned if it's a supported type without conversion
