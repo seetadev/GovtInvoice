@@ -96,6 +96,19 @@ python -m venv venv
 source venv/bin/activate
 ```
 
+6. **Install wkhtmltopdf:**
+
+```bash
+sudo apt-get update
+sudo apt-get install -y wkhtmltopdf
+```
+
+7. **Verify the installation:**
+
+```bash
+wkhtmltopdf --version
+```
+
 ## Step 4: Deploy Your Flask Application
 
 1. **Clone your repository and install dependencies:**
@@ -170,6 +183,27 @@ sudo systemctl enable flask_app
 sudo systemctl start nginx
 ```
 
-## Step 5: Verify and Access Your Application
+## Step 5: Configure SSH for Better Security (Optional)
+
+1. **Install Certbot and the Nginx plugin:**
+
+```bash
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+```
+
+2. **Obtain SSL Certificate, Replace your-domain.com with your actual domain:**
+
+```bash
+sudo certbot --nginx -d your-domain.com
+```
+
+3. **Configure SSH to use the SSL Certificate, Edit the SSH configuration file:**
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+## Step 6: Verify and Access Your Application
 
 Your Flask application should now be running on your EC2 instance. Access it via your domain name or Elastic IP address in a web browser.

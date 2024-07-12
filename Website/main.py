@@ -15,6 +15,7 @@ from route_handlers.HomeHandler import HomeHandler
 from route_handlers.UserSheetHandler import UserSheetHandler
 from route_handlers.DownloadFileHander import DownloadFileHander
 from route_handlers.ImportHandler import ImportHandler
+from route_handlers.HTMLToPDFHandler import HtmlToPdfHandler
 
 # Load environment variables from .env file
 load_dotenv()
@@ -139,6 +140,13 @@ def import_get():
 def import_post():
     return ImportHandler.post()
 
+@app.route('/htmltopdf', methods=['GET'])
+def import_post():
+    return HtmlToPdfHandler.get()
+
+@app.route('/htmltopdf', methods=['POST'])
+def import_post():
+    return HtmlToPdfHandler.post()
 
 if __name__ == '__main__':
     app.run(debug=True)
