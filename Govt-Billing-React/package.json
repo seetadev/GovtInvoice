@@ -17,6 +17,7 @@
     "@capacitor/app": "5.0.7",
     "@capacitor/core": "5.7.0",
     "@capacitor/haptics": "5.0.7",
+    "@capacitor/ios": "5.7.0",
     "@capacitor/keyboard": "5.0.8",
     "@capacitor/preferences": "^5.0.7",
     "@capacitor/status-bar": "5.0.7",
@@ -35,7 +36,7 @@
     "vite-plugin-commonjs": "^0.10.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "5.7.0",
+    "@capacitor/cli": "^5.7.0",
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@testing-library/dom": ">=7.21.4",
     "@testing-library/jest-dom": "^5.16.5",
