@@ -3,20 +3,20 @@
 // (c) by The UMD contributors
 // MIT License: https://github.com/umdjs/umd/blob/master/LICENSE.md
 (function (root, factory) {
-   if (typeof define === "function" && define.amd) {
-     // AMD. Register as an anonymous module.
-     define([], function () {
-       return (root.SocialCalc = factory.call(root, root));
-     });
-   } else if (typeof module === "object" && module.exports) {
-     // Node. Does not work with strict CommonJS, but
-     // only CommonJS-like environments that support module.exports,
-     // like Node.
-     module.exports = root.SocialCalc = factory.call(root, root);
-   } else {
-     // Browser globals (root is window)
-     root.SocialCalc = factory.call(root, root);
-   }
+  if (typeof define === "function" && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], function () {
+      return (root.SocialCalc = factory.call(root, root));
+    });
+  } else if (typeof module === "object" && module.exports) {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = root.SocialCalc = factory.call(root, root);
+  } else {
+    // Browser globals (root is window)
+    root.SocialCalc = factory.call(root, root);
+  }
 })(typeof self !== "undefined" ? self : this, function (window) {
   // console.log(root)
   // console.log(window)
