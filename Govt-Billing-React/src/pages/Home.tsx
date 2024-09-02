@@ -22,12 +22,6 @@ import Menu from "../components/Menu/Menu";
 import Files from "../components/Files/Files";
 import NewFile from "../components/NewFile/NewFile";
 import { initFirebase } from "../firebase/index";
-import {
-  AdMob,
-  BannerAdOptions,
-  BannerAdPosition,
-  BannerAdSize,
-} from "@capacitor-community/admob";
 
 const Home: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -40,31 +34,6 @@ const Home: React.FC = () => {
   const [device] = useState("default");
 
   initFirebase();
-
-  const initAdmob = async () => {
-    const { status } = await AdMob.trackingAuthorizationStatus();
-    AdMob.initialize({
-      initializeForTesting: true,
-    });
-  };
-
-  const showBanner = async () => {
-    await initAdmob();
-    const options: BannerAdOptions = {
-      adId: isPlatform("ios")
-        ? process.env.IOS_AD_ID
-        : process.env.ANDROID_AD_ID,
-      adSize: BannerAdSize.ADAPTIVE_BANNER,
-      position: BannerAdPosition.TOP_CENTER,
-      margin: 0,
-      isTesting: true,
-    };
-
-    await AdMob.showBanner(options);
-  };
-  useEffect(() => {
-    showBanner();
-  }, []);
 
   const store = new Local();
 
