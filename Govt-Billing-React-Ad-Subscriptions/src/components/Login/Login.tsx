@@ -23,7 +23,7 @@ const Login: React.FC = () => {
   };
   const doSignUp = async (email: string, password: string) => {
     try {
-      await signUpWithEmailAndPassword(email, password);
+      await signUpWithEmailAndPassword(email, password, "bronze");
       closeLoginModal();
     } catch {
       console.error("Something Went Wrong");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as AppGeneral from "../socialcalc/index.js";
 import { File, Local } from "../Storage/LocalStorage";
 import { isPlatform, IonToast } from "@ionic/react";
@@ -7,6 +7,13 @@ import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
 import { saveOutline, save, mail, print } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
+
+import {
+  canUserPerformAction,
+  updateUserQuota,
+  updateUserSubscription,
+} from "../../firebase/firestore.js";
+import useUser from "../../hooks/useUser.js";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -22,6 +29,28 @@ const Menu: React.FC<{
   const [showAlert4, setShowAlert4] = useState(false);
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [canPrint, setCanPrint] = useState(false);
+  const [canEmail, setCanEmail] = useState(false);
+  const { user, isLoading } = useUser();
+  const [showUpgradeAlert, setShowUpgradeAlert] = useState(false);
+
+  const handleUpgradeSubscription = async (tier: string) => {
+    if (user) {
+      try {
+        await updateUserSubscription(user.uid, tier);
+        setToastMessage(`Successfully upgraded to ${tier} tier!`);
+        setShowToast1(true);
+        checkUserPermissions();
+      } catch (error) {
+        console.error("Error upgrading subscription:", error);
+        setToastMessage("Failed to upgrade subscription. Please try again.");
+        setShowToast1(true);
+      }
+    } else {
+      setToastMessage("Please log in to upgrade your subscription.");
+      setShowToast1(true);
+    }
+  };
   /* Utility functions */
   const _validateName = async (filename) => {
     filename = filename.trim();
@@ -55,19 +84,52 @@ const Menu: React.FC<{
     }
     return filename;
   };
+  useEffect(() => {
+    checkUserPermissions();
+  }, [isLoading]);
 
-  const doPrint = () => {
+  const checkUserPermissions = async () => {
+    if (user) {
+      const printPermission = await canUserPerformAction(user.uid, "print");
+      const emailPermission = await canUserPerformAction(user.uid, "email");
+      setCanPrint(printPermission);
+      setCanEmail(emailPermission);
+    }
+  };
+
+  const doPrint = async () => {
+    if (!canPrint) {
+      setToastMessage("You've reached your print quota limit.");
+      setShowToast1(true);
+      return;
+    }
+
+    if (user) {
+      const updated = await updateUserQuota(user.uid, "print");
+      if (!updated) {
+        setToastMessage(
+          "Failed to update quota. You may have reached your limit."
+        );
+        setShowToast1(true);
+        return;
+      }
+    }
+
     if (isPlatform("hybrid")) {
       const printer = Printer;
       printer.print(AppGeneral.getCurrentHTMLContent());
     } else {
       const content = AppGeneral.getCurrentHTMLContent();
-      // useReactToPrint({ content: () => content });
       const printWindow = window.open("/printwindow", "Print Invoice");
       printWindow.document.write(content);
       printWindow.print();
     }
+
+    setToastMessage("Print job sent successfully.");
+    setShowToast1(true);
+    checkUserPermissions(); // Update permissions after printing
   };
+
   const doSave = () => {
     if (props.file === "default") {
       setShowAlert1(true);
@@ -113,7 +175,24 @@ const Menu: React.FC<{
     }
   };
 
-  const sendEmail = () => {
+  const sendEmail = async () => {
+    if (!canEmail) {
+      setToastMessage("You've reached your email quota limit.");
+      setShowToast1(true);
+      return;
+    }
+
+    if (user) {
+      const updated = await updateUserQuota(user.uid, "email");
+      if (!updated) {
+        setToastMessage(
+          "Failed to update quota. You may have reached your limit."
+        );
+        setShowToast1(true);
+        return;
+      }
+    }
+
     if (isPlatform("hybrid")) {
       const content = AppGeneral.getCurrentHTMLContent();
       const base64 = btoa(content);
@@ -127,9 +206,15 @@ const Menu: React.FC<{
         subject: `${APP_NAME} attached`,
         isHtml: true,
       });
+
+      setToastMessage("Email sent successfully.");
+      setShowToast1(true);
     } else {
-      alert("This Functionality works on Anroid/IOS devices");
+      setToastMessage("This functionality works on Android/iOS devices only.");
+      setShowToast1(true);
     }
+
+    checkUserPermissions();
   };
 
   return (
@@ -170,6 +255,14 @@ const Menu: React.FC<{
             handler: () => {
               sendEmail();
               console.log("Email clicked");
+            },
+          },
+          {
+            text: "Upgrade Subscription",
+            icon: "arrow-up-circle-outline",
+            handler: () => {
+              setShowUpgradeAlert(true);
+              console.log("Upgrade Subscription clicked");
             },
           },
         ]}
@@ -224,6 +317,31 @@ const Menu: React.FC<{
           "</strong> saved successfully"
         }
         buttons={["Ok"]}
+      />
+      <IonAlert
+        animated
+        isOpen={showUpgradeAlert}
+        onDidDismiss={() => setShowUpgradeAlert(false)}
+        header="Upgrade Subscription"
+        message="Choose a subscription tier to upgrade:"
+        buttons={[
+          {
+            text: "Bronze ($150/month)",
+            handler: () => handleUpgradeSubscription("bronze"),
+          },
+          {
+            text: "Silver ($200/month)",
+            handler: () => handleUpgradeSubscription("silver"),
+          },
+          {
+            text: "Gold ($250/month)",
+            handler: () => handleUpgradeSubscription("gold"),
+          },
+          {
+            text: "Cancel",
+            role: "cancel",
+          },
+        ]}
       />
       <IonToast
         animated

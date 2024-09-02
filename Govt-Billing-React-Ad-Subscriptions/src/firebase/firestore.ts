@@ -9,6 +9,7 @@ import {
   where,
   getDoc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { Local } from "../components/Storage/LocalStorage";
 
@@ -129,10 +130,97 @@ const deleteFileFromFirebase = async (userId, key, onSuccess) => {
     alert("Something went wrong");
   }
 };
+const subscriptionTiers = {
+  bronze: { prints: 10, emails: 10, price: 150 },
+  silver: { prints: 20, emails: 20, price: 200 },
+  gold: { prints: 30, emails: 30, price: 250 },
+};
+
+interface UserSubscription {
+  tier: keyof typeof subscriptionTiers;
+  remainingPrints: number;
+  remainingEmails: number;
+  expirationDate: Date;
+}
+
+const getUserSubscription = async (
+  userId: string
+): Promise<UserSubscription | null> => {
+  const docRef = doc(db, "subscriptions", userId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data() as UserSubscription;
+  } else {
+    console.log("No subscription found for this user");
+    return null;
+  }
+};
+
+const initializeUserSubscription = async (
+  userId: string,
+  tier: keyof typeof subscriptionTiers
+) => {
+  const subscriptionData: UserSubscription = {
+    tier,
+    remainingPrints: subscriptionTiers[tier].prints,
+    remainingEmails: subscriptionTiers[tier].emails,
+    expirationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+  };
+
+  await setDoc(doc(db, "subscriptions", userId), subscriptionData);
+};
+
+const updateUserQuota = async (
+  userId: string,
+  action: "print" | "email"
+): Promise<boolean> => {
+  const subscription = await getUserSubscription(userId);
+  if (!subscription) return false;
+
+  const quotaField = action === "print" ? "remainingPrints" : "remainingEmails";
+  if (subscription[quotaField] > 0) {
+    await updateDoc(doc(db, "subscriptions", userId), {
+      [quotaField]: subscription[quotaField] - 1,
+    });
+    return true;
+  }
+  return false;
+};
+
+const canUserPerformAction = async (
+  userId: string,
+  action: "print" | "email"
+): Promise<boolean> => {
+  const subscription = await getUserSubscription(userId);
+  if (!subscription) return false;
+
+  const quotaField = action === "print" ? "remainingPrints" : "remainingEmails";
+  return subscription[quotaField] > 0;
+};
+
+const updateUserSubscription = async (userId: string, tier: string) => {
+  const subscriptionData = {
+    tier,
+    remainingPrints: subscriptionTiers[tier].prints,
+    remainingEmails: subscriptionTiers[tier].emails,
+    expirationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+  };
+
+  await setDoc(doc(db, "subscriptions", userId), subscriptionData, {
+    merge: true,
+  });
+};
 
 export {
   uploadFileToCloud,
   getFilesKeysFromFirestore,
   downloadFileFromFirebase,
   deleteFileFromFirebase,
+  getUserSubscription,
+  updateUserQuota,
+  canUserPerformAction,
+  initializeUserSubscription,
+  subscriptionTiers,
+  updateUserSubscription,
 };

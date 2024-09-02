@@ -4,8 +4,13 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "./index";
+import { initializeUserSubscription, subscriptionTiers } from "./firestore";
 
-const signUpWithEmailAndPassword = async (email: string, password: string) => {
+const signUpWithEmailAndPassword = async (
+  email: string,
+  password: string,
+  tier: keyof typeof subscriptionTiers
+) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -13,6 +18,9 @@ const signUpWithEmailAndPassword = async (email: string, password: string) => {
       password
     );
     const user = userCredential.user;
+
+    await initializeUserSubscription(user.uid, tier);
+
     return user;
   } catch (error) {
     const errorCode = error.code;
