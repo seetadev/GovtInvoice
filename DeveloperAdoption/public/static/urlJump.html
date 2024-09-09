@@ -1,0 +1,15 @@
+<html>
+<body onload="init()">
+<script type="text/javascript">
+function init(){
+	var myL = document.getElementById("myLink");
+	var propLink = document.URL;
+	propLink = unescape(propLink.substring(propLink.indexOf("img") + 4));
+	if(propLink.indexOf("@") == -1){
+		myL.innerHTML = '<a href="http://chart.apis.google.com/chart?' + propLink + '">Load Google Chart</a>';
+	}
+}
+</script>
+<span id="myLink"></span>
+</body>
+</html>

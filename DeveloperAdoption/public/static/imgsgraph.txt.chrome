@@ -1,0 +1,1091 @@
+'<button onclick='
+var control = SocialCalc.GetCurrentWorkBookControl();
+var cmd = {cmdtype:"scmd", id:"sheet1", cmdstr:"set A1 bgcolor rgb(255, 255, 0)", saveundo: false};
+control.ExecuteWorkBookControlCommand(cmd, false);
+'>
+</button>
+
+--------
+
+'<span class="inlinesparkline" sparkType="bar" sparkBarColor="red">
+1,4,4,7,5,9,10,20,30,40
+</span>
+<button onclick='
+$(".inlinesparkline").sparkline("html", {enableTagOptions: true})
+'>
+</button>
+
+---------
+
+
+html here
+<button onclick='
+code here
+'>
+</button>
+--------
+'
+<h1>Flot Examples</h1> 
+ 
+    <div id="placeholder" style="width:600px;height:300px;"></div> 
+ 
+    <p>Simple example. You don't need to specify much to get an
+       attractive look. Put in a placeholder, make sure you set its
+       dimensions (otherwise the plot library will barf) and call the
+       plot function with the data. The axes are automatically
+       scaled.</p> 
+<button onclick='
+var fileref=document.createElement("script");
+  fileref.setAttribute("type","text/javascript");
+  fileref.setAttribute("src", "jquery.flot.js");
+document.getElementsByTagName("head")[0].appendChild(fileref);
+
+$(function () {
+    var d1 = [];
+    for (var i = 0; i < 14; i += 0.5)
+        d1.push([i, Math.sin(i)]);
+ 
+    var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+ 
+    // a null signifies separate line segments
+    var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+    
+    $.plot($("#placeholder"), [ d1, d2, d3 ]);
+});
+
+
+'>
+view
+</button>
+--------
+'<h1>Flot Examples</h1> 
+ 
+    <div id="placeholder" style="width:600px;height:300px;"></div> 
+ 
+    <p>Here is an example with real data: military budgets for
+        various countries in constant (2005) million US dollars (source: <a href="http://www.sipri.org/">SIPRI</a>).</p> 
+ 
+    <p>Since all data is available client-side, it's pretty easy to
+       make the plot interactive. Try turning countries on/off with the
+       checkboxes below.</p> 
+ 
+    <p id="choices">Show:</p> 
+
+
+<button onclick='
+
+$(function () {
+
+    var datasets = {
+        "usa": {
+            label: "USA",
+            data: [[1988, 483994], [1989, 479060], [1990, 457648], [1991, 401949], [1992, 424705], [1993, 402375], [1994, 377867], [1995, 357382], [1996, 337946], [1997, 336185], [1998, 328611], [1999, 329421], [2000, 342172], [2001, 344932], [2002, 387303], [2003, 440813], [2004, 480451], [2005, 504638], [2006, 528692]]
+        },        
+        "russia": {
+            label: "Russia",
+            data: [[1988, 218000], [1989, 203000], [1990, 171000], [1992, 42500], [1993, 37600], [1994, 36600], [1995, 21700], [1996, 19200], [1997, 21300], [1998, 13600], [1999, 14000], [2000, 19100], [2001, 21300], [2002, 23600], [2003, 25100], [2004, 26100], [2005, 31100], [2006, 34700]]
+        },
+        "uk": {
+            label: "UK",
+            data: [[1988, 62982], [1989, 62027], [1990, 60696], [1991, 62348], [1992, 58560], [1993, 56393], [1994, 54579], [1995, 50818], [1996, 50554], [1997, 48276], [1998, 47691], [1999, 47529], [2000, 47778], [2001, 48760], [2002, 50949], [2003, 57452], [2004, 60234], [2005, 60076], [2006, 59213]]
+        },
+        "germany": {
+            label: "Germany",
+            data: [[1988, 55627], [1989, 55475], [1990, 58464], [1991, 55134], [1992, 52436], [1993, 47139], [1994, 43962], [1995, 43238], [1996, 42395], [1997, 40854], [1998, 40993], [1999, 41822], [2000, 41147], [2001, 40474], [2002, 40604], [2003, 40044], [2004, 38816], [2005, 38060], [2006, 36984]]
+        },
+        "denmark": {
+            label: "Denmark",
+            data: [[1988, 3813], [1989, 3719], [1990, 3722], [1991, 3789], [1992, 3720], [1993, 3730], [1994, 3636], [1995, 3598], [1996, 3610], [1997, 3655], [1998, 3695], [1999, 3673], [2000, 3553], [2001, 3774], [2002, 3728], [2003, 3618], [2004, 3638], [2005, 3467], [2006, 3770]]
+        },
+        "sweden": {
+            label: "Sweden",
+            data: [[1988, 6402], [1989, 6474], [1990, 6605], [1991, 6209], [1992, 6035], [1993, 6020], [1994, 6000], [1995, 6018], [1996, 3958], [1997, 5780], [1998, 5954], [1999, 6178], [2000, 6411], [2001, 5993], [2002, 5833], [2003, 5791], [2004, 5450], [2005, 5521], [2006, 5271]]
+        },
+        "norway": {
+            label: "Norway",
+            data: [[1988, 4382], [1989, 4498], [1990, 4535], [1991, 4398], [1992, 4766], [1993, 4441], [1994, 4670], [1995, 4217], [1996, 4275], [1997, 4203], [1998, 4482], [1999, 4506], [2000, 4358], [2001, 4385], [2002, 5269], [2003, 5066], [2004, 5194], [2005, 4887], [2006, 4891]]
+        }
+    };
+ 
+    // hard-code color indices to prevent them from shifting as
+    // countries are turned on/off
+    var i = 0;
+    $.each(datasets, function(key, val) {
+        val.color = i;
+        ++i;
+    });
+    
+    // insert checkboxes 
+    var choiceContainer = $("#choices");
+    $.each(datasets, function(key, val) {
+        choiceContainer.append("<br/><input type=\"checkbox\" name=\"" + key +
+                               "\" checked=\"checked\" id=\"id" + key + "\">" +
+                               "<label for=\"id" + key + "\">"
+                                + val.label + "</label>");
+    });
+    choiceContainer.find("input").click(plotAccordingToChoices);
+ 
+    
+    function plotAccordingToChoices() {
+        var data = [];
+ 
+        choiceContainer.find("input:checked").each(function () {
+            var key = $(this).attr("name");
+            if (key && datasets[key])
+                data.push(datasets[key]);
+        });
+ 
+        if (data.length > 0)
+            $.plot($("#placeholder"), data, {
+                yaxis: { min: 0 },
+                xaxis: { tickDecimals: 0 }
+            });
+    }
+ 
+    plotAccordingToChoices();
+});
+
+
+'>
+View
+</button>
+-----------------
+    <h1>Flot Examples</h1> 
+
+    <div id="placeholder" style="width:600px;height:300px"></div> 
+ 
+    <p>One of the goals of Flot is to support user interactions. Try
+    pointing and clicking on the points.</p> 
+ 
+    <p id="hoverdata">Mouse hovers at
+    (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> 
+ 
+    <p>A tooltip is easy to build with a bit of jQuery code and the
+    data returned from the plot.</p> 
+ 
+    <p><input id="enableTooltip" type="checkbox">Enable tooltip</p> 
+
+<button onclick='
+$(function () {
+    var sin = [], cos = [];
+    for (var i = 0; i < 14; i += 0.5) {
+        sin.push([i, Math.sin(i)]);
+        cos.push([i, Math.cos(i)]);
+    }
+ 
+    var plot = $.plot($("#placeholder"),
+           [ { data: sin, label: "sin(x)"}, { data: cos, label: "cos(x)" } ], {
+               series: {
+                   lines: { show: true },
+                   points: { show: true }
+               },
+               grid: { hoverable: true, clickable: true },
+               yaxis: { min: -1.2, max: 1.2 }
+             });
+ 
+    function showTooltip(x, y, contents) {
+        $("<div id=\"tooltip\">" + contents + "</div>").css( {
+            position: "absolute",
+            display: "none",
+            top: y + 5,
+            left: x + 5,
+            border: "1px solid #fdd",
+            padding: "2px",
+            "background-color": "#fee",
+            opacity: 0.80
+        }).appendTo("body").fadeIn(200);
+    }
+ 
+    var previousPoint = null;
+    $("#placeholder").bind("plothover", function (event, pos, item) {
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+ 
+        if ($("#enableTooltip:checked").length > 0) {
+            if (item) {
+                if (previousPoint != item.datapoint) {
+                    previousPoint = item.datapoint;
+                    
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+                    
+                    showTooltip(item.pageX, item.pageY,
+                                item.series.label + " of " + x + " = " + y);
+                }
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;            
+            }
+        }
+    });
+ 
+    $("#placeholder").bind("plotclick", function (event, pos, item) {
+        if (item) {
+            $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+            plot.highlight(item.series, item.datapoint);
+        }
+    });
+});
+
+'>
+View
+</button>
+------------
+html here
+<button onclick='
+
+'>
+
+
+
+'<span class="inlinesparkline" sparkType="bar" sparkBarColor="red">
+1,4,4,7,5,9,10,20,30,40
+</span>
+<button onclick='
+
+var fileref=document.createElement("script");
+  fileref.setAttribute("type","text/javascript");
+  fileref.setAttribute("src", "static/jquery.sparkline.min.js");
+document.getElementsByTagName("head")[0].appendChild(fileref);
+
+
+
+$(".inlinesparkline").sparkline("html", {enableTagOptions: true});
+'>
+View
+</button>
+------------------
+
+<div id="chart_div" style="width: 600px; height: 300px;"></div>
+<button onclick='
+
+        var data = new google.visualization.DataTable();
+        data.addColumn("date", "Date");
+        data.addColumn("number", "Sold Pencils");
+        data.addColumn("string", "title1");
+        data.addColumn("string", "text1");
+        data.addColumn("number", "Sold Pens");
+        data.addColumn("string", "title2");
+        data.addColumn("string", "text2");
+        data.addRows([
+          [new Date(2008, 1 ,1), 30000, undefined, undefined, 40645, undefined, undefined],
+          [new Date(2008, 1 ,2), 14045, undefined, undefined, 20374, undefined, undefined],
+          [new Date(2008, 1 ,3), 55022, undefined, undefined, 50766, undefined, undefined],
+          [new Date(2008, 1 ,4), 75284, undefined, undefined, 14334, "Out of Stock","Ran out of stock on pens at 4pm"],
+          [new Date(2008, 1 ,5), 41476, "Bought Pens","Bought 200k pens", 66467, undefined, undefined],
+          [new Date(2008, 1 ,6), 33322, undefined, undefined, 39463, undefined, undefined]
+        ]);
+
+        var chart = new google.visualization.AnnotatedTimeLine(document.getElementById("chart_div"));
+        chart.draw(data, {displayAnnotations: true});
+'>
+Load
+</button>
+
+----------
+
+<div id="map_div" style="width: 400px; height: 300px"></div>
+<button onclick='
+
+ var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_div"),
+        myOptions);
+    
+
+'>
+Load Map
+</button>
+
+---------------
+<div id='box' class='jxgbox' style='width:400px; height:300px;'></div>
+<button onclick='
+ 
+var fileref=document.createElement("script");
+  fileref.setAttribute("type","text/javascript");
+  fileref.setAttribute("src", "static/jsxgraph.js");
+document.getElementsByTagName("head")[0].appendChild(fileref);
+
+
+var brd = JXG.JSXGraph.initBoard("box", {originX: 300, originY: 300, grid:true, unitX: 100, unitY: 100});
+var ax = brd.createElement("line",[[0,0],[1,0]],{visible:false});
+var ay = brd.createElement("line",[[0,0],[0,1]],{visible:false});
+ 
+var p0 = brd.createElement("point",[0,0],{fixed:true,visible:false});
+var p1 = brd.createElement("point",[1,0],{name:"",visible:false,fixed:true});
+var c = brd.createElement("circle",[p0,p1],{dash:2,strokeWidth:1,strokeOpacity:0.6});
+var p2 = brd.createElement("glider",[0.4,1.0,c],{name:"",withLabel:false});
+var p3 = brd.createElement("point",[function(){return p2.X();},0.0],{visible:false,name:"",withLabel:false});
+var p4 = brd.createElement("point",[0.0,function(){return p2.Y();}],{visible:false,name:"",withLabel:false});
+ 
+brd.createElement("line",[p0,p2],{straightFirst:false,straightLast:false,strokeColor:"black"});   // Hypotenuse
+brd.createElement("line",[p2,p3],{straightFirst:false,straightLast:false,strokeColor:"red"});     // sin
+brd.createElement("line",[p2,p4],{straightFirst:false,straightLast:false,strokeColor:"red"});     // cos
+ 
+var t = brd.createElement("tangent",[p2],{visible:false});
+var p5 = brd.createElement("point",[brd.intersectionFunc(t,ax,0)],{visible:false,name:"",withLabel:false});
+var p6 = brd.createElement("point",[brd.intersectionFunc(t,ay,0)],{visible:false,name:"",withLabel:false});
+brd.createElement("line",[p5,p6],{straightFirst:false,straightLast:false});                       // tan + cot
+brd.createElement("line",[p0,p6],{straightFirst:false,straightLast:false,strokeColor:"green"});   // csc
+brd.createElement("line",[p0,p5],{straightFirst:false,straightLast:false,strokeColor:"green"});   // sec
+ 
+brd.createElement("text",[
+        function(){return (p0.X()+p2.X())*0.5;},
+        function(){return (p0.Y()+p2.Y())*0.5;},
+        "1"],{});
+ 
+brd.createElement("text",[
+        function(){return (p2.X()+p4.X())*0.3;},
+        function(){return (p2.Y()+p4.Y())*0.5;},
+        "cos"],{});
+ 
+brd.createElement("text",[
+        function(){return (p2.X()+p3.X())*0.5;},
+        function(){return (p2.Y()+p3.Y())*0.5;},
+        "sin"],{});
+ 
+brd.createElement("text",[
+        function(){return 0.1+(p2.X()+p5.X())*0.5;},
+        function(){return 0.1+(p2.Y()+p5.Y())*0.5;},
+        "tan"],{});
+ 
+brd.createElement("text",[
+        function(){return 0.1+(p2.X()+p6.X())*0.5;},
+        function(){return 0.1+(p2.Y()+p6.Y())*0.5;},
+        "cot"],{});
+ 
+brd.createElement("text",[
+        function(){return -0.2+(p0.X()+p6.X())*0.5;},
+        function(){return (p0.Y()+p6.Y())*0.5;},
+        "csc"],{});
+ 
+brd.createElement("text",[
+        function(){return (p0.X()+p5.X())*0.5;},
+        function(){return (p0.Y()+p5.Y())*0.5;},
+        "sec"],{});
+'>
+Load
+</button>
+
+---------
+
+<div id='box1' class='jxgbox' style='width:600px; height:600px;'></div>
+<button onclick='
+var addPoint = function(x) {
+  p.push(brd.create("point",
+              [x,(Math.random()-0.5)*3],{style:6}));
+  brd.update();
+};
+ 
+var brd = JXG.JSXGraph.initBoard("box1",
+           {axis:true,originX: 250, originY: 250, unitX: 50, unitY: 25});
+brd.suspendUpdate();
+var p = [];
+p[0] = brd.create("point", [-4,2], {style:6});
+p[1] = brd.create("point", [3,-1], {style:6});
+addPoint(-2);
+addPoint(0.5);
+addPoint(1);
+var pol = brd.lagrangePolynomial(p);
+var g = brd.create("functiongraph", [pol, -10, 10], {strokeWidth:3});
+var g2 = brd.create("functiongraph", [brd.D(pol), -10, 10],
+                                      {dash:3, strokeColor:"#ff0000"});
+brd.unsuspendUpdate();
+'>
+Load
+</button>
+----------------
+
+<div id='box2' class='jxgbox' style='width:400px; height:300px;'></div>
+<button onclick='
+
+var brd = JXG.JSXGraph.initBoard("box2",{boundingbox:[-4,4,4,-4],keepaspectratio:true,axis:true});
+ 
+var p = [], col = "red"; 
+p.push(brd.create("point",[2,1],{strokeColor:col,fillColor:col})); 
+p.push(brd.create("point",[0.75,2.5],{strokeColor:col,fillColor:col})); 
+p.push(brd.create("point",[-0.3,0.3],{strokeColor:col,fillColor:col})); 
+p.push(brd.create("point",[-3,1],{strokeColor:col,fillColor:col}));      
+p.push(brd.create("point",[-0.75,-2.5],{strokeColor:col,fillColor:col}));
+p.push(brd.create("point",[1.5,-2.8],{strokeColor:col,fillColor:col}));  
+p.push(brd.create("point",[2,-0.5],{strokeColor:col,fillColor:col})); 
+ 
+var c = brd.create("curve", JXG.Math.Numerics.bspline(p,4), 
+               {strokecolor:"blue", strokeOpacity:0.6, strokeWidth:5}); 
+ 
+var addSegment = function() {
+   brd.suspendUpdate();
+   p.push(brd.create("point",[Math.random()*8-4,Math.random()*8-4],
+           {strokeColor:col,fillColor:col})); 
+   brd.unsuspendUpdate();
+};
+ 
+var removeSegment = function() {
+   brd.suspendUpdate();
+ 
+   if (p.length>2) {
+       brd.removeObject(p[p.length-1]);  // remove the last point from the list of objects
+       p.splice(p.length-1,1);           // remove the last point from the point array.
+   }
+   brd.unsuspendUpdate();
+};
+'>
+Load
+</button>
+-----------
+
+-----------
+
+'<h1>Flot Examples</h1> 
+ 
+    <div id="placeholder" style="width:600px;height:300px;" onload='
+var fileref=document.createElement("script");
+  fileref.setAttribute("type","text/javascript");
+  fileref.setAttribute("src", "jquery.flot.js");
+document.getElementsByTagName("head")[0].appendChild(fileref);
+
+$(function () {
+    var d1 = [];
+    for (var i = 0; i < 14; i += 0.5)
+        d1.push([i, Math.sin(i)]);
+ 
+    var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+ 
+    // a null signifies separate line segments
+    var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+    
+    $.plot($("#placeholder"), [ d1, d2, d3 ]);
+});
+'
+></div> 
+ 
+    <p>Simple example. You don't need to specify much to get an
+       attractive look. Put in a placeholder, make sure you set its
+       dimensions (otherwise the plot library will barf) and call the
+       plot function with the data. The axes are automatically
+       scaled.</p>
+
+----------
+<h2>hello</h2>
+<!--script
+alert("hoody");
+script-->
+
+------
+
+'<span class="dynamicsparkline">Loading..</span>
+<!--script
+var myvalues = [10,8,-5,7,4,4,1];
+        $('.dynamicsparkline').sparkline(myvalues);
+
+script-->
+
+---------
+<span class="dynamicsparkline">Loading..</span>
+<!--script
+var coordstr = "B1,B2,B3,B4,B5,B6"
+var vals = SocialCalc.GetCellDataArray(coordstr,"sheet2")
+$('.dynamicsparkline').sparkline(vals,{type: "bar"});
+script-->
+
+---------
+
+'<span class="fcftos">Loading..</span>
+<!--script
+var coordstr = "D21,E21,F21,G21,H21"
+var vals = SocialCalc.GetCellDataArray(coordstr,"dcf")
+console.log(vals)
+$('.fcftos').sparkline(vals,{type: "bar"});
+script-->
+
+------------
+
+
+$(function () {
+
+var dates = "B2,C2,D2,E2,F2"
+var roe = "D23,E23,F23,G23,H23"
+var roa = "D22,E22,F22,G22,H22"
+var valsroe = SocialCalc.GetCellDataArray(roe,"dcf")
+var valsroa = SocialCalc.GetCellDataArray(roa,"dcf")
+
+var rawdates = SocialCalc.GetCellDataArray(dates,"balance")
+
+var jdate = [];
+var years = [];
+SocialCalc.UserScriptData.dates = null
+var min = 0;
+if (SocialCalc.UserScriptData.dates == null) {
+  for (var c in rawdates) {
+    var d = rawdates[c]
+    var comps = d.split("/")
+    console.log(comps)
+    var jd = new Date(parseInt(comps[2]),parseInt(comps[0])-1,parseInt(comps[1]))
+    years.push(comps[2]);
+    var timestamp = jd.getTime()
+    if (min==0) { min = timestamp;} else {
+      if (min > timestamp) {min = timestamp;}
+    } 
+    jdate.push(timestamp)
+  }
+  SocialCalc.UserScriptData.dates = jdate;
+} else {
+  jdate = SocialCalc.UserScriptData.dates
+}
+ 
+
+var d1roe = []
+var d1roa = []
+var ticks = []
+for (var c in jdate) {
+  d1roe.push([jdate[c],valsroe[c]])
+  d1roa.push([jdate[c],valsroa[c]])
+  ticks.push([jdate[c],years[c]])
+}
+
+    $.plot($("#placeholder1"), [ {data:d1roe,label:"ROE"},
+                                 {data:d1roa, label:"ROA"} ], {
+                  series: {stack: 0},
+                  xaxis: {ticks: ticks},
+                  ticks: ticks
+               });
+
+
+
+-----------------
+Highcharts example
+'<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<button onclick="
+var chart;
+chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'line',
+						marginRight: 130,
+						marginBottom: 25
+					},
+					title: {
+						text: 'Monthly Average Temperature',
+						x: -20 //center
+					},
+					subtitle: {
+						text: 'Source: WorldClimate.com',
+						x: -20
+					},
+					xAxis: {
+						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+							'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+					},
+					yAxis: {
+						title: {
+							text: 'Temperature (°C)'
+						},
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						formatter: function() {
+				                return '<b>'+ this.series.name +'</b><br/>'+
+								this.x +': '+ this.y +'°C';
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'top',
+						x: -10,
+						y: 100,
+						borderWidth: 0
+					},
+					series: [{
+						name: 'Tokyo',
+						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+					}, {
+						name: 'New York',
+						data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+					}, {
+						name: 'Berlin',
+						data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+					}, {
+						name: 'London',
+						data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+					}]
+				});
+			
+">
+Click me
+</button>
+
+----------
+<div id="container1" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<!--script
+var chart;
+chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container1',
+						zoomType: 'x',
+						spacingRight: 20
+					},
+				    title: {
+						text: 'USD to EUR exchange rate from 2006 through 2008'
+					},
+				    subtitle: {
+						text: document.ontouchstart === undefined ?
+							'Click and drag in the plot area to zoom in' :
+							'Drag your finger over the plot to zoom in'
+					},
+					xAxis: {
+						type: 'datetime',
+						maxZoom: 14 * 24 * 3600000, // fourteen days
+						title: {
+							text: null
+						}
+					},
+					yAxis: {
+						title: {
+							text: 'Exchange rate'
+						},
+						min: 0.6,
+						startOnTick: false,
+						showFirstLabel: false
+					},
+					tooltip: {
+						shared: true					
+					},
+					legend: {
+						enabled: false
+					},
+					plotOptions: {
+						area: {
+							fillColor: {
+								linearGradient: [0, 0, 0, 300],
+								stops: [
+									[0, Highcharts.theme.colors[0]],
+									[1, 'rgba(2,0,0,0)']
+								]
+							},
+							lineWidth: 1,
+							marker: {
+								enabled: false,
+								states: {
+									hover: {
+										enabled: true,
+										radius: 5
+									}
+								}
+							},
+							shadow: false,
+							states: {
+								hover: {
+									lineWidth: 1						
+								}
+							}
+						}
+					},
+				
+					series: [{
+						type: 'area',
+						name: 'USD to EUR',
+						pointInterval: 24 * 3600 * 1000,
+						pointStart: Date.UTC(2006, 0, 01),
+						data: [
+							0.8446, 0.8445, 0.8444, 0.8451,	0.8418, 0.8264,	0.8258, 0.8232,	0.8233, 0.8258, 
+							0.8283, 0.8278, 0.8256, 0.8292,	0.8239, 0.8239,	0.8245, 0.8265,	0.8261, 0.8269, 
+							0.8273, 0.8244, 0.8244, 0.8172,	0.8139, 0.8146,	0.8164, 0.82,	0.8269, 0.8269, 
+							0.8269, 0.8258, 0.8247, 0.8286,	0.8289, 0.8316,	0.832, 0.8333,	0.8352, 0.8357, 
+							0.8355, 0.8354, 0.8403, 0.8403,	0.8406, 0.8403,	0.8396, 0.8418,	0.8409, 0.8384, 
+							0.8386, 0.8372, 0.839, 0.84, 0.8389, 0.84, 0.8423, 0.8423, 0.8435, 0.8422, 
+							0.838, 0.8373, 0.8316, 0.8303,	0.8303, 0.8302,	0.8369, 0.84, 0.8385, 0.84, 
+							0.8401, 0.8402, 0.8381, 0.8351,	0.8314, 0.8273,	0.8213, 0.8207,	0.8207, 0.8215, 
+							0.8242, 0.8273, 0.8301, 0.8346,	0.8312, 0.8312,	0.8312, 0.8306,	0.8327, 0.8282, 
+							0.824, 0.8255, 0.8256, 0.8273, 0.8209, 0.8151, 0.8149, 0.8213, 0.8273, 0.8273, 
+							0.8261, 0.8252, 0.824, 0.8262, 0.8258, 0.8261, 0.826, 0.8199, 0.8153, 0.8097, 
+							0.8101, 0.8119, 0.8107, 0.8105,	0.8084, 0.8069,	0.8047, 0.8023,	0.7965, 0.7919, 
+							0.7921, 0.7922, 0.7934, 0.7918,	0.7915, 0.787, 0.7861, 0.7861, 0.7853, 0.7867, 
+							0.7827, 0.7834, 0.7766, 0.7751, 0.7739, 0.7767, 0.7802, 0.7788, 0.7828, 0.7816, 
+							0.7829, 0.783, 0.7829, 0.7781, 0.7811, 0.7831, 0.7826, 0.7855, 0.7855, 0.7845, 
+							0.7798, 0.7777, 0.7822, 0.7785, 0.7744, 0.7743, 0.7726, 0.7766, 0.7806, 0.785, 
+							0.7907, 0.7912, 0.7913, 0.7931, 0.7952, 0.7951, 0.7928, 0.791, 0.7913, 0.7912, 
+							0.7941, 0.7953, 0.7921, 0.7919, 0.7968, 0.7999, 0.7999, 0.7974, 0.7942, 0.796, 
+							0.7969, 0.7862, 0.7821, 0.7821, 0.7821, 0.7811, 0.7833, 0.7849, 0.7819, 0.7809, 
+							0.7809, 0.7827, 0.7848, 0.785, 0.7873, 0.7894, 0.7907, 0.7909, 0.7947, 0.7987, 
+							0.799, 0.7927, 0.79, 0.7878, 0.7878, 0.7907, 0.7922, 0.7937, 0.786, 0.787, 
+							0.7838, 0.7838, 0.7837, 0.7836, 0.7806, 0.7825, 0.7798, 0.777, 0.777, 0.7772, 
+							0.7793, 0.7788, 0.7785, 0.7832, 0.7865, 0.7865, 0.7853, 0.7847, 0.7809, 0.778, 
+							0.7799, 0.78, 0.7801, 0.7765, 0.7785, 0.7811, 0.782, 0.7835, 0.7845, 0.7844, 
+							0.782, 0.7811, 0.7795, 0.7794, 0.7806, 0.7794, 0.7794, 0.7778, 0.7793, 0.7808, 
+							0.7824, 0.787, 0.7894, 0.7893, 0.7882, 0.7871, 0.7882, 0.7871, 0.7878, 0.79, 
+							0.7901, 0.7898, 0.7879, 0.7886, 0.7858, 0.7814, 0.7825, 0.7826, 0.7826, 0.786, 
+							0.7878, 0.7868, 0.7883, 0.7893, 0.7892, 0.7876, 0.785, 0.787, 0.7873, 0.7901, 
+							0.7936, 0.7939, 0.7938, 0.7956, 0.7975, 0.7978, 0.7972, 0.7995, 0.7995, 0.7994, 
+							0.7976, 0.7977, 0.796, 0.7922, 0.7928, 0.7929, 0.7948, 0.797, 0.7953, 0.7907, 
+							0.7872, 0.7852, 0.7852, 0.786, 0.7862, 0.7836, 0.7837, 0.784, 0.7867, 0.7867, 
+							0.7869, 0.7837, 0.7827, 0.7825, 0.7779, 0.7791, 0.779, 0.7787, 0.78, 0.7807, 
+							0.7803, 0.7817, 0.7799, 0.7799, 0.7795, 0.7801, 0.7765, 0.7725, 0.7683, 0.7641, 
+							0.7639, 0.7616, 0.7608, 0.759, 0.7582, 0.7539, 0.75, 0.75, 0.7507, 0.7505, 
+							0.7516, 0.7522, 0.7531, 0.7577, 0.7577, 0.7582, 0.755, 0.7542, 0.7576, 0.7616, 
+							0.7648, 0.7648, 0.7641, 0.7614, 0.757, 0.7587, 0.7588, 0.762, 0.762, 0.7617, 
+							0.7618, 0.7615, 0.7612, 0.7596, 0.758, 0.758, 0.758, 0.7547, 0.7549, 0.7613, 
+							0.7655, 0.7693, 0.7694, 0.7688, 0.7678, 0.7708, 0.7727, 0.7749, 0.7741, 0.7741, 
+							0.7732, 0.7727, 0.7737, 0.7724, 0.7712, 0.772, 0.7721, 0.7717, 0.7704, 0.769, 
+							0.7711, 0.774, 0.7745, 0.7745, 0.774, 0.7716, 0.7713, 0.7678, 0.7688, 0.7718, 
+							0.7718, 0.7728, 0.7729, 0.7698, 0.7685, 0.7681, 0.769, 0.769, 0.7698, 0.7699, 
+							0.7651, 0.7613, 0.7616, 0.7614, 0.7614, 0.7607, 0.7602, 0.7611, 0.7622, 0.7615, 
+							0.7598, 0.7598, 0.7592, 0.7573, 0.7566, 0.7567, 0.7591, 0.7582, 0.7585, 0.7613, 
+							0.7631, 0.7615, 0.76, 0.7613, 0.7627, 0.7627, 0.7608, 0.7583, 0.7575, 0.7562, 
+							0.752, 0.7512, 0.7512, 0.7517, 0.752, 0.7511, 0.748, 0.7509, 0.7531, 0.7531, 
+							0.7527, 0.7498, 0.7493, 0.7504, 0.75, 0.7491, 0.7491, 0.7485, 0.7484, 0.7492, 
+							0.7471, 0.7459, 0.7477, 0.7477, 0.7483, 0.7458, 0.7448, 0.743, 0.7399, 0.7395, 
+							0.7395, 0.7378, 0.7382, 0.7362, 0.7355, 0.7348, 0.7361, 0.7361, 0.7365, 0.7362, 
+							0.7331, 0.7339, 0.7344, 0.7327, 0.7327, 0.7336, 0.7333, 0.7359, 0.7359, 0.7372, 
+							0.736, 0.736, 0.735, 0.7365, 0.7384, 0.7395, 0.7413, 0.7397, 0.7396, 0.7385, 
+							0.7378, 0.7366, 0.74, 0.7411, 0.7406, 0.7405, 0.7414, 0.7431, 0.7431, 0.7438, 
+							0.7443, 0.7443, 0.7443, 0.7434, 0.7429, 0.7442, 0.744, 0.7439, 0.7437, 0.7437, 
+							0.7429, 0.7403, 0.7399, 0.7418, 0.7468, 0.748, 0.748, 0.749, 0.7494, 0.7522, 
+							0.7515, 0.7502, 0.7472, 0.7472, 0.7462, 0.7455, 0.7449, 0.7467, 0.7458, 0.7427, 
+							0.7427, 0.743, 0.7429, 0.744, 0.743, 0.7422, 0.7388, 0.7388, 0.7369, 0.7345, 
+							0.7345, 0.7345, 0.7352, 0.7341, 0.7341, 0.734, 0.7324, 0.7272, 0.7264, 0.7255, 
+							0.7258, 0.7258, 0.7256, 0.7257, 0.7247, 0.7243, 0.7244, 0.7235, 0.7235, 0.7235, 
+							0.7235, 0.7262, 0.7288, 0.7301, 0.7337, 0.7337, 0.7324, 0.7297, 0.7317, 0.7315, 
+							0.7288, 0.7263, 0.7263, 0.7242, 0.7253, 0.7264, 0.727, 0.7312, 0.7305, 0.7305, 
+							0.7318, 0.7358, 0.7409, 0.7454, 0.7437, 0.7424, 0.7424, 0.7415, 0.7419, 0.7414, 
+							0.7377, 0.7355, 0.7315, 0.7315, 0.732, 0.7332, 0.7346, 0.7328, 0.7323, 0.734, 
+							0.734, 0.7336, 0.7351, 0.7346, 0.7321, 0.7294, 0.7266, 0.7266, 0.7254, 0.7242, 
+							0.7213, 0.7197, 0.7209, 0.721, 0.721, 0.721, 0.7209, 0.7159, 0.7133, 0.7105, 
+							0.7099, 0.7099, 0.7093, 0.7093, 0.7076, 0.707, 0.7049, 0.7012, 0.7011, 0.7019, 
+							0.7046, 0.7063, 0.7089, 0.7077, 0.7077, 0.7077, 0.7091, 0.7118, 0.7079, 0.7053, 
+							0.705, 0.7055, 0.7055, 0.7045, 0.7051, 0.7051, 0.7017, 0.7, 0.6995, 0.6994, 
+							0.7014, 0.7036, 0.7021, 0.7002, 0.6967, 0.695, 0.695, 0.6939, 0.694, 0.6922, 
+							0.6919, 0.6914, 0.6894, 0.6891, 0.6904, 0.689, 0.6834, 0.6823, 0.6807, 0.6815, 
+							0.6815, 0.6847, 0.6859, 0.6822, 0.6827, 0.6837, 0.6823, 0.6822, 0.6822, 0.6792, 
+							0.6746, 0.6735, 0.6731, 0.6742, 0.6744, 0.6739, 0.6731, 0.6761, 0.6761, 0.6785,
+							0.6818, 0.6836, 0.6823, 0.6805, 0.6793, 0.6849, 0.6833, 0.6825, 0.6825, 0.6816, 
+							0.6799, 0.6813, 0.6809, 0.6868, 0.6933, 0.6933, 0.6945, 0.6944, 0.6946, 0.6964, 
+							0.6965, 0.6956, 0.6956, 0.695, 0.6948, 0.6928, 0.6887, 0.6824, 0.6794, 0.6794, 
+							0.6803, 0.6855, 0.6824, 0.6791, 0.6783, 0.6785, 0.6785, 0.6797, 0.68, 0.6803, 
+							0.6805, 0.676, 0.677, 0.677, 0.6736, 0.6726, 0.6764, 0.6821, 0.6831, 0.6842, 
+							0.6842, 0.6887, 0.6903, 0.6848, 0.6824, 0.6788, 0.6814, 0.6814, 0.6797, 0.6769, 
+							0.6765, 0.6733, 0.6729, 0.6758, 0.6758, 0.675, 0.678, 0.6833, 0.6856, 0.6903, 
+							0.6896, 0.6896, 0.6882, 0.6879, 0.6862, 0.6852, 0.6823, 0.6813, 0.6813, 0.6822, 
+							0.6802, 0.6802, 0.6784, 0.6748, 0.6747, 0.6747, 0.6748, 0.6733, 0.665, 0.6611, 
+							0.6583, 0.659, 0.659, 0.6581, 0.6578, 0.6574, 0.6532, 0.6502, 0.6514, 0.6514, 
+							0.6507, 0.651, 0.6489, 0.6424, 0.6406, 0.6382, 0.6382, 0.6341, 0.6344, 0.6378, 
+							0.6439, 0.6478, 0.6481, 0.6481, 0.6494, 0.6438, 0.6377, 0.6329, 0.6336, 0.6333, 
+							0.6333, 0.633, 0.6371, 0.6403, 0.6396, 0.6364, 0.6356, 0.6356, 0.6368, 0.6357, 
+							0.6354, 0.632, 0.6332, 0.6328, 0.6331, 0.6342, 0.6321, 0.6302, 0.6278, 0.6308, 
+							0.6324, 0.6324, 0.6307, 0.6277, 0.6269, 0.6335, 0.6392, 0.64, 0.6401, 0.6396, 
+							0.6407, 0.6423, 0.6429, 0.6472, 0.6485, 0.6486, 0.6467, 0.6444, 0.6467, 0.6509, 
+							0.6478, 0.6461, 0.6461, 0.6468, 0.6449, 0.647, 0.6461, 0.6452, 0.6422, 0.6422, 
+							0.6425, 0.6414, 0.6366, 0.6346, 0.635, 0.6346, 0.6346, 0.6343, 0.6346, 0.6379, 
+							0.6416, 0.6442, 0.6431, 0.6431, 0.6435, 0.644, 0.6473, 0.6469, 0.6386, 0.6356, 
+							0.634, 0.6346, 0.643, 0.6452, 0.6467, 0.6506, 0.6504, 0.6503, 0.6481, 0.6451, 
+							0.645, 0.6441, 0.6414, 0.6409, 0.6409, 0.6428, 0.6431, 0.6418, 0.6371, 0.6349, 
+							0.6333, 0.6334, 0.6338, 0.6342, 0.632, 0.6318, 0.637, 0.6368, 0.6368, 0.6383, 
+							0.6371, 0.6371, 0.6355, 0.632, 0.6277, 0.6276, 0.6291, 0.6274, 0.6293, 0.6311, 
+							0.631, 0.6312, 0.6312, 0.6304, 0.6294, 0.6348, 0.6378, 0.6368, 0.6368, 0.6368, 
+							0.636, 0.637, 0.6418, 0.6411, 0.6435, 0.6427, 0.6427, 0.6419, 0.6446, 0.6468, 
+							0.6487, 0.6594, 0.6666, 0.6666, 0.6678, 0.6712, 0.6705, 0.6718, 0.6784, 0.6811, 
+							0.6811, 0.6794, 0.6804, 0.6781, 0.6756, 0.6735, 0.6763, 0.6762, 0.6777, 0.6815, 
+							0.6802, 0.678, 0.6796, 0.6817, 0.6817, 0.6832, 0.6877, 0.6912, 0.6914, 0.7009, 
+							0.7012, 0.701, 0.7005, 0.7076, 0.7087, 0.717, 0.7105, 0.7031, 0.7029, 0.7006, 
+							0.7035, 0.7045, 0.6956, 0.6988, 0.6915, 0.6914, 0.6859, 0.6778, 0.6815, 0.6815, 
+							0.6843, 0.6846, 0.6846, 0.6923, 0.6997, 0.7098, 0.7188, 0.7232, 0.7262, 0.7266, 
+							0.7359, 0.7368, 0.7337, 0.7317, 0.7387, 0.7467, 0.7461, 0.7366, 0.7319, 0.7361, 
+							0.7437, 0.7432, 0.7461, 0.7461, 0.7454, 0.7549, 0.7742, 0.7801, 0.7903, 0.7876, 
+							0.7928, 0.7991, 0.8007, 0.7823, 0.7661, 0.785, 0.7863, 0.7862, 0.7821, 0.7858, 
+							0.7731, 0.7779, 0.7844, 0.7866, 0.7864, 0.7788, 0.7875, 0.7971, 0.8004, 0.7857, 
+							0.7932, 0.7938, 0.7927, 0.7918, 0.7919, 0.7989, 0.7988, 0.7949, 0.7948, 0.7882, 
+							0.7745, 0.771, 0.775, 0.7791, 0.7882, 0.7882, 0.7899, 0.7905, 0.7889, 0.7879, 
+							0.7855, 0.7866, 0.7865, 0.7795, 0.7758, 0.7717, 0.761, 0.7497, 0.7471, 0.7473, 
+							0.7407, 0.7288, 0.7074, 0.6927, 0.7083, 0.7191, 0.719, 0.7153, 0.7156, 0.7158, 
+							0.714, 0.7119, 0.7129, 0.7129, 0.7049, 0.7095
+						]
+					}]
+				});
+script-->
+
+
+
+
+
+
+
+
+
+
+
+-----------------
+Highcharts example
+'<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<button onclick="
+var chart;
+chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'line',
+						marginRight: 130,
+						marginBottom: 25
+					},
+					title: {
+						text: 'Monthly Average Temperature',
+						x: -20 //center
+					},
+					subtitle: {
+						text: 'Source: WorldClimate.com',
+						x: -20
+					},
+					xAxis: {
+						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+							'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+					},
+					yAxis: {
+						title: {
+							text: 'Temperature (°C)'
+						},
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						formatter: function() {
+				                return '<b>'+ this.series.name +'</b><br/>'+
+								this.x +': '+ this.y +'°C';
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'top',
+						x: -10,
+						y: 100,
+						borderWidth: 0
+					},
+					series: [{
+						name: 'Tokyo',
+						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+					}, {
+						name: 'New York',
+						data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+					}, {
+						name: 'Berlin',
+						data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+					}, {
+						name: 'London',
+						data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+					}]
+				});
+			
+">
+Click me
+</button>
+
+----------
+
+<div id="container1" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<!--script
+var chart;
+chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container1',
+						zoomType: 'x',
+						spacingRight: 20
+					},
+				    title: {
+						text: 'USD to EUR exchange rate from 2006 through 2008'
+					},
+				    subtitle: {
+						text: document.ontouchstart === undefined ?
+							'Click and drag in the plot area to zoom in' :
+							'Drag your finger over the plot to zoom in'
+					},
+					xAxis: {
+						type: 'datetime',
+						maxZoom: 14 * 24 * 3600000, // fourteen days
+						title: {
+							text: null
+						}
+					},
+					yAxis: {
+						title: {
+							text: 'Exchange rate'
+						},
+						min: 0.6,
+						startOnTick: false,
+						showFirstLabel: false
+					},
+					tooltip: {
+						shared: true					
+					},
+					legend: {
+						enabled: false
+					},
+					plotOptions: {
+						area: {
+							fillColor: {
+								linearGradient: [0, 0, 0, 300],
+								stops: [
+									[0, Highcharts.theme.colors[0]],
+									[1, 'rgba(2,0,0,0)']
+								]
+							},
+							lineWidth: 1,
+							marker: {
+								enabled: false,
+								states: {
+									hover: {
+										enabled: true,
+										radius: 5
+									}
+								}
+							},
+							shadow: false,
+							states: {
+								hover: {
+									lineWidth: 1						
+								}
+							}
+						}
+					},
+				
+					series: [{
+						type: 'area',
+						name: 'USD to EUR',
+						pointInterval: 24 * 3600 * 1000,
+						pointStart: Date.UTC(2006, 0, 01),
+						data: [
+							0.8446, 0.8445, 0.8444, 0.8451,	0.8418, 0.8264,	0.8258, 0.8232,	0.8233, 0.8258, 
+							0.8283, 0.8278, 0.8256, 0.8292,	0.8239, 0.8239,	0.8245, 0.8265,	0.8261, 0.8269, 
+							0.8273, 0.8244, 0.8244, 0.8172,	0.8139, 0.8146,	0.8164, 0.82,	0.8269, 0.8269, 
+							0.8269, 0.8258, 0.8247, 0.8286,	0.8289, 0.8316,	0.832, 0.8333,	0.8352, 0.8357, 
+							0.8355, 0.8354, 0.8403, 0.8403,	0.8406, 0.8403,	0.8396, 0.8418,	0.8409, 0.8384, 
+							0.8386, 0.8372, 0.839, 0.84, 0.8389, 0.84, 0.8423, 0.8423, 0.8435, 0.8422, 
+							0.838, 0.8373, 0.8316, 0.8303,	0.8303, 0.8302,	0.8369, 0.84, 0.8385, 0.84, 
+							0.8401, 0.8402, 0.8381, 0.8351,	0.8314, 0.8273,	0.8213, 0.8207,	0.8207, 0.8215, 
+							0.8242, 0.8273, 0.8301, 0.8346,	0.8312, 0.8312,	0.8312, 0.8306,	0.8327, 0.8282, 
+							0.824, 0.8255, 0.8256, 0.8273, 0.8209, 0.8151, 0.8149, 0.8213, 0.8273, 0.8273, 
+							0.8261, 0.8252, 0.824, 0.8262, 0.8258, 0.8261, 0.826, 0.8199, 0.8153, 0.8097, 
+							0.8101, 0.8119, 0.8107, 0.8105,	0.8084, 0.8069,	0.8047, 0.8023,	0.7965, 0.7919, 
+							0.7921, 0.7922, 0.7934, 0.7918,	0.7915, 0.787, 0.7861, 0.7861, 0.7853, 0.7867, 
+							0.7827, 0.7834, 0.7766, 0.7751, 0.7739, 0.7767, 0.7802, 0.7788, 0.7828, 0.7816, 
+							0.7829, 0.783, 0.7829, 0.7781, 0.7811, 0.7831, 0.7826, 0.7855, 0.7855, 0.7845, 
+							0.7798, 0.7777, 0.7822, 0.7785, 0.7744, 0.7743, 0.7726, 0.7766, 0.7806, 0.785, 
+							0.7907, 0.7912, 0.7913, 0.7931, 0.7952, 0.7951, 0.7928, 0.791, 0.7913, 0.7912, 
+							0.7941, 0.7953, 0.7921, 0.7919, 0.7968, 0.7999, 0.7999, 0.7974, 0.7942, 0.796, 
+							0.7969, 0.7862, 0.7821, 0.7821, 0.7821, 0.7811, 0.7833, 0.7849, 0.7819, 0.7809, 
+							0.7809, 0.7827, 0.7848, 0.785, 0.7873, 0.7894, 0.7907, 0.7909, 0.7947, 0.7987, 
+							0.799, 0.7927, 0.79, 0.7878, 0.7878, 0.7907, 0.7922, 0.7937, 0.786, 0.787, 
+							0.7838, 0.7838, 0.7837, 0.7836, 0.7806, 0.7825, 0.7798, 0.777, 0.777, 0.7772, 
+							0.7793, 0.7788, 0.7785, 0.7832, 0.7865, 0.7865, 0.7853, 0.7847, 0.7809, 0.778, 
+							0.7799, 0.78, 0.7801, 0.7765, 0.7785, 0.7811, 0.782, 0.7835, 0.7845, 0.7844, 
+							0.782, 0.7811, 0.7795, 0.7794, 0.7806, 0.7794, 0.7794, 0.7778, 0.7793, 0.7808, 
+							0.7824, 0.787, 0.7894, 0.7893, 0.7882, 0.7871, 0.7882, 0.7871, 0.7878, 0.79, 
+							0.7901, 0.7898, 0.7879, 0.7886, 0.7858, 0.7814, 0.7825, 0.7826, 0.7826, 0.786, 
+							0.7878, 0.7868, 0.7883, 0.7893, 0.7892, 0.7876, 0.785, 0.787, 0.7873, 0.7901, 
+							0.7936, 0.7939, 0.7938, 0.7956, 0.7975, 0.7978, 0.7972, 0.7995, 0.7995, 0.7994, 
+							0.7976, 0.7977, 0.796, 0.7922, 0.7928, 0.7929, 0.7948, 0.797, 0.7953, 0.7907, 
+							0.7872, 0.7852, 0.7852, 0.786, 0.7862, 0.7836, 0.7837, 0.784, 0.7867, 0.7867, 
+							0.7869, 0.7837, 0.7827, 0.7825, 0.7779, 0.7791, 0.779, 0.7787, 0.78, 0.7807, 
+							0.7803, 0.7817, 0.7799, 0.7799, 0.7795, 0.7801, 0.7765, 0.7725, 0.7683, 0.7641, 
+							0.7639, 0.7616, 0.7608, 0.759, 0.7582, 0.7539, 0.75, 0.75, 0.7507, 0.7505, 
+							0.7516, 0.7522, 0.7531, 0.7577, 0.7577, 0.7582, 0.755, 0.7542, 0.7576, 0.7616, 
+							0.7648, 0.7648, 0.7641, 0.7614, 0.757, 0.7587, 0.7588, 0.762, 0.762, 0.7617, 
+							0.7618, 0.7615, 0.7612, 0.7596, 0.758, 0.758, 0.758, 0.7547, 0.7549, 0.7613, 
+							0.7655, 0.7693, 0.7694, 0.7688, 0.7678, 0.7708, 0.7727, 0.7749, 0.7741, 0.7741, 
+							0.7732, 0.7727, 0.7737, 0.7724, 0.7712, 0.772, 0.7721, 0.7717, 0.7704, 0.769, 
+							0.7711, 0.774, 0.7745, 0.7745, 0.774, 0.7716, 0.7713, 0.7678, 0.7688, 0.7718, 
+							0.7718, 0.7728, 0.7729, 0.7698, 0.7685, 0.7681, 0.769, 0.769, 0.7698, 0.7699, 
+							0.7651, 0.7613, 0.7616, 0.7614, 0.7614, 0.7607, 0.7602, 0.7611, 0.7622, 0.7615, 
+							0.7598, 0.7598, 0.7592, 0.7573, 0.7566, 0.7567, 0.7591, 0.7582, 0.7585, 0.7613, 
+							0.7631, 0.7615, 0.76, 0.7613, 0.7627, 0.7627, 0.7608, 0.7583, 0.7575, 0.7562, 
+							0.752, 0.7512, 0.7512, 0.7517, 0.752, 0.7511, 0.748, 0.7509, 0.7531, 0.7531, 
+							0.7527, 0.7498, 0.7493, 0.7504, 0.75, 0.7491, 0.7491, 0.7485, 0.7484, 0.7492, 
+							0.7471, 0.7459, 0.7477, 0.7477, 0.7483, 0.7458, 0.7448, 0.743, 0.7399, 0.7395, 
+							0.7395, 0.7378, 0.7382, 0.7362, 0.7355, 0.7348, 0.7361, 0.7361, 0.7365, 0.7362, 
+							0.7331, 0.7339, 0.7344, 0.7327, 0.7327, 0.7336, 0.7333, 0.7359, 0.7359, 0.7372, 
+							0.736, 0.736, 0.735, 0.7365, 0.7384, 0.7395, 0.7413, 0.7397, 0.7396, 0.7385, 
+							0.7378, 0.7366, 0.74, 0.7411, 0.7406, 0.7405, 0.7414, 0.7431, 0.7431, 0.7438, 
+							0.7443, 0.7443, 0.7443, 0.7434, 0.7429, 0.7442, 0.744, 0.7439, 0.7437, 0.7437, 
+							0.7429, 0.7403, 0.7399, 0.7418, 0.7468, 0.748, 0.748, 0.749, 0.7494, 0.7522, 
+							0.7515, 0.7502, 0.7472, 0.7472, 0.7462, 0.7455, 0.7449, 0.7467, 0.7458, 0.7427, 
+							0.7427, 0.743, 0.7429, 0.744, 0.743, 0.7422, 0.7388, 0.7388, 0.7369, 0.7345, 
+							0.7345, 0.7345, 0.7352, 0.7341, 0.7341, 0.734, 0.7324, 0.7272, 0.7264, 0.7255, 
+							0.7258, 0.7258, 0.7256, 0.7257, 0.7247, 0.7243, 0.7244, 0.7235, 0.7235, 0.7235, 
+							0.7235, 0.7262, 0.7288, 0.7301, 0.7337, 0.7337, 0.7324, 0.7297, 0.7317, 0.7315, 
+							0.7288, 0.7263, 0.7263, 0.7242, 0.7253, 0.7264, 0.727, 0.7312, 0.7305, 0.7305, 
+							0.7318, 0.7358, 0.7409, 0.7454, 0.7437, 0.7424, 0.7424, 0.7415, 0.7419, 0.7414, 
+							0.7377, 0.7355, 0.7315, 0.7315, 0.732, 0.7332, 0.7346, 0.7328, 0.7323, 0.734, 
+							0.734, 0.7336, 0.7351, 0.7346, 0.7321, 0.7294, 0.7266, 0.7266, 0.7254, 0.7242, 
+							0.7213, 0.7197, 0.7209, 0.721, 0.721, 0.721, 0.7209, 0.7159, 0.7133, 0.7105, 
+							0.7099, 0.7099, 0.7093, 0.7093, 0.7076, 0.707, 0.7049, 0.7012, 0.7011, 0.7019, 
+							0.7046, 0.7063, 0.7089, 0.7077, 0.7077, 0.7077, 0.7091, 0.7118, 0.7079, 0.7053, 
+							0.705, 0.7055, 0.7055, 0.7045, 0.7051, 0.7051, 0.7017, 0.7, 0.6995, 0.6994, 
+							0.7014, 0.7036, 0.7021, 0.7002, 0.6967, 0.695, 0.695, 0.6939, 0.694, 0.6922, 
+							0.6919, 0.6914, 0.6894, 0.6891, 0.6904, 0.689, 0.6834, 0.6823, 0.6807, 0.6815, 
+							0.6815, 0.6847, 0.6859, 0.6822, 0.6827, 0.6837, 0.6823, 0.6822, 0.6822, 0.6792, 
+							0.6746, 0.6735, 0.6731, 0.6742, 0.6744, 0.6739, 0.6731, 0.6761, 0.6761, 0.6785,
+							0.6818, 0.6836, 0.6823, 0.6805, 0.6793, 0.6849, 0.6833, 0.6825, 0.6825, 0.6816, 
+							0.6799, 0.6813, 0.6809, 0.6868, 0.6933, 0.6933, 0.6945, 0.6944, 0.6946, 0.6964, 
+							0.6965, 0.6956, 0.6956, 0.695, 0.6948, 0.6928, 0.6887, 0.6824, 0.6794, 0.6794, 
+							0.6803, 0.6855, 0.6824, 0.6791, 0.6783, 0.6785, 0.6785, 0.6797, 0.68, 0.6803, 
+							0.6805, 0.676, 0.677, 0.677, 0.6736, 0.6726, 0.6764, 0.6821, 0.6831, 0.6842, 
+							0.6842, 0.6887, 0.6903, 0.6848, 0.6824, 0.6788, 0.6814, 0.6814, 0.6797, 0.6769, 
+							0.6765, 0.6733, 0.6729, 0.6758, 0.6758, 0.675, 0.678, 0.6833, 0.6856, 0.6903, 
+							0.6896, 0.6896, 0.6882, 0.6879, 0.6862, 0.6852, 0.6823, 0.6813, 0.6813, 0.6822, 
+							0.6802, 0.6802, 0.6784, 0.6748, 0.6747, 0.6747, 0.6748, 0.6733, 0.665, 0.6611, 
+							0.6583, 0.659, 0.659, 0.6581, 0.6578, 0.6574, 0.6532, 0.6502, 0.6514, 0.6514, 
+							0.6507, 0.651, 0.6489, 0.6424, 0.6406, 0.6382, 0.6382, 0.6341, 0.6344, 0.6378, 
+							0.6439, 0.6478, 0.6481, 0.6481, 0.6494, 0.6438, 0.6377, 0.6329, 0.6336, 0.6333, 
+							0.6333, 0.633, 0.6371, 0.6403, 0.6396, 0.6364, 0.6356, 0.6356, 0.6368, 0.6357, 
+							0.6354, 0.632, 0.6332, 0.6328, 0.6331, 0.6342, 0.6321, 0.6302, 0.6278, 0.6308, 
+							0.6324, 0.6324, 0.6307, 0.6277, 0.6269, 0.6335, 0.6392, 0.64, 0.6401, 0.6396, 
+							0.6407, 0.6423, 0.6429, 0.6472, 0.6485, 0.6486, 0.6467, 0.6444, 0.6467, 0.6509, 
+							0.6478, 0.6461, 0.6461, 0.6468, 0.6449, 0.647, 0.6461, 0.6452, 0.6422, 0.6422, 
+							0.6425, 0.6414, 0.6366, 0.6346, 0.635, 0.6346, 0.6346, 0.6343, 0.6346, 0.6379, 
+							0.6416, 0.6442, 0.6431, 0.6431, 0.6435, 0.644, 0.6473, 0.6469, 0.6386, 0.6356, 
+							0.634, 0.6346, 0.643, 0.6452, 0.6467, 0.6506, 0.6504, 0.6503, 0.6481, 0.6451, 
+							0.645, 0.6441, 0.6414, 0.6409, 0.6409, 0.6428, 0.6431, 0.6418, 0.6371, 0.6349, 
+							0.6333, 0.6334, 0.6338, 0.6342, 0.632, 0.6318, 0.637, 0.6368, 0.6368, 0.6383, 
+							0.6371, 0.6371, 0.6355, 0.632, 0.6277, 0.6276, 0.6291, 0.6274, 0.6293, 0.6311, 
+							0.631, 0.6312, 0.6312, 0.6304, 0.6294, 0.6348, 0.6378, 0.6368, 0.6368, 0.6368, 
+							0.636, 0.637, 0.6418, 0.6411, 0.6435, 0.6427, 0.6427, 0.6419, 0.6446, 0.6468, 
+							0.6487, 0.6594, 0.6666, 0.6666, 0.6678, 0.6712, 0.6705, 0.6718, 0.6784, 0.6811, 
+							0.6811, 0.6794, 0.6804, 0.6781, 0.6756, 0.6735, 0.6763, 0.6762, 0.6777, 0.6815, 
+							0.6802, 0.678, 0.6796, 0.6817, 0.6817, 0.6832, 0.6877, 0.6912, 0.6914, 0.7009, 
+							0.7012, 0.701, 0.7005, 0.7076, 0.7087, 0.717, 0.7105, 0.7031, 0.7029, 0.7006, 
+							0.7035, 0.7045, 0.6956, 0.6988, 0.6915, 0.6914, 0.6859, 0.6778, 0.6815, 0.6815, 
+							0.6843, 0.6846, 0.6846, 0.6923, 0.6997, 0.7098, 0.7188, 0.7232, 0.7262, 0.7266, 
+							0.7359, 0.7368, 0.7337, 0.7317, 0.7387, 0.7467, 0.7461, 0.7366, 0.7319, 0.7361, 
+							0.7437, 0.7432, 0.7461, 0.7461, 0.7454, 0.7549, 0.7742, 0.7801, 0.7903, 0.7876, 
+							0.7928, 0.7991, 0.8007, 0.7823, 0.7661, 0.785, 0.7863, 0.7862, 0.7821, 0.7858, 
+							0.7731, 0.7779, 0.7844, 0.7866, 0.7864, 0.7788, 0.7875, 0.7971, 0.8004, 0.7857, 
+							0.7932, 0.7938, 0.7927, 0.7918, 0.7919, 0.7989, 0.7988, 0.7949, 0.7948, 0.7882, 
+							0.7745, 0.771, 0.775, 0.7791, 0.7882, 0.7882, 0.7899, 0.7905, 0.7889, 0.7879, 
+							0.7855, 0.7866, 0.7865, 0.7795, 0.7758, 0.7717, 0.761, 0.7497, 0.7471, 0.7473, 
+							0.7407, 0.7288, 0.7074, 0.6927, 0.7083, 0.7191, 0.719, 0.7153, 0.7156, 0.7158, 
+							0.714, 0.7119, 0.7129, 0.7129, 0.7049, 0.7095
+						]
+					}]
+				});
+script-->
+
+
+
+
+
+
+
+
+
+
+
