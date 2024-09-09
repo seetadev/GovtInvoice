@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<link rel="stylesheet"  href="lib/jquery/_assets/css/jqm-docs.css"/> 
+<link rel="stylesheet"  href="lib/jquery/jquery.mobile.css" /> 
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery.mobile.js"></script>
+</head>
+<body> 
+
+	<div data-role="page" id="dropboxlogin" data-theme="d" data-title="Login Dropbox" >
+	  	<div data-role="header" data-theme="a" class="ui-bar">
+		  <div class="ui-grid-b">
+		    <div class="ui-block-a">
+	              <div data-role="button" data-inline="true" data-icon="back"
+		onclick="dropboxHandler.querylogin();$.mobile.changePage('#indexPage')">Close</div>
+		    </div>
+	            <div class="ui-block-b">
+	            </div>
+	
+	            <div class="ui-block-c">
+
+		    </div>
+		  </div>
+		</div>
+	
+	
+	      <div data-role="content" data-theme="d" >
+				<h2>Sign in to Dropbox</h2>
+				<div style="width:90%;height:90%;" id="dropboxiframe"></div>
+	      </div>
+	</div>
+</body>
+</html>

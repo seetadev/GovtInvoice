@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<link rel="stylesheet"  href="lib/jquery/_assets/css/jqm-docs.css"/> 
+<link rel="stylesheet"  href="lib/jquery/jquery.mobile.css" /> 
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery.mobile.js"></script>
+</head>
+<body> 
+
+<div data-role="page" id="tickersearchPage">
+
+
+  	<div data-role="header" data-theme="a" class="ui-bar"  style="padding-top:30px !important;">
+	  <div class="ui-grid-b">
+	    <div class="ui-block-a">
+              <div data-role="button" data-inline="true" data-icon="home"
+		onclick="changePage('#indexPage');">Home</div>
+	    </div>
+            <div class="ui-block-b">
+	      <span>Symbol Lookup</span>
+            </div>
+
+            <div class="ui-block-c">
+               <span id="filePage-fname" style="vertical-align:middle;position: absolute; right: 50px; top: .4em;"></span>
+	    </div>
+	  </div>
+	</div>
+
+
+      <div data-role="content" data-theme="d">
+        <br>
+        <br>
+        <center><input type="search" data-theme="d" placeholder="Lookup Symbol"
+        name="tickerSearch" id="tickerSearch" value=""
+        autocomplete="off" autocapitalize="off"/></center>
+
+		  
+	</div>
+
+</div>
+
+	
+</body>
+</html>

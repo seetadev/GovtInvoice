@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Highslide JS</title>
+
+<!--
+    1 ) Reference to the files containing the javascript.
+    These files must be located on your server.
+-->
+
+<script type="text/javascript" src="../highslide/highslide-with-html.js"></script>
+<link rel="stylesheet" type="text/css" href="../highslide/highslide.css" />
+
+<!--
+    2) Optionally override the settings defined at the top
+    of the highslide.js file. The parameter hs.graphicsDir is important!
+-->
+
+<script type="text/javascript">
+    // Apply the Highslide settings
+    hs.graphicsDir = '../highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+    hs.outlineWhileAnimating = true;
+</script>
+
+</head>
+
+<body>
+<div>
+
+<!--
+    5) This is how you mark up the thumbnail or text link. 
+	
+	The href is a two component string where the first part, left of the question mark, is extracted
+    from the "Embed" code snippet found at the YouTube page for this video:
+	
+		"http://www.youtube.com/embed/a0qMe7Z3EYg"
+		
+	The second component, to the right of the question mark, are the parameters. See
+	http://code.google.com/intl/no-NO/apis/youtube/player_parameters.html for a full reference.
+	In the example below, we set rel to 0 to disable loading related videos once the playback 
+	of the initial video starts. Then, more importantly, we set wmode to transparent to allow
+	Highslide to add overlays (close buttons, navigation etc.) to the popup:
+		
+		"?rel=0&amp;wmode=transparent"
+	
+-->
+<a href="http://www.youtube.com/embed/a0qMe7Z3EYg?rel=0&amp;wmode=transparent" 
+		onclick="return hs.htmlExpand(this, {objectType: 'iframe', width: 480, height: 385, 
+		allowSizeReduction: false, wrapperClassName: 'draggable-header no-footer', 
+		preserveContent: false, objectLoadTime: 'after'})"
+        class="highslide">
+    Display YouTube movie
+</a>
+
+</div>
+
+</body>
+
+</html>
