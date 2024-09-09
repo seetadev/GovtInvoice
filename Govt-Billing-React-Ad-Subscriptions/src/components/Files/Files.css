@@ -1,0 +1,30 @@
+.file ul{
+	list-style: none;
+	overflow-y: scroll; height:400px;
+}
+
+.file li{
+	font-weight: bold;
+	cursor: pointer;
+	border-bottom: 0.1rem solid #e1e1e1;
+  	padding: 2px 2px;
+  	text-align: left;
+}
+
+.file span{
+	font-size: 12px;
+    color: #9b4dca;
+    margin-right: 20px;
+}
+
+/*
+td:first-child,
+th:first-child {
+  padding-left: 0;
+}
+
+td:last-child,
+th:last-child {
+  padding-right: 0;
+}
+606c76*/

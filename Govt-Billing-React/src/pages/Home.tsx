@@ -9,13 +9,14 @@ import {
   IonPopover,
   IonTitle,
   IonToolbar,
+  isPlatform,
 } from "@ionic/react";
 import { APP_NAME, DATA } from "../app-data";
 import Login from "../components/Login/Login";
 import * as AppGeneral from "../components/socialcalc/index.js";
 import { useEffect, useState } from "react";
 import { Local } from "../components/Storage/LocalStorage";
-import { menu, settings } from "ionicons/icons";
+import { cloudOffline, menu, settings, statsChart } from "ionicons/icons";
 import "./Home.css";
 import Menu from "../components/Menu/Menu";
 import Files from "../components/Files/Files";
