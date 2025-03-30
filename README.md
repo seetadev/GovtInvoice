@@ -4,13 +4,38 @@ Public Goods Initiative to improve transparency and security in procurement and 
 
 ## Invoice and Billing system for Government Universities 
 
-Billing and Invoicing System on ios, android or as a PWA.
+Web3 Billing and Invoicing System on ios, android or as a PWA.
 
 ## Github Metrics Summary for Optimism RetroPGF
 
 Please visit Github Metrics Summary for Optimism RetroPGF at https://drive.google.com/drive/folders/1dxOKh33RoJ0jQs5_wm_inwXT2yUg_sDn?usp=drive_link 
 
 Vercel Deployment: https://invoice-ppt-op-mainnet.vercel.app/ 
+
+
+### PPT Medical Invoice DApp – Empowering Healthcare on Optimism 
+
+PPT Utility Token Deployment in Medical Invoice DApp
+
+We have deployed the PPT utility token on the Optimism (OP) Mainnet to power key functions within our Medical Invoice DApp: 
+
+✅ Save: Securely save medical invoices on-chain using PPT tokens, ensuring data integrity and long-term availability.
+
+✅ Save As: Create multiple versions of invoices for different stakeholders while maintaining data consistency.
+
+✅ Print: Generate and print invoices securely, ensuring authenticity and alignment with on-chain records.
+
+#### Impact
+
+By leveraging Optimism's low-cost and high-speed transaction capabilities, the DApp reduces administrative costs, enhances transparency, and empowers patients with control over their medical data.
+
+#### Supporting Links
+
+Screencast, Demo and Documentation: https://drive.google.com/drive/u/5/folders/1esP7W1uxkx2mK7eIDC0tY8Cx3VhzwhQS  
+
+Medical Invoice DApp contract deployment: https://optimistic.etherscan.io/address/0x49009CD05805ce571DcE7b577677F73B5828aB53#code 
+
+PPT Token Contract Deployment: https://optimistic.etherscan.io/address/0xc76F004CB35ec0971075060D4DBd6279d2252Acf#code
 
 
 # OSS Contributors, PGF Volunteers
