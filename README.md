@@ -6,6 +6,9 @@ Public Goods Initiative to improve transparency and security in procurement and 
 
 Billing and Invoicing System on ios, android or as a PWA.
 
+## Github Metrics Summary for Optimism RetroPGF7
+
+Please visit Github Metrics Summary for Optimism RetroPGF7 at https://drive.google.com/drive/folders/1dxOKh33RoJ0jQs5_wm_inwXT2yUg_sDn?usp=drive_link 
 
 
 # OSS Contributors, PGF Volunteers
