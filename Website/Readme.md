@@ -48,7 +48,7 @@ Before running this Flask application, ensure you have the following installed o
 
 7. **Install Python dependencies**:
    ```bash
-   pip install -r requirements.txt
+   pip install -r req.txt
    ```
 
 8. **Configure environment variables**:
