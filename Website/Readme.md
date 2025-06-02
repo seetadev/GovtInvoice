@@ -102,7 +102,7 @@ Before running this Flask application, ensure you have the following installed o
 
 7. **Install Python dependencies**:
    ```bash
-   pip3 install -r requirements.txt
+   pip3 install -r req.txt
    ```
 
 8. **Configure environment variables**:
