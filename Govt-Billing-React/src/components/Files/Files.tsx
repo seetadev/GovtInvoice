@@ -175,7 +175,7 @@ const Files: React.FC<{
         isOpen={showAlert1}
         onDidDismiss={() => setShowAlert1(false)}
         header="Delete file"
-        message={"Do you want to delete the " + currentKey + " file?"}
+        message={"Do you want to delete the file:" + '"' + currentKey + '"' + " file?"}
         buttons={[
           { text: "No", role: "cancel" },
           {
