@@ -1,0 +1,318 @@
+name: Claude AI Code Generation
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      task_description:
+        description: 'Describe the code generation task'
+        required: true
+        type: string
+      target_branch:
+        description: 'Target branch for the generated code'
+        required: false
+        default: 'claude-generated'
+        type: string
+
+jobs:
+  generate-code:
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'claude-generate')) ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '/claude generate')) ||
+      (github.event_name == 'workflow_dispatch')
+    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          pip install boto3 requests
+
+      - name: Extract task description
+        id: task
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "description=${{ github.event.inputs.task_description }}" >> $GITHUB_OUTPUT
+            echo "branch=${{ github.event.inputs.target_branch }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "issues" ]; then
+            # Extract task from issue body
+            echo "description<<EOF" >> $GITHUB_OUTPUT
+            echo "${{ github.event.issue.body }}" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "branch=claude-generated-issue-${{ github.event.issue.number }}" >> $GITHUB_OUTPUT
+          else
+            # Extract task from comment
+            COMMENT_BODY="${{ github.event.comment.body }}"
+            TASK_DESC=$(echo "$COMMENT_BODY" | sed -n 's|^/claude generate \(.*\)|\1|p')
+            echo "description=$TASK_DESC" >> $GITHUB_OUTPUT
+            echo "branch=claude-generated-comment-${{ github.event.comment.id }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Analyze codebase structure
+        run: |
+          find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" \) \
+            -not -path "./node_modules/*" \
+            -not -path "./.git/*" > codebase_files.txt
+          
+          echo "Project structure:" > project_context.txt
+          tree -I 'node_modules|.git' -L 3 >> project_context.txt || ls -la >> project_context.txt
+          
+          echo "Package.json content:" >> project_context.txt
+          cat package.json >> project_context.txt
+
+      - name: Generate code with Claude
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_BEDROCK_MODEL_ID: ${{ secrets.AWS_BEDROCK_MODEL_ID }}
+          TASK_DESCRIPTION: ${{ steps.task.outputs.description }}
+          TARGET_BRANCH: ${{ steps.task.outputs.branch }}
+        run: |
+          cat << 'EOF' > claude_generator.py
+          import boto3
+          import json
+          import os
+          import requests
+          import subprocess
+          import tempfile
+          
+          def get_bedrock_client():
+              return boto3.client('bedrock-runtime', region_name=os.environ['AWS_DEFAULT_REGION'])
+          
+          def read_file_safely(filepath, max_lines=100):
+              """Read file content safely, limiting lines for context"""
+              try:
+                  with open(filepath, 'r', encoding='utf-8') as f:
+                      lines = f.readlines()
+                      if len(lines) > max_lines:
+                          return ''.join(lines[:max_lines]) + f'\n... (truncated, {len(lines)-max_lines} more lines)'
+                      return ''.join(lines)
+              except Exception as e:
+                  return f"Error reading file: {str(e)}"
+          
+          def analyze_codebase():
+              """Analyze the current codebase structure"""
+              context = ""
+              
+              # Read project context
+              if os.path.exists('project_context.txt'):
+                  context += read_file_safely('project_context.txt')
+              
+              # Read key configuration files
+              key_files = ['package.json', 'tsconfig.json', 'vite.config.ts', 'capacitor.config.ts']
+              for file in key_files:
+                  if os.path.exists(file):
+                      context += f"\n\n=== {file} ===\n"
+                      context += read_file_safely(file, 50)
+              
+              # Sample some source files to understand patterns
+              if os.path.exists('codebase_files.txt'):
+                  with open('codebase_files.txt', 'r') as f:
+                      files = [line.strip() for line in f.readlines()[:10]]  # First 10 files
+                  
+                  for file in files:
+                      if os.path.exists(file):
+                          context += f"\n\n=== {file} ===\n"
+                          context += read_file_safely(file, 30)
+              
+              return context
+          
+          def generate_code_with_claude(task_description, codebase_context):
+              client = get_bedrock_client()
+              
+              prompt = f"""
+          You are an expert software developer working on an Ionic React TypeScript application for government billing/invoicing.
+          
+          TASK: {task_description}
+          
+          CURRENT CODEBASE CONTEXT:
+          {codebase_context}
+          
+          Please generate the necessary code changes to implement the requested feature. Your response should include:
+          
+          1. **FILES_TO_CREATE**: List any new files that need to be created with their full paths
+          2. **FILES_TO_MODIFY**: List any existing files that need to be modified
+          3. **CODE_CHANGES**: Provide the actual code for new files or specific changes for existing files
+          4. **INSTRUCTIONS**: Any additional setup or configuration steps needed
+          
+          Follow these guidelines:
+          - Use TypeScript and React hooks
+          - Follow Ionic React patterns and components
+          - Maintain consistency with existing code style
+          - Include proper error handling
+          - Add appropriate TypeScript types
+          - Use existing utilities and patterns from the codebase
+          - Ensure mobile-first responsive design
+          
+          Format your response clearly with sections for each file change.
+          """
+          
+              body = {
+                  "anthropic_version": "bedrock-2023-05-31",
+                  "max_tokens": 8000,
+                  "messages": [
+                      {
+                          "role": "user",
+                          "content": prompt
+                      }
+                  ]
+              }
+              
+              response = client.invoke_model(
+                  body=json.dumps(body),
+                  modelId=os.environ.get('AWS_BEDROCK_MODEL_ID', 'anthropic.claude-3-sonnet-20240229-v1:0'),
+                  accept='application/json',
+                  contentType='application/json'
+              )
+              
+              response_body = json.loads(response.get('body').read())
+              return response_body['content'][0]['text']
+          
+          def create_branch_and_commit(branch_name, generated_content):
+              """Create a new branch and commit the generated code"""
+              try:
+
+                  subprocess.run(['git', 'config', 'user.name', 'Claude Bot'], check=True)
+                  subprocess.run(['git', 'config', 'user.email', 'claude-bot@example.com'], check=True)
+
+                  # Create and checkout new branch
+                  subprocess.run(['git', 'checkout', '-b', branch_name], check=True)
+                  
+                  # Create a summary file with the generated content
+                  with open('CLAUDE_GENERATED.md', 'w') as f:
+                      f.write(f"# Claude Generated Code\n\n")
+                      f.write(f"**Task**: {os.environ['TASK_DESCRIPTION']}\n\n")
+                      f.write(f"**Generated on**: {subprocess.check_output(['date']).decode().strip()}\n\n")
+                      f.write("## Generated Content\n\n")
+                      f.write("```\n")
+                      f.write(generated_content)
+                      f.write("\n```\n")
+                  
+                  # Stage and commit changes
+                  subprocess.run(['git', 'add', '.'], check=True)
+                  subprocess.run(['git', 'commit', '-m', f'Add Claude generated code\n\nTask: {os.environ["TASK_DESCRIPTION"]}\n\nGenerated by Claude AI via Amazon Bedrock'], check=True)
+                  
+                  # Push branch
+                  subprocess.run(['git', 'push', '-u', 'origin', branch_name], check=True)
+                  
+                  return True
+              except subprocess.CalledProcessError as e:
+                  print(f"Git operation failed: {e}")
+                  return False
+          
+          def create_pull_request(branch_name, task_description, generated_content):
+              """Create a pull request with the generated code"""
+              github_token = os.environ['GITHUB_TOKEN']
+              repo = os.environ['GITHUB_REPOSITORY']
+              
+              headers = {
+                  'Authorization': f'token {github_token}',
+                  'Accept': 'application/vnd.github.v3+json'
+              }
+              
+              pr_body = f"""## 🤖 Claude AI Generated Code
+          
+          **Task Description:** {task_description}
+          
+          This pull request contains code generated by Claude AI via Amazon Bedrock based on the requested feature.
+          
+          ## Generated Changes
+          
+          ```
+          {generated_content[:2000]}{'...' if len(generated_content) > 2000 else ''}
+          ```
+          
+          ## Review Notes
+          
+          - Please review the generated code carefully
+          - Test the functionality before merging
+          - Make any necessary adjustments for your specific requirements
+          - Check for integration with existing codebase
+          
+          ---
+          *This PR was created automatically by Claude AI*
+          """
+              
+              pr_data = {
+                  'title': f'🤖 Claude Generated: {task_description[:50]}{"..." if len(task_description) > 50 else ""}',
+                  'head': branch_name,
+                  'base': 'main',
+                  'body': pr_body
+              }
+              
+              url = f'https://api.github.com/repos/{repo}/pulls'
+              response = requests.post(url, headers=headers, json=pr_data)
+              
+              if response.status_code == 201:
+                  pr_url = response.json()['html_url']
+                  print(f"✅ Pull request created: {pr_url}")
+                  return pr_url
+              else:
+                  print(f"❌ Failed to create PR: {response.status_code}")
+                  print(response.text)
+                  return None
+          
+          def main():
+              task_description = os.environ['TASK_DESCRIPTION']
+              branch_name = os.environ['TARGET_BRANCH']
+              
+              print(f"🚀 Generating code for task: {task_description}")
+              
+              # Analyze codebase
+              print("📊 Analyzing codebase...")
+              codebase_context = analyze_codebase()
+              
+              # Generate code with Claude
+              print("🧠 Generating code with Claude...")
+              generated_content = generate_code_with_claude(task_description, codebase_context)
+              
+              # Create branch and commit
+              print(f"🌿 Creating branch: {branch_name}")
+              if create_branch_and_commit(branch_name, generated_content):
+                  # Create pull request
+                  print("📝 Creating pull request...")
+                  pr_url = create_pull_request(branch_name, task_description, generated_content)
+                  
+                  if pr_url:
+                      print(f"🎉 Code generation completed successfully!")
+                      print(f"Pull request: {pr_url}")
+                  else:
+                      print("⚠️ Code generated but PR creation failed")
+              else:
+                  print("❌ Failed to create branch and commit changes")
+          
+          if __name__ == "__main__":
+              main()
+          EOF
+          
+          python claude_generator.py
