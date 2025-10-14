@@ -43,7 +43,7 @@ A cross-platform Web3 billing and invoicing system for government universities a
 
 ## Filecoin Storage / Integration  
 - Filecoin Calibnet & Mainnet deployments with PPT token & Medical Invoice contract  
-- Filecoin Mainnet DApp: [https://invoice-ppt-op-mainnet.vercel.app/](https://invoice-ppt-op-mainnet.vercel.app/)  
+- Filecoin Mainnet DApp: 
 - Contract addresses & Sushiswap liquidity pool details available in documentation.  
 
 ## Supporting Links & Documentation  
