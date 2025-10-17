@@ -7,7 +7,7 @@ Public Goods Initiative to improve transparency and security in procurement and 
 Web3 Billing and Invoicing System on ios, android or as a PWA.
 
 
-### PPT Medical Invoice DApp – Empowering Healthcare on Filecoin and Optimism 
+### PPT Medical Invoice DApp – Empowering Healthcare on Filecoin, Ethereum, Arbitrum, Starknet, Base and Optimism 
 
 PPT Utility Token Deployment in Medical Invoice DApp
 
