@@ -1,86 +1,195 @@
-# Govt Billing_v5 using Angular
-Ionic v5 for Govt Billing app using Angular framework
+# Govt-Billing-Angular
 
-### Follow the following steps to run the Invoice Suite Billing App in your system:
+An Ionic + Angular project for government billing, supporting web, Android, and iOS platforms (using Capacitor).
 
-- **Install [Node & npm](https://ionicframework.com/docs/intro/environment#node-npm) on your system <br/>**
-Almost all tooling for modern JavaScript projects is based in  [Node.js](https://ionicframework.com/docs/reference/glossary#node). The  [download page](https://nodejs.org/en/download/)  has prebuilt installation packages for all platforms. We recommend selecting the LTS version to ensure best compatibility.
-Node is bundled with  [npm](https://ionicframework.com/docs/reference/glossary#npm), the package manager for JavaScript.
-To verify the installation, open a new terminal window and run:
 
-	```
-	$ node --version
-	$ npm --version
-	```
-- **Install [Git](https://ionicframework.com/docs/intro/environment#git)  <br/>**
-Although not required, the version control system  [Git](https://ionicframework.com/docs/reference/glossary#git)  is highly recommended.
-Git is often accompanied by a Git Host, such as  [GitHub](https://github.com/), in which case additional setup is required. Follow the tutorial from the Git Host's documentation to set up Git:
-  - GitHub:  [Set up Git](https://help.github.com/en/articles/set-up-git)
-  - GitLab:  [Installing Git](https://docs.gitlab.com/ee/topics/git/how_to_install_git)
-  - Bitbucket:  [Install Git](https://www.atlassian.com/git/tutorials/install-git)
- 
-   Otherwise, follow the  [official installation instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). The command-line utility can be downloaded from the  [download page](https://git-scm.com/downloads).
-To verify the installation, open a new terminal window and run:
+## Project Overview
 
-	```
-	$ git --version
-	```
+This project is built using:
+- **Angular 9**
+- **Ionic 5**
+- **Capacitor for mobile builds**
 
--  **Install the [Ionic CLI](https://ionicframework.com/docs/intro/cli#install-the-ionic-cli)  <br/>**
-Before proceeding, make sure your computer has  [Node.js](https://ionicframework.com/docs/reference/glossary#node)  installed. See  [these instructions](https://ionicframework.com/docs/intro/environment)  to set up an environment for Ionic.
-Install the Ionic CLI with npm:
+> **Important:** This codebase uses older dependencies. Newer Node.js and CLI versions may not work out-of-the-box.
 
-	```
-	$ npm install -g @ionic/cli
-	```
-- **Install [Ionic Tooling](https://ionicframework.com/docs/angular/your-first-app#install-ionic-tooling)  <br/>**
-Run the following in the command line terminal to install the Ionic CLI (`ionic`),  `native-run`, used to run native binaries on devices and simulators/emulators, and  `cordova-res`, used to generate native app icons and splash screens:
-	> To open a terminal in Visual Studio Code, go to Terminal -> New Terminal.
+---
 
-	```
-	$ npm install -g @ionic/cli native-run cordova-res
-	```
-- **Go to the desired folder where you want to work on this app and clone this repository by :  <br/>**
-	```
-	git clone https URL of the repo
-	```
-	> Please setup your github account in the terminal to clone this private repository
+## Prerequisites
 
-- **Run the following command to run the application in your browser:  <br/>**
-	```
-	$ ionic serve
-	```
-- **To build an Android App:  <br/>**
-Open the project folder in Terminal and run the following commands:
-	```
-	$ ionic build
-	``` 
-	If an folder named "android" doesn't exist already then run the following command else skip to next:  <br/>
-		```
-	$	ionic cap add android
-		``` <br/>
-		android folder at the root of the project is created. It is an entirely standalone native projects that should be considered part of your Ionic app (i.e., check them into source control, edit them using their native tooling, etc.).
-Every time you perform a build (e.g.  `ionic build`) that updates your web directory (default:  `www`), you'll need to copy those changes into your native projects:
+- **Git**
+- **Node.js v14.x** (strictly required)
+- **npm v6.x** (comes with Node.js v14)
+- **nvm-windows** (for Windows, to manage Node versions)
+- **Visual Studio Build Tools** (for Windows, for native module builds)
+- **Java JDK 8+** (for Android)
+- **Android Studio** (for Android builds/emulator)
+- **Ionic CLI v6.20.1**
+- **Capacitor CLI**
+- **For iOS (Mac only):**
+  - **macOS** (required by Apple for all iOS builds)
+  - **Xcode** (from Mac App Store)
+  - **CocoaPods** (`sudo gem install cocoapods`)
+  - **Homebrew** (recommended for tooling)
 
-	```
-	$ ionic cap copy
-	```
-	>Note: After making updates to the native portion of the code (such as adding a new plugin), use the  `sync`  command:
-	```
-	$ ionic cap sync
-	```
--  **[Android Deployment](https://ionicframework.com/docs/angular/your-first-app/6-deploying-mobile#android-deployment)  <br/>**
-Capacitor Android apps are configured and managed through Android Studio. Before running this app on an Android device, there's a couple of steps to complete.
-First, run the Capacitor  `open`  command, which opens the native Android project in Android Studio:
-	
-	```
-	$ ionic cap open android
-	```
-	Within Android Studio, click the "Run" button, select the attached Android device, then click OK to build, install, and launch the app on your device.
+---
 
-- **iOS Deployment:  <br/>**
-Follow this link : [iOS Deployment for Ionic Apps](https://ionicframework.com/docs/angular/your-first-app/6-deploying-mobile#ios-deployment)
+## Setup Instructions
 
-- **Points to be noted:  <br/>**
-The socialcalc package used here is pulled from my github repository, not from npm as the module required for the project is customized so I have fetched this module from my github repo
+### 1. Clone the Repository
+
+```sh
+git clone https://github.com/seetadev/GovtInvoice.git
+cd GovtInvoice/Govt-Billing-Angular
+```
+
+---
+
+### 2. Node.js & npm Setup (Windows-friendly)
+
+#### a. Install [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
+- Download and run the latest `nvm-setup.exe`.
+- Open a new Command Prompt as Administrator.
+
+#### b. Install Node.js 14
+
+```sh
+nvm install 14
+nvm use 14
+node -v    # Should output v14.x.x
+npm -v     # Should output v6.x.x
+```
+
+*On Mac/Linux, use [nvm](https://github.com/nvm-sh/nvm):*
+```sh
+nvm install 14
+nvm use 14
+```
+
+> **Note:** Do NOT use Node.js 18/20+ for this project. It will not work.
+
+---
+
+### 3. Visual Studio Build Tools (Windows Only)
+
+For native module builds (like `sharp`), install:
+
+- [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+- During install, select **"Desktop development with C++"** workload.
+
+---
+
+### 4. Install Project Dependencies
+
+```sh
+npm install
+```
+
+If you see errors related to `node-gyp` or native modules:
+- Ensure Node.js v14 is active (`node -v`)
+- Visual Studio Build Tools are installed
+- Try deleting `node_modules` and `package-lock.json`, then run `npm install` again.
+
+---
+
+### 5. Install Compatible Angular & Ionic CLI
+
+#### a. Uninstall Current Ionic CLI (if any):
+
+```sh
+npm uninstall -g @ionic/cli
+```
+
+#### b. Install Ionic CLI v6.20.1 (Last version supporting Node 14):
+
+```sh
+npm install -g @ionic/cli@6.20.1
+```
+
+#### c. Install Angular CLI v9.1.5:
+
+```sh
+npm uninstall -g @angular/cli
+npm install -g @angular/cli@9.1.5
+```
+
+---
+
+## Running the Project
+
+### Web (Local Development)
+
+```sh
+ionic serve
+# OR (if you face issues)
+ng serve
+```
+- Open http://localhost:4200
+
+---
+
+### Android (Device/Emulator) via Capacitor
+
+#### 1. Install Capacitor (if not already)
+
+```sh
+npm install @capacitor/core @capacitor/cli
+```
+
+#### 2. Add Android Platform
+
+```sh
+npx cap add android
+```
+
+#### 3. Build the App
+
+```sh
+ionic build
+```
+
+#### 4. Sync and Open in Android Studio
+
+```sh
+npx cap copy android
+npx cap open android
+```
+- Build and run from Android Studio (on device or emulator).
+
+---
+
+### iOS (Device/Simulator, Mac only, via Capacitor)
+
+> **Note:** iOS builds require a Mac with Xcode installed.
+
+#### 1. Install CocoaPods (if not already):
+
+```sh
+sudo gem install cocoapods
+```
+
+#### 2. Add iOS Platform
+
+```sh
+npx cap add ios
+```
+
+#### 3. Build the App
+
+```sh
+ionic build
+```
+
+#### 4. Sync and Open in Xcode
+
+```sh
+npx cap copy ios
+npx cap open ios
+```
+- This opens the iOS project in Xcode. You can now build and run on a simulator or device.
+
+#### 5. iOS Deployment Notes
+
+- For real device testing, you must register the device and have a valid Apple Developer account.
+- All iOS builds and signing must be done on macOS.
+
 
