@@ -39,7 +39,14 @@ export class Local {
 
   _getFile = async (name: string) => {
     const rawData = await Preferences.get({ key: name });
-    return JSON.parse(rawData.value);
+    if (!rawData.value) {
+      return null;
+    }
+    try {
+      return JSON.parse(rawData.value);
+    } catch {
+      return null;
+    }
   };
 
   _getAllFiles = async () => {
@@ -48,7 +55,9 @@ export class Local {
     for (let i = 0; i < keys.length; i++) {
       let fname = keys[i];
       const data = await this._getFile(fname);
-      arr[fname] = (data as any).modified;
+      if (data) {
+        arr[fname] = (data as any).modified;
+      }
     }
     return arr;
   };
