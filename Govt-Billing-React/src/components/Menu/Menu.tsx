@@ -48,14 +48,6 @@ const Menu: React.FC<{
     return props.file;
   };
 
-  const _formatString = (filename) => {
-    /* Remove whitespaces */
-    while (filename.indexOf(" ") !== -1) {
-      filename = filename.replace(" ", "");
-    }
-    return filename;
-  };
-
   const doPrint = () => {
     if (isPlatform("hybrid")) {
       const printer = Printer;
@@ -68,23 +60,33 @@ const Menu: React.FC<{
       printWindow.print();
     }
   };
-  const doSave = () => {
+  const doSave = async () => {
     if (props.file === "default") {
       setShowAlert1(true);
       return;
     }
-    const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-    const data = props.store._getFile(props.file);
-    const file = new File(
-      (data as any).created,
-      new Date().toString(),
-      content,
-      props.file,
-      props.bT
-    );
-    props.store._saveFile(file);
-    props.updateSelectedFile(props.file);
-    setShowAlert2(true);
+    try {
+      const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+      const data = await props.store._getFile(props.file);
+      if (!data) {
+        setToastMessage("Unable to load saved metadata for this file.");
+        setShowToast1(true);
+        return;
+      }
+      const file = new File(
+        (data as any).created,
+        new Date().toString(),
+        content,
+        props.file,
+        props.bT
+      );
+      await props.store._saveFile(file);
+      props.updateSelectedFile(props.file);
+      setShowAlert2(true);
+    } catch {
+      setToastMessage("Unable to save file. Please try again.");
+      setShowToast1(true);
+    }
   };
 
   const doSaveAs = async (filename) => {
@@ -104,7 +106,7 @@ const Menu: React.FC<{
         );
         // const data = { created: file.created, modified: file.modified, content: file.content, password: file.password };
         // console.log(JSON.stringify(data));
-        props.store._saveFile(file);
+        await props.store._saveFile(file);
         props.updateSelectedFile(filename);
         setShowAlert4(true);
       } else {
