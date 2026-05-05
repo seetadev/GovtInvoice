@@ -12,10 +12,10 @@ const NewFile: React.FC<{
   billType: number;
 }> = (props) => {
   const [showAlertNewFileCreated, setShowAlertNewFileCreated] = useState(false);
-  const newFile = () => {
+  const newFile = async () => {
     if (props.file !== "default") {
       const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-      const data = props.store._getFile(props.file);
+      const data = await props.store._getFile(props.file);
       const file = new File(
         (data as any).created,
         new Date().toString(),
@@ -23,7 +23,7 @@ const NewFile: React.FC<{
         props.file,
         props.billType
       );
-      props.store._saveFile(file);
+      await props.store._saveFile(file);
       props.updateSelectedFile(props.file);
     }
     const msc = DATA["home"][AppGeneral.getDeviceType()]["msc"];
@@ -40,7 +40,7 @@ const NewFile: React.FC<{
         className="ion-padding-end"
         size="large"
         onClick={() => {
-          newFile();
+          void newFile();
           // console.log("New file clicked");
         }}
       />
