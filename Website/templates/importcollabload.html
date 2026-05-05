@@ -168,7 +168,7 @@ body, td, input, texarea {font-family:verdana,helvetica,sans-serif;font-size:sma
 
 
 <h3><a href="/">Aspiring Investments</a>&nbsp;&nbsp;&nbsp;Editing
-<span id="filenameholder">{{ entry["fname"] }}</span> in session {{ entry["session"] }}</h3>
+<span id="filenameholder">{{ entry["fname"]|e }}</span> in session {{ entry["session"]|e }}</h3>
 
 
 <div id="workbookControl" style="background-color:#80A9F3;">
@@ -186,8 +186,17 @@ body, td, input, texarea {font-family:verdana,helvetica,sans-serif;font-size:sma
 
 <script>
 
-var sheetnamemscedata = "{{ entry['sheetmscestr'] }}";
-Aspiring.AutoSave.selectedFile = "{{ entry['fname'] }}";
+var sheetnamemscedata = {{ entry['sheetmscestr']|tojson }};
+var currentFileName = {{ entry['fname']|tojson }};
+Aspiring.AutoSave.selectedFile = currentFileName;
+
+function escapeHtmlAttribute(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
  
   SocialCalc.Constants.defaultImagePrefix = "{{ url_for('static',filename='images/sc-') }}";
@@ -293,7 +302,7 @@ var spreadsheet = new SocialCalc.SpreadsheetControl();
      '<div  id="%id.saveastools" style="display:none">'+
      '<form id = "saveas" action = "/save" method = "post" onsubmit="return savecheck()">'+
       '<table cellspacing="0" cellpadding="0"><tr><td>'+
-      '<input type="text" id = "saveasentry" value = {{ entry["fname"] }} onfocus="SocialCalc.CmdGotFocus(this);">'+
+      '<input type="text" id = "saveasentry" value="' + escapeHtmlAttribute(currentFileName) + '" onfocus="SocialCalc.CmdGotFocus(this);">'+
       '   </td>'+ 
       '   <td style="vertical-align:top;padding-right:6px;">'+
       '    <input type="submit" value = "SaveAs">'+    
@@ -540,9 +549,9 @@ function runascheck(){
       alert("please enter comma separated sheet names")
   }
 
-  var link = '/runas?file={{ entry["fname"] }}'+sheetstr;
+  var link = '/runas?file=' + encodeURIComponent(currentFileName) + sheetstr;
   alert(link);            
-  window.open(link,'{{ entry["fname"] }}');
+  window.open(link, currentFileName);
 
       
  return false;
@@ -737,7 +746,7 @@ spreadsheet.ExecuteCommand('redisplay', '');
 var workbookcontrol = new SocialCalc.WorkBookControl(workbook,"workbookControl","sheet1");
 workbookcontrol.InitializeWorkBookControl();
 
-var fname = '{{ entry["fname"] }}'
+var fname = currentFileName
 
 if (MyEndsWith(fname,".msce") || MyEndsWith(fname, ".MSCE")) {
   SocialCalc.WorkBookControlLoad(decodeURIComponent(sheetnamemscedata))
