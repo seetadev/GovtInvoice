@@ -36,10 +36,10 @@ const uploadFileToCloud = async (
         alert("Name Cannot be empty");
         return;
       }
-      const prevFile = await getDoc(
+      const prevFileWithNewName = await getDoc(
         doc(db, "invoices", `${user.uid}-${newName}`)
       );
-      if (prevFile.exists()) {
+      if (prevFileWithNewName.exists()) {
         alert("File With the same name exists");
         return;
       }
@@ -48,6 +48,10 @@ const uploadFileToCloud = async (
         ...fileData,
         owner: user.uid,
       });
+      // FIX 1: Added return here. Previously the code fell through and
+      // saved the file a second time under the original duplicate name.
+      if (onSuccess) onSuccess();
+      return;
     }
     await setDoc(doc(db, "invoices", `${user.uid}-${fileData.name}`), {
       ...fileData,
@@ -78,7 +82,9 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
   try {
     const local = new Local();
     const getFile = async () => {
-      const docSnapshot = await getDoc(doc(db, "invoices", `${userId}-${key}`));
+      const docSnapshot = await getDoc(
+        doc(db, "invoices", `${userId}-${key}`)
+      );
       const data = docSnapshot.data();
       delete data["owner"];
       return data;
@@ -93,7 +99,10 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
     }
     if (option || !localFile) {
       const file = await getFile();
-      local._saveFile(file as File);
+      // FIX 2: Added await here. Previously _saveFile() was called without
+      // await, so the save started but did not finish before the success
+      // callback fired, causing silent save failures.
+      await local._saveFile(file as File);
       alert("File Downloaded");
       onSuccess && onSuccess();
       return;
@@ -112,7 +121,8 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
       }
       const file = await getFile();
       file.name = newName;
-      local._saveFile(file as File);
+      // FIX 3: Added await here for the same reason as Fix 2.
+      await local._saveFile(file as File);
       alert("File Downloaded");
       onSuccess && onSuccess();
     }
@@ -120,6 +130,7 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
     alert("Something Went Wrong");
   }
 };
+
 const deleteFileFromFirebase = async (userId, key, onSuccess) => {
   try {
     await deleteDoc(doc(db, "invoices", `${userId}-${key}`));
