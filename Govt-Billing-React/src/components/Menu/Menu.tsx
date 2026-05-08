@@ -7,6 +7,8 @@ import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
 import { saveOutline, save, mail, print } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
+// Import the validator
+import { validateInvoiceBeforeSave } from "../../services/InvoiceValidator";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -22,8 +24,9 @@ const Menu: React.FC<{
   const [showAlert4, setShowAlert4] = useState(false);
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+
   /* Utility functions */
-  const _validateName = async (filename) => {
+  const _validateName = async (filename: string) => {
     filename = filename.trim();
     if (filename === "default" || filename === "Untitled") {
       setToastMessage("Cannot update default file!");
@@ -48,32 +51,38 @@ const Menu: React.FC<{
     return props.file;
   };
 
-  const _formatString = (filename) => {
-    /* Remove whitespaces */
-    while (filename.indexOf(" ") !== -1) {
-      filename = filename.replace(" ", "");
-    }
-    return filename;
-  };
-
   const doPrint = () => {
     if (isPlatform("hybrid")) {
       const printer = Printer;
       printer.print(AppGeneral.getCurrentHTMLContent());
     } else {
       const content = AppGeneral.getCurrentHTMLContent();
-      // useReactToPrint({ content: () => content });
       const printWindow = window.open("/printwindow", "Print Invoice");
-      printWindow.document.write(content);
-      printWindow.print();
+      if (printWindow) {
+        printWindow.document.write(content);
+        printWindow.print();
+      }
     }
   };
+
   const doSave = () => {
     if (props.file === "default") {
       setShowAlert1(true);
       return;
     }
-    const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+
+    // --- Validation Start ---
+    const rawContent = AppGeneral.getSpreadsheetContent();
+    const validation = validateInvoiceBeforeSave(props.file, rawContent);
+
+    if (!validation.isValid) {
+      setToastMessage(validation.errors[0]); 
+      setShowToast1(true);
+      return;
+    }
+    // --- Validation End ---
+
+    const content = encodeURIComponent(rawContent);
     const data = props.store._getFile(props.file);
     const file = new File(
       (data as any).created,
@@ -87,14 +96,13 @@ const Menu: React.FC<{
     setShowAlert2(true);
   };
 
-  const doSaveAs = async (filename) => {
-    // event.preventDefault();
+  const doSaveAs = async (filename: string) => {
     if (filename) {
-      // console.log(filename, _validateName(filename));
-      if (await _validateName(filename)) {
-        // filename valid . go on save
-        const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-        // console.log(content);
+      const rawContent = AppGeneral.getSpreadsheetContent();
+      const validation = validateInvoiceBeforeSave(filename, rawContent);
+
+      if (await _validateName(filename) && validation.isValid) {
+        const content = encodeURIComponent(rawContent);
         const file = new File(
           new Date().toString(),
           new Date().toString(),
@@ -102,12 +110,14 @@ const Menu: React.FC<{
           filename,
           props.bT
         );
-        // const data = { created: file.created, modified: file.modified, content: file.content, password: file.password };
-        // console.log(JSON.stringify(data));
         props.store._saveFile(file);
         props.updateSelectedFile(filename);
         setShowAlert4(true);
       } else {
+        // If validation failed, ensure a message is shown
+        if (!validation.isValid && !toastMessage) {
+            setToastMessage(validation.errors[0]);
+        }
         setShowToast1(true);
       }
     }
@@ -128,7 +138,7 @@ const Menu: React.FC<{
         isHtml: true,
       });
     } else {
-      alert("This Functionality works on Anroid/IOS devices");
+      alert("This Functionality works on Android/iOS devices");
     }
   };
 
@@ -143,34 +153,22 @@ const Menu: React.FC<{
           {
             text: "Save",
             icon: saveOutline,
-            handler: () => {
-              doSave();
-              console.log("Save clicked");
-            },
+            handler: () => { doSave(); },
           },
           {
             text: "Save As",
             icon: save,
-            handler: () => {
-              setShowAlert3(true);
-              console.log("Save As clicked");
-            },
+            handler: () => { setShowAlert3(true); },
           },
           {
             text: "Print",
             icon: print,
-            handler: () => {
-              doPrint();
-              console.log("Print clicked");
-            },
+            handler: () => { doPrint(); },
           },
           {
             text: "Email",
             icon: mail,
-            handler: () => {
-              sendEmail();
-              console.log("Email clicked");
-            },
+            handler: () => { sendEmail(); },
           },
         ]}
       />
@@ -179,9 +177,7 @@ const Menu: React.FC<{
         isOpen={showAlert1}
         onDidDismiss={() => setShowAlert1(false)}
         header="Alert Message"
-        message={
-          "Cannot update <strong>" + getCurrentFileName() + "</strong> file!"
-        }
+        message={"Cannot update <strong>" + getCurrentFileName() + "</strong> file!"}
         buttons={["Ok"]}
       />
       <IonAlert
@@ -189,11 +185,7 @@ const Menu: React.FC<{
         isOpen={showAlert2}
         onDidDismiss={() => setShowAlert2(false)}
         header="Save"
-        message={
-          "File <strong>" +
-          getCurrentFileName() +
-          "</strong> updated successfully"
-        }
+        message={"File <strong>" + getCurrentFileName() + "</strong> updated successfully"}
         buttons={["Ok"]}
       />
       <IonAlert
@@ -201,15 +193,11 @@ const Menu: React.FC<{
         isOpen={showAlert3}
         onDidDismiss={() => setShowAlert3(false)}
         header="Save As"
-        inputs={[
-          { name: "filename", type: "text", placeholder: "Enter filename" },
-        ]}
+        inputs={[{ name: "filename", type: "text", placeholder: "Enter filename" }]}
         buttons={[
           {
             text: "Ok",
-            handler: (alertData) => {
-              doSaveAs(alertData.filename);
-            },
+            handler: (alertData) => { doSaveAs(alertData.filename); },
           },
         ]}
       />
@@ -218,11 +206,7 @@ const Menu: React.FC<{
         isOpen={showAlert4}
         onDidDismiss={() => setShowAlert4(false)}
         header="Save As"
-        message={
-          "File <strong>" +
-          getCurrentFileName() +
-          "</strong> saved successfully"
-        }
+        message={"File <strong>" + getCurrentFileName() + "</strong> saved successfully"}
         buttons={["Ok"]}
       />
       <IonToast
@@ -230,11 +214,14 @@ const Menu: React.FC<{
         isOpen={showToast1}
         onDidDismiss={() => {
           setShowToast1(false);
-          setShowAlert3(true);
+          // If the error happened during a "Save As", re-open the name dialog
+          if (toastMessage.includes("name") || toastMessage.includes("exists")) {
+             setShowAlert3(true);
+          }
         }}
         position="bottom"
         message={toastMessage}
-        duration={500}
+        duration={2000}
       />
     </React.Fragment>
   );
