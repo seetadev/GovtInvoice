@@ -1,8 +1,0 @@
-{
-  "name": "BlockchainBilling_v5",
-  "integrations": {
-    "capacitor": {},
-    "cordova": {}
-  },
-  "type": "angular"
-}
