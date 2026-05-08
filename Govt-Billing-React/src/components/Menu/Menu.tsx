@@ -22,6 +22,7 @@ const Menu: React.FC<{
   const [showAlert4, setShowAlert4] = useState(false);
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+
   /* Utility functions */
   const _validateName = async (filename) => {
     filename = filename.trim();
@@ -62,23 +63,29 @@ const Menu: React.FC<{
       printer.print(AppGeneral.getCurrentHTMLContent());
     } else {
       const content = AppGeneral.getCurrentHTMLContent();
-      // useReactToPrint({ content: () => content });
       const printWindow = window.open("/printwindow", "Print Invoice");
       printWindow.document.write(content);
       printWindow.print();
     }
   };
+
   const doSave = () => {
     if (props.file === "default") {
       setShowAlert1(true);
       return;
     }
-    const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+    const content = AppGeneral.getSpreadsheetContent();
+    if (!content || content.trim() === "" || content === "{}") {
+      setToastMessage("Cannot save an empty invoice!");
+      setShowToast1(true);
+      return;
+    }
+    const encodedContent = encodeURIComponent(content);
     const data = props.store._getFile(props.file);
     const file = new File(
       (data as any).created,
       new Date().toString(),
-      content,
+      encodedContent,
       props.file,
       props.bT
     );
@@ -88,22 +95,22 @@ const Menu: React.FC<{
   };
 
   const doSaveAs = async (filename) => {
-    // event.preventDefault();
     if (filename) {
-      // console.log(filename, _validateName(filename));
       if (await _validateName(filename)) {
-        // filename valid . go on save
-        const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-        // console.log(content);
+        const content = AppGeneral.getSpreadsheetContent();
+        if (!content || content.trim() === "" || content === "{}") {
+          setToastMessage("Cannot save an empty invoice!");
+          setShowToast1(true);
+          return;
+        }
+        const encodedContent = encodeURIComponent(content);
         const file = new File(
           new Date().toString(),
           new Date().toString(),
-          content,
+          encodedContent,
           filename,
           props.bT
         );
-        // const data = { created: file.created, modified: file.modified, content: file.content, password: file.password };
-        // console.log(JSON.stringify(data));
         props.store._saveFile(file);
         props.updateSelectedFile(filename);
         setShowAlert4(true);
