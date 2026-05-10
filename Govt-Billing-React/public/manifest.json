@@ -1,6 +1,7 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "GovtInvoice",
+  "name": "Government Invoice & Billing System",
+  "description": "Cross-platform invoicing and billing system for government institutions and educational bodies.",
   "icons": [
     {
       "src": "pwa-64x64.png",
@@ -25,8 +26,11 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#3880ff",
+  "background_color": "#ffffff",
+  "categories": ["finance", "productivity", "utilities"]
 }

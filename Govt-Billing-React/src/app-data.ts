@@ -1,4 +1,4 @@
-export let APP_NAME = "Inventory Tracker for FVM Warehouse";
+export let APP_NAME = "Government Invoice & Billing System";
 
 export let DATA = {
   ledger: {
