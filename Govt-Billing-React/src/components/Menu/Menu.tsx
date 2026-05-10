@@ -1,5 +1,3 @@
-// Menu.tsx
-
 import React, { useState } from "react";
 import * as AppGeneral from "../socialcalc/index.js";
 import { File, Local } from "../Storage/LocalStorage";
@@ -69,7 +67,6 @@ const Menu: React.FC<{
     }
   };
 
-  // FIX: async so we can await _getFile
   const doSave = async () => {
     if (props.file === "default") {
       setShowAlert1(true);
@@ -78,16 +75,15 @@ const Menu: React.FC<{
 
     const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
 
-    // FIX: await the async read; do not access properties on an unresolved Promise
     const existingData = await props.store._getFile(props.file);
 
-    // FIX: null-guard — treat missing record as a first-save
+    
     const createdTimestamp =
       existingData?.created ?? new Date().toString();
 
     const file = new File(
-      createdTimestamp,          // preserve original created date
-      new Date().toString(),     // always refresh modified
+      createdTimestamp,          
+      new Date().toString(),     
       content,
       props.file,
       props.bT

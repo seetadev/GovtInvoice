@@ -1,5 +1,3 @@
-// LocalStorage.ts
-
 import { Preferences } from "@capacitor/preferences";
 
 export class File {
@@ -46,8 +44,6 @@ export class Local {
    *          or the stored value cannot be parsed. Callers MUST `await`
    *          this method before accessing any properties on the result.
    */
-  // FIX: explicit return type enforces the async contract at the type level;
-  // try/catch ensures corrupted or missing entries return null instead of throwing
   _getFile = async (name: string): Promise<File | null> => {
     try {
       const rawData = await Preferences.get({ key: name });
@@ -67,7 +63,6 @@ export class Local {
     for (let i = 0; i < keys.length; i++) {
       const fname = keys[i];
       const data = await this._getFile(fname);
-      // FIX: null-guard — skip entries that fail to parse
       if (data !== null) {
         arr[fname] = data.modified;
       }
