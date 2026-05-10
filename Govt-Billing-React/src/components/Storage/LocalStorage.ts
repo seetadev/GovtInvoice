@@ -1,3 +1,5 @@
+// LocalStorage.ts
+
 import { Preferences } from "@capacitor/preferences";
 
 export class File {
@@ -23,8 +25,8 @@ export class File {
 }
 
 export class Local {
-  _saveFile = async (file: File) => {
-    let data = {
+  _saveFile = async (file: File): Promise<void> => {
+    const data = {
       created: file.created,
       modified: file.modified,
       content: file.content,
@@ -37,32 +39,48 @@ export class Local {
     });
   };
 
-  _getFile = async (name: string) => {
-    const rawData = await Preferences.get({ key: name });
-    return JSON.parse(rawData.value);
+  /**
+   * Reads a stored FileObject by key.
+   *
+   * @returns The parsed FileObject, or `null` if the key does not exist
+   *          or the stored value cannot be parsed. Callers MUST `await`
+   *          this method before accessing any properties on the result.
+   */
+  // FIX: explicit return type enforces the async contract at the type level;
+  // try/catch ensures corrupted or missing entries return null instead of throwing
+  _getFile = async (name: string): Promise<File | null> => {
+    try {
+      const rawData = await Preferences.get({ key: name });
+      if (rawData.value === null || rawData.value === undefined) {
+        return null;
+      }
+      return JSON.parse(rawData.value) as File;
+    } catch (err) {
+      console.error(`[LocalStorage] _getFile failed for key "${name}":`, err);
+      return null;
+    }
   };
 
-  _getAllFiles = async () => {
-    let arr = {};
+  _getAllFiles = async (): Promise<Record<string, string>> => {
+    const arr: Record<string, string> = {};
     const { keys } = await Preferences.keys();
     for (let i = 0; i < keys.length; i++) {
-      let fname = keys[i];
+      const fname = keys[i];
       const data = await this._getFile(fname);
-      arr[fname] = (data as any).modified;
+      // FIX: null-guard — skip entries that fail to parse
+      if (data !== null) {
+        arr[fname] = data.modified;
+      }
     }
     return arr;
   };
 
-  _deleteFile = async (name: string) => {
+  _deleteFile = async (name: string): Promise<void> => {
     await Preferences.remove({ key: name });
   };
 
-  _checkKey = async (key: string) => {
+  _checkKey = async (key: string): Promise<boolean> => {
     const { keys } = await Preferences.keys();
-    if (keys.includes(key, 0)) {
-      return true;
-    } else {
-      return false;
-    }
+    return keys.includes(key);
   };
 }
