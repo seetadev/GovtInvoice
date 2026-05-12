@@ -114,21 +114,35 @@ const Menu: React.FC<{
   };
 
   const sendEmail = () => {
+    const subject = `${APP_NAME} attached`;
+    const body = "Please find the attached spreadsheet.";
+  
     if (isPlatform("hybrid")) {
       const content = AppGeneral.getCurrentHTMLContent();
       const base64 = btoa(content);
-
+  
       EmailComposer.open({
         to: ["jackdwell08@gmail.com"],
         cc: [],
         bcc: [],
-        body: "PFA",
-        attachments: [{ type: "base64", path: base64, name: "Invoice.html" }],
-        subject: `${APP_NAME} attached`,
+        body,
+        attachments: [
+          {
+            type: "base64",
+            path: base64,
+            name: "Invoice.html",
+          },
+        ],
+        subject,
         isHtml: true,
       });
     } else {
-      alert("This Functionality works on Anroid/IOS devices");
+      // Web fallback: mailto doesn't support attachments, but opens user's email client
+      const mailtoLink = `mailto:?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+  
+      window.location.href = mailtoLink;
     }
   };
 
