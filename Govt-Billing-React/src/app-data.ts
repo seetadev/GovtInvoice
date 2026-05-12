@@ -1,4 +1,5 @@
 export let APP_NAME = "Inventory Tracker for FVM Warehouse";
+export let DEFAULT_EMAIL = "jackdwell08@gmail.com";
 
 export let DATA = {
   ledger: {
