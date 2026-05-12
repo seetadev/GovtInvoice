@@ -1,5 +1,6 @@
 import { IonApp, setupIonicReact } from "@ionic/react";
 import Home from "./pages/Home";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -24,7 +25,9 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <Home />
+    <ErrorBoundary>
+      <Home />
+    </ErrorBoundary>
   </IonApp>
 );
 
