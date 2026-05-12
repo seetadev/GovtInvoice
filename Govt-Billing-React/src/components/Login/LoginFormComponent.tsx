@@ -1,9 +1,9 @@
 import { IonInput, IonList, IonItem, IonButton } from "@ionic/react";
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 
 interface ComponentProps {
-  handleLogin: Function;
-  handleSignUp: Function;
+  handleLogin: (email: string, password: string) => void;
+  handleSignUp: (email: string, password: string) => void;
 }
 
 const LoginFormComponent: React.FC<ComponentProps> = ({
@@ -13,51 +13,80 @@ const LoginFormComponent: React.FC<ComponentProps> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const updateValue = (
-    e: any,
-    setter: React.Dispatch<React.SetStateAction<any>>
-  ) => {
-    setter(e.target.value);
+  const validateAndLogin = () => {
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    
+    if (!trimmedEmail) {
+      alert("Please enter an email address");
+      return;
+    }
+    if (!trimmedPassword) {
+      alert("Please enter a password");
+      return;
+    }
+    if (trimmedPassword.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
+    
+    handleLogin(trimmedEmail, trimmedPassword);
+  };
+
+  const validateAndSignUp = () => {
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    
+    if (!trimmedEmail) {
+      alert("Please enter an email address");
+      return;
+    }
+    if (!trimmedPassword) {
+      alert("Please enter a password");
+      return;
+    }
+    if (trimmedPassword.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
+    
+    handleSignUp(trimmedEmail, trimmedPassword);
   };
 
   return (
     <IonList>
       <IonItem>
         <IonInput
-          required
-          clearInput
-          inputMode="email"
-          pattern="email"
-          id="email"
+          type="email"
+          placeholder="Email"
           value={email}
-          onIonChange={(e) => updateValue(e, setEmail)}
-          placeholder="Email.."
+          onIonInput={(e) => setEmail(e.detail.value || "")}
+          clearInput
         />
       </IonItem>
       <IonItem>
         <IonInput
-          required
-          clearInput
-          pattern="password"
-          id="password"
+          type="password"
+          placeholder="Password"
           value={password}
-          onIonChange={(e) => updateValue(e, setPassword)}
-          placeholder="Password.."
+          onIonInput={(e) => setPassword(e.detail.value || "")}
+          clearInput
         />
       </IonItem>
       <IonButton
         expand="full"
         className="ion-text-center"
-        onClick={() => handleLogin(email, password)}
+        onClick={validateAndLogin}
       >
         Login
       </IonButton>
       <IonButton
         expand="full"
         className="ion-text-center"
-        onClick={() => handleSignUp(email, password)}
+        color="secondary"
+        onClick={validateAndSignUp}
       >
-        SignUp
+        Sign Up
       </IonButton>
     </IonList>
   );
