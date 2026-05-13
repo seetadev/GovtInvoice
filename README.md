@@ -2,14 +2,14 @@
 
 # About
 
-Public Goods Initiative to improve transparency and security in procurement and supply of goods at government institutions
+Public Goods Initiative to improve transparency and security in procurement and supply of goods at government institutions using libp2p, multiformats and IPLD.
 
 ## Invoice and Billing system for Government Universities 
 
-Web3 Billing and Invoicing System on ios, android or as a PWA.
+Web3 Billing and Invoicing System on ios, android or as a PWA using libp2p, multiformats and IPLD.
 
 
-### PPT Medical Invoice DApp – Empowering Healthcare on Filecoin, Ethereum, Arbitrum, Starknet, Base and Optimism 
+### PPT Medical Invoice DApp – Empowering Healthcare on IPFS and Filecoin, Ethereum, Arbitrum, Starknet, Base and Optimism 
 
 PPT Utility Token Deployment in Medical Invoice DApp
 
