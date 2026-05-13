@@ -12,10 +12,10 @@ const NewFile: React.FC<{
   billType: number;
 }> = (props) => {
   const [showAlertNewFileCreated, setShowAlertNewFileCreated] = useState(false);
-  const newFile = () => {
+  const newFile = async () => {
     if (props.file !== "default") {
       const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-      const data = props.store._getFile(props.file);
+      const data = await props.store._getFile(props.file);
       const file = new File(
         (data as any).created,
         new Date().toString(),
