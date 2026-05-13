@@ -30,24 +30,30 @@ const uploadFileToCloud = async (
       doc(db, "invoices", `${user.uid}-${fileData.name}`)
     );
     if (prevFile.exists()) {
-      alert("File With the same name exists");
-      const newName = prompt("Enter New Name for File");
-      if (!newName) {
-        alert("Name Cannot be empty");
-        return;
-      }
-      const prevFile = await getDoc(
-        doc(db, "invoices", `${user.uid}-${newName}`)
+      const shouldOverwrite = confirm(
+        "A file with this name already exists in the cloud. Do you want to overwrite it with your current changes?"
       );
-      if (prevFile.exists()) {
-        alert("File With the same name exists");
+      if (!shouldOverwrite) {
+        const newName = prompt("Enter a new name to save as a copy:");
+        if (!newName) {
+          alert("Upload cancelled.");
+          return;
+        }
+        const prevNewFile = await getDoc(
+          doc(db, "invoices", `${user.uid}-${newName}`)
+        );
+        if (prevNewFile.exists()) {
+          alert("A file with this name also exists. Upload cancelled.");
+          return;
+        }
+        fileData.name = newName;
+        await setDoc(doc(db, "invoices", `${user.uid}-${newName}`), {
+          ...fileData,
+          owner: user.uid,
+        });
+        if (onSuccess) onSuccess();
         return;
       }
-      fileData.name = newName;
-      await setDoc(doc(db, "invoices", `${user.uid}-${newName}`), {
-        ...fileData,
-        owner: user.uid,
-      });
     }
     await setDoc(doc(db, "invoices", `${user.uid}-${fileData.name}`), {
       ...fileData,
