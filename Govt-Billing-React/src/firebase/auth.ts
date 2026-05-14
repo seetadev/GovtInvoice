@@ -2,10 +2,21 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from "firebase/auth";
 import { auth } from "./index";
 
-const signUpWithEmailAndPassword = async (email: string, password: string) => {
+const signUpWithEmailAndPassword = async (email: string, password: string): Promise<{ user: User | null, error: string | null }> => {
+  // Client-side validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { user: null, error: "Please enter a valid email address." };
+  }
+
+  if (password.length < 8) {
+    return { user: null, error: "Password must be at least 8 characters long." };
+  }
+
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -13,16 +24,25 @@ const signUpWithEmailAndPassword = async (email: string, password: string) => {
       password
     );
     const user = userCredential.user;
-    return user;
-  } catch (error) {
-    const errorCode = error.code;
+    return { user, error: null };
+  } catch (error: any) {
     const errorMessage = error.message;
-    alert(errorMessage);
-    console.error(`${errorCode} - ${errorMessage}`);
+    console.error("Authentication error:", errorMessage);
+    return { user: null, error: "Authentication failed. Please check your credentials and try again." };
   }
 };
 
-const loginWithEmailPassword = async (email: string, password: string) => {
+const loginWithEmailPassword = async (email: string, password: string): Promise<{ user: User | null, error: string | null }> => {
+  // Client-side validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { user: null, error: "Please enter a valid email address." };
+  }
+
+  if (password.length < 8) {
+    return { user: null, error: "Password must be at least 8 characters long." };
+  }
+
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -30,23 +50,22 @@ const loginWithEmailPassword = async (email: string, password: string) => {
       password
     );
     const user = userCredential.user;
-    return user;
-  } catch (error) {
-    const errorCode = error.code;
+    return { user, error: null };
+  } catch (error: any) {
     const errorMessage = error.message;
-    alert(errorMessage);
-    console.error(`${errorCode} - ${errorMessage}`);
+    console.error("Authentication error:", errorMessage);
+    return { user: null, error: "Authentication failed. Please check your credentials and try again." };
   }
 };
 
-const logOut = async () => {
+const logOut = async (): Promise<{ user: User | null, error: string | null }> => {
   try {
     await signOut(auth);
-  } catch (error) {
-    const errorCode = error.code;
+    return { user: null, error: null };
+  } catch (error: any) {
     const errorMessage = error.message;
-    alert(errorMessage);
-    console.error(`${errorCode} - ${errorMessage}`);
+    console.error("Authentication error:", errorMessage);
+    return { user: null, error: "Authentication failed. Please check your credentials and try again." };
   }
 };
 export { signUpWithEmailAndPassword, logOut, loginWithEmailPassword };

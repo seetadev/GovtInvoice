@@ -95,7 +95,7 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
       const file = await getFile();
       local._saveFile(file as File);
       alert("File Downloaded");
-      onSuccess && onSuccess();
+      onSuccess && onSuccess(file); // Pass the file data to onSuccess
       return;
     }
 
@@ -114,10 +114,11 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
       file.name = newName;
       local._saveFile(file as File);
       alert("File Downloaded");
-      onSuccess && onSuccess();
+      onSuccess && onSuccess(file); // Pass the file data to onSuccess
     }
-  } catch {
-    alert("Something Went Wrong");
+  } catch(e) {
+    alert(e.message);
+    console.error(e.message);
   }
 };
 const deleteFileFromFirebase = async (userId, key, onSuccess) => {
