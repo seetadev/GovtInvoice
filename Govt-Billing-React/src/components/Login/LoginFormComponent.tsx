@@ -1,5 +1,6 @@
 import { IonInput, IonList, IonItem, IonButton, IonText } from "@ionic/react";
 import React, { useState } from "react";
+import { useRateLimit } from "../../hooks/useRateLimit";
 
 interface ComponentProps {
   handleLogin: (email: string, password: string) => Promise<string | undefined>;
@@ -15,70 +16,64 @@ const LoginFormComponent: React.FC<ComponentProps> = ({
   const [emailError, setEmailError] = useState<string | undefined>(undefined);
   const [passwordError, setPasswordError] = useState<string | undefined>(undefined);
   const [generalError, setGeneralError] = useState<string | undefined>(undefined);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Rate limit hook
+  const { remainingAttempts, isLocked, countdown } = useRateLimit(email);
 
   const updateValue = (
     e: any,
-    setter: React.Dispatch<React.SetStateAction<any>>,
+    setter: React.Dispatch<React.SetStateAction<string>>,
     errorSetter: React.Dispatch<React.SetStateAction<string | undefined>>
   ) => {
     setter(e.target.value);
-    errorSetter(undefined); // Clear specific error when typing
-    setGeneralError(undefined); // Clear general error when typing
-  };
-
-  const onLoginClick = async () => {
-    if (isSubmitting) return;
-    
-    setEmailError(undefined);
-    setPasswordError(undefined);
+    errorSetter(undefined);
     setGeneralError(undefined);
-    setIsSubmitting(true);
-
-    try {
-      const error = await handleLogin(email, password);
-      if (error) {
-        // Error handling based on error message content
-        if (error.toLowerCase().includes("email")) {
-          setEmailError(error);
-        } else if (error.toLowerCase().includes("password")) {
-          setPasswordError(error);
-        } else {
-          setGeneralError(error);
-        }
-      }
-    } catch (err) {
-      setGeneralError("An unexpected error occurred. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
+const onLoginClick = async () => {
+  if (isLocked) {
+    setGeneralError(`Account is temporarily locked. Please try again in ${countdown}`);
+    return;
+  }
+  
+  setIsLoading(true);
+  setEmailError(undefined);
+  setPasswordError(undefined);
+  setGeneralError(undefined);
+
+  const error = await handleLogin(email, password);
+  if (error) {
+    // Check for rate limiting error
+    if (error.includes("too many") || error.includes("locked") || error.includes("attempts")) {
+      setGeneralError(error);
+    } else if (error.toLowerCase().includes("email")) {
+      setEmailError(error);
+    } else if (error.toLowerCase().includes("password")) {
+      setPasswordError(error);
+    } else {
+      setGeneralError(error);
+    }
+  }
+  setIsLoading(false);
+};
   const onSignUpClick = async () => {
-    if (isSubmitting) return;
-    
+    setIsLoading(true);
     setEmailError(undefined);
     setPasswordError(undefined);
     setGeneralError(undefined);
-    setIsSubmitting(true);
 
-    try {
-      const error = await handleSignUp(email, password);
-      if (error) {
-        // Error handling based on error message content
-        if (error.toLowerCase().includes("email")) {
-          setEmailError(error);
-        } else if (error.toLowerCase().includes("password")) {
-          setPasswordError(error);
-        } else {
-          setGeneralError(error);
-        }
+    const error = await handleSignUp(email, password);
+    if (error) {
+      if (error.toLowerCase().includes("email")) {
+        setEmailError(error);
+      } else if (error.toLowerCase().includes("password")) {
+        setPasswordError(error);
+      } else {
+        setGeneralError(error);
       }
-    } catch (err) {
-      setGeneralError("An unexpected error occurred. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -96,7 +91,7 @@ const LoginFormComponent: React.FC<ComponentProps> = ({
       </IonItem>
       {emailError && (
         <IonText color="danger" className="ion-padding-start">
-          <small>{emailError}</small>
+          {emailError}
         </IonText>
       )}
       
@@ -113,13 +108,26 @@ const LoginFormComponent: React.FC<ComponentProps> = ({
       </IonItem>
       {passwordError && (
         <IonText color="danger" className="ion-padding-start">
-          <small>{passwordError}</small>
+          {passwordError}
+        </IonText>
+      )}
+      
+      {/* Rate limit warning display */}
+      {remainingAttempts !== null && remainingAttempts <= 2 && remainingAttempts > 0 && !isLocked && (
+        <IonText color="warning" className="ion-padding-start" style={{ fontSize: "12px" }}>
+          Warning: {remainingAttempts} login attempt{remainingAttempts !== 1 ? 's' : ''} remaining
+        </IonText>
+      )}
+      
+      {isLocked && (
+        <IonText color="danger" className="ion-padding-start">
+          Account temporarily locked. Try again in {countdown}
         </IonText>
       )}
       
       {generalError && (
         <IonText color="danger" className="ion-padding-start">
-          <small>{generalError}</small>
+          {generalError}
         </IonText>
       )}
 
@@ -127,9 +135,9 @@ const LoginFormComponent: React.FC<ComponentProps> = ({
         expand="full"
         className="ion-text-center"
         onClick={onLoginClick}
-        disabled={isSubmitting}
+        disabled={isLoading || isLocked}
       >
-        {isSubmitting ? "Logging in..." : "Login"}
+        {isLoading ? "Logging in..." : "Login"}
       </IonButton>
       
       <IonButton
@@ -137,9 +145,9 @@ const LoginFormComponent: React.FC<ComponentProps> = ({
         fill="outline"
         className="ion-text-center"
         onClick={onSignUpClick}
-        disabled={isSubmitting}
+        disabled={isLoading}
       >
-        {isSubmitting ? "Signing up..." : "Sign Up"}
+        {isLoading ? "Creating account..." : "Sign Up"}
       </IonButton>
     </IonList>
   );
