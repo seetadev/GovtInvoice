@@ -16,7 +16,7 @@ import Login from "../components/Login/Login";
 import * as AppGeneral from "../components/socialcalc/index.js";
 import { useEffect, useState } from "react";
 import { Local } from "../components/Storage/LocalStorage";
-import { cloudOffline, menu, settings, statsChart } from "ionicons/icons";
+import { cloudOffline, grid, gridOutline, menu, settings, statsChart } from "ionicons/icons";
 import "./Home.css";
 import Menu from "../components/Menu/Menu";
 import Files from "../components/Files/Files";
@@ -39,6 +39,13 @@ const Home: React.FC = () => {
 
   const closeMenu = () => {
     setShowMenu(false);
+  };
+
+  const [showGrid, setShowGrid] = useState(true);
+
+  const toggleGrid = () => {
+    const isVisible = AppGeneral.toggleGridLinesCSS();
+    setShowGrid(isVisible);
   };
 
   const activateFooter = (footer) => {
@@ -83,7 +90,14 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonToolbar color="primary">
           <Login />
-
+           
+            <IonIcon 
+  icon={showGrid ? grid : gridOutline}               slot="end"
+            className="ion-padding-end"
+              size="large"
+              onClick={toggleGrid}
+ 
+            />  
           <IonIcon
             icon={settings}
             slot="end"

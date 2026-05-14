@@ -2,3 +2,37 @@
   height: min-content;
   overflow: hidden;
 }
+/*  grid lines on all cells */
+#te_griddiv table,
+.socialcalc-grid table {
+  border-collapse: collapse !important;
+}
+
+#te_griddiv td,
+.socialcalc-grid td,
+#te_griddiv th,
+.socialcalc-grid th {
+  border: 1px solid #d0d0d0 !important;
+}
+
+/* Remove grid lines when toggled off */
+#te_griddiv.no-grid td,
+#te_griddiv.no-grid th,
+.socialcalc-grid.no-grid td,
+.socialcalc-grid.no-grid th {
+  border: none !important;
+}
+
+/* Row/column headers styling */
+#te_griddiv .rownum,
+#te_griddiv .colnum {
+  background-color: #f5f5f5 !important;
+  border: 1px solid #aaa !important;
+  font-weight: normal !important;
+}
+
+#te_griddiv.no-grid .rownum,
+#te_griddiv.no-grid .colnum {
+  border: none !important;
+}
+

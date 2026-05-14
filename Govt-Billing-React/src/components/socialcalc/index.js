@@ -10,6 +10,15 @@ export function getDeviceType() {
   return device;
 }
 
+export function toggleGridLinesCSS() {
+  const gridDiv = document.getElementById("te_griddiv");
+  if (gridDiv) {
+    gridDiv.classList.toggle("no-grid");
+    return gridDiv.classList.contains("no-grid") ? false : true;
+  }
+  return true;
+}
+
 export function initializeApp(data) {
   /* Initializes the spreadsheet */
 
