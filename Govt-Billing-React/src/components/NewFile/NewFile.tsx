@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as AppGeneral from "../socialcalc/index.js";
 import { File, Local } from "../Storage/LocalStorage";
 import { DATA } from "../../app-data.js";
-import { IonAlert, IonIcon } from "@ionic/react";
+import { IonAlert, IonIcon, IonToast } from "@ionic/react";
 import { add } from "ionicons/icons";
 
 const NewFile: React.FC<{
@@ -12,12 +12,22 @@ const NewFile: React.FC<{
   billType: number;
 }> = (props) => {
   const [showAlertNewFileCreated, setShowAlertNewFileCreated] = useState(false);
-  const newFile = () => {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const newFile = async () => {
     if (props.file !== "default") {
       const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-      const data = props.store._getFile(props.file);
+      const data = await props.store._getFile(props.file);
+
+      if (!data) {
+        setToastMessage("Could not persist current file before reset.");
+        setShowToast(true);
+        return;
+      }
+
       const file = new File(
-        (data as any).created,
+        data.created,
         new Date().toString(),
         content,
         props.file,
@@ -51,6 +61,14 @@ const NewFile: React.FC<{
         header="Alert Message"
         message={"New file created!"}
         buttons={["Ok"]}
+      />
+      <IonToast
+        animated
+        isOpen={showToast}
+        onDidDismiss={() => setShowToast(false)}
+        position="bottom"
+        message={toastMessage}
+        duration={1500}
       />
     </React.Fragment>
   );
