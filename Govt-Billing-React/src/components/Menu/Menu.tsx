@@ -22,6 +22,7 @@ const Menu: React.FC<{
   const [showAlert4, setShowAlert4] = useState(false);
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [toastFromSaveAs, setToastFromSaveAs] = useState(false);
   /* Utility functions */
   const _validateName = async (filename) => {
     filename = filename.trim();
@@ -68,15 +69,23 @@ const Menu: React.FC<{
       printWindow.print();
     }
   };
-  const doSave = () => {
+  const doSave = async () => {
     if (props.file === "default") {
       setShowAlert1(true);
       return;
     }
     const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-    const data = props.store._getFile(props.file);
+    const data = await props.store._getFile(props.file);
+
+    if (!data) {
+      setToastFromSaveAs(false);
+      setToastMessage("Save failed: file data could not be retrieved.");
+      setShowToast1(true);
+      return;
+    }
+
     const file = new File(
-      (data as any).created,
+      data.created,
       new Date().toString(),
       content,
       props.file,
@@ -108,6 +117,7 @@ const Menu: React.FC<{
         props.updateSelectedFile(filename);
         setShowAlert4(true);
       } else {
+        setToastFromSaveAs(true);
         setShowToast1(true);
       }
     }
@@ -230,7 +240,9 @@ const Menu: React.FC<{
         isOpen={showToast1}
         onDidDismiss={() => {
           setShowToast1(false);
-          setShowAlert3(true);
+          if (toastFromSaveAs) {
+            setShowAlert3(true);
+          }
         }}
         position="bottom"
         message={toastMessage}
