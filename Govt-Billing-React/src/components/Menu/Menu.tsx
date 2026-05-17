@@ -5,8 +5,9 @@ import { isPlatform, IonToast } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
-import { saveOutline, save, mail, print } from "ionicons/icons";
+import { saveOutline, save, mail, print, cloudUpload } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
+import { uploadInvoiceToIPFS } from "../../services/lighthouseService";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -20,8 +21,12 @@ const Menu: React.FC<{
   const [showAlert2, setShowAlert2] = useState(false);
   const [showAlert3, setShowAlert3] = useState(false);
   const [showAlert4, setShowAlert4] = useState(false);
+  const [showAlert5, setShowAlert5] = useState(false);
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [showSaveAsAfterToast, setShowSaveAsAfterToast] = useState(false);
+  const [ipfsCid, setIpfsCid] = useState("");
+  const [ipfsUrl, setIpfsUrl] = useState("");
   /* Utility functions */
   const _validateName = async (filename) => {
     filename = filename.trim();
@@ -108,8 +113,37 @@ const Menu: React.FC<{
         props.updateSelectedFile(filename);
         setShowAlert4(true);
       } else {
+        setShowSaveAsAfterToast(true);
         setShowToast1(true);
       }
+    }
+  };
+
+  const doSaveToIPFS = async () => {
+    const apiKey = import.meta.env.VITE_LIGHTHOUSE_API_KEY;
+
+    if (!apiKey) {
+      setToastMessage(
+        "Lighthouse API key not set. Add VITE_LIGHTHOUSE_API_KEY to .env"
+      );
+      setShowSaveAsAfterToast(false);
+      setShowToast1(true);
+      return;
+    }
+
+    const content = AppGeneral.getSpreadsheetContent();
+    const filename =
+      props.file === "default" ? "invoice" : _formatString(props.file);
+
+    try {
+      const result = await uploadInvoiceToIPFS(content, filename, apiKey);
+      setIpfsCid(result.cid);
+      setIpfsUrl(result.url);
+      setShowAlert5(true);
+    } catch (err: any) {
+      setToastMessage(err?.message ?? "IPFS upload failed");
+      setShowSaveAsAfterToast(false);
+      setShowToast1(true);
     }
   };
 
@@ -154,6 +188,14 @@ const Menu: React.FC<{
             handler: () => {
               setShowAlert3(true);
               console.log("Save As clicked");
+            },
+          },
+          {
+            text: "Save to IPFS",
+            icon: cloudUpload,
+            handler: () => {
+              doSaveToIPFS();
+              console.log("Save to IPFS clicked");
             },
           },
           {
@@ -225,12 +267,27 @@ const Menu: React.FC<{
         }
         buttons={["Ok"]}
       />
+      <IonAlert
+        animated
+        isOpen={showAlert5}
+        onDidDismiss={() => setShowAlert5(false)}
+        header="Saved to Filecoin/IPFS"
+        message={
+          "Invoice pinned successfully.<br/><br/>" +
+          `<strong>CID:</strong> ${ipfsCid}<br/><br/>` +
+          `<a href="${ipfsUrl}" target="_blank">View on IPFS Gateway</a>`
+        }
+        buttons={["Ok"]}
+      />
       <IonToast
         animated
         isOpen={showToast1}
         onDidDismiss={() => {
           setShowToast1(false);
-          setShowAlert3(true);
+          if (showSaveAsAfterToast) {
+            setShowSaveAsAfterToast(false);
+            setShowAlert3(true);
+          }
         }}
         position="bottom"
         message={toastMessage}
