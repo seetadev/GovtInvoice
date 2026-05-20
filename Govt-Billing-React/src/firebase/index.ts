@@ -13,7 +13,13 @@ const firebaseConfig = {
 
 let app: FirebaseApp, auth: Auth, db: Firestore;
 
+const isConfigured = !!firebaseConfig.apiKey;
+
 const initFirebase = () => {
+  if (!isConfigured) {
+    console.warn("Firebase is not configured. Running in local mock mode.");
+    return;
+  }
   if (!app) {
     app = initializeApp(firebaseConfig);
   }
@@ -25,4 +31,4 @@ const initFirebase = () => {
   }
 };
 
-export { initFirebase, app, auth, db };
+export { initFirebase, app, auth, db, isConfigured };

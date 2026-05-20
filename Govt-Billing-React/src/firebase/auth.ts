@@ -3,9 +3,16 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "./index";
+import { auth, isConfigured } from "./index";
+
+const MOCK_USER = { uid: "local-dev-user", email: "dev@local.com", displayName: "Local Developer" };
 
 const signUpWithEmailAndPassword = async (email: string, password: string) => {
+  if (!isConfigured) {
+    localStorage.setItem("mockUser", JSON.stringify({ ...MOCK_USER, email }));
+    window.location.reload();
+    return { ...MOCK_USER, email };
+  }
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -23,6 +30,11 @@ const signUpWithEmailAndPassword = async (email: string, password: string) => {
 };
 
 const loginWithEmailPassword = async (email: string, password: string) => {
+  if (!isConfigured) {
+    localStorage.setItem("mockUser", JSON.stringify({ ...MOCK_USER, email }));
+    window.location.reload();
+    return { ...MOCK_USER, email };
+  }
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -40,6 +52,11 @@ const loginWithEmailPassword = async (email: string, password: string) => {
 };
 
 const logOut = async () => {
+  if (!isConfigured) {
+    localStorage.removeItem("mockUser");
+    window.location.reload();
+    return;
+  }
   try {
     await signOut(auth);
   } catch (error) {
