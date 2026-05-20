@@ -22,6 +22,13 @@ import Menu from "../components/Menu/Menu";
 import Files from "../components/Files/Files";
 import NewFile from "../components/NewFile/NewFile";
 import { initFirebase } from "../firebase/index";
+import { ethers, BrowserProvider } from "ethers";
+
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 
 const Home: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -32,6 +39,7 @@ const Home: React.FC = () => {
   const [selectedFile, updateSelectedFile] = useState("default");
   const [billType, updateBillType] = useState(1);
   const [device] = useState("default");
+  const [walletAddress, setWalletAddress] = useState("");
 
   initFirebase();
 
@@ -73,6 +81,22 @@ const Home: React.FC = () => {
     );
   });
 
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
+        const provider = new BrowserProvider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        setWalletAddress(address);
+      } catch (err) {
+        alert("Wallet connection failed");
+      }
+    } else {
+      alert("MetaMask is not installed. Please install it to use this feature.");
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -83,7 +107,9 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonToolbar color="primary">
           <Login />
-
+          <IonButton slot="end" onClick={connectWallet} color="tertiary">
+            {walletAddress ? `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "Connect Wallet"}
+          </IonButton>
           <IonIcon
             icon={settings}
             slot="end"
