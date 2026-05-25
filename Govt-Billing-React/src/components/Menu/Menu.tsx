@@ -5,8 +5,9 @@ import { isPlatform, IonToast } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
-import { saveOutline, save, mail, print } from "ionicons/icons";
+import { saveOutline, save, mail, print, documentText } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
+import InvoicePDFModal from "../InvoicePDF/InvoicePDFModal";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -16,6 +17,7 @@ const Menu: React.FC<{
   store: Local;
   bT: number;
 }> = (props) => {
+  const [showPDFModal, setShowPDFModal] = useState(false);
   const [showAlert1, setShowAlert1] = useState(false);
   const [showAlert2, setShowAlert2] = useState(false);
   const [showAlert3, setShowAlert3] = useState(false);
@@ -157,6 +159,14 @@ const Menu: React.FC<{
             },
           },
           {
+            text: "Export as PDF",
+            icon: documentText,
+            handler: () => {
+              setShowPDFModal(true);
+              console.log("Export PDF clicked");
+            },
+          },
+          {
             text: "Print",
             icon: print,
             handler: () => {
@@ -235,6 +245,11 @@ const Menu: React.FC<{
         position="bottom"
         message={toastMessage}
         duration={500}
+      />
+      <InvoicePDFModal
+        show={showPDFModal}
+        setShow={setShowPDFModal}
+        filename={props.file}
       />
     </React.Fragment>
   );
