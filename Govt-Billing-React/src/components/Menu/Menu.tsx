@@ -6,7 +6,8 @@ import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
 import { saveOutline, save, mail, print } from "ionicons/icons";
-import { APP_NAME } from "../../app-data.js";
+import { APP_NAME, DEFAULT_EMAIL } from "../../app-data.js";
+import useUser from "../../hooks/useUser";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -113,22 +114,33 @@ const Menu: React.FC<{
     }
   };
 
+  const { user } = useUser();
+  const recipientEmail = user?.email || DEFAULT_EMAIL;
+
   const sendEmail = () => {
+    const subject = `${APP_NAME} attached`;
+    const body = "Please find the attached spreadsheet.";
+
     if (isPlatform("hybrid")) {
       const content = AppGeneral.getCurrentHTMLContent();
       const base64 = btoa(content);
 
       EmailComposer.open({
-        to: ["jackdwell08@gmail.com"],
+        to: [recipientEmail],
         cc: [],
         bcc: [],
-        body: "PFA",
+        body,
         attachments: [{ type: "base64", path: base64, name: "Invoice.html" }],
-        subject: `${APP_NAME} attached`,
+        subject,
         isHtml: true,
       });
     } else {
-      alert("This Functionality works on Anroid/IOS devices");
+      // Web fallback using mailto:
+      const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailtoLink;
     }
   };
 
