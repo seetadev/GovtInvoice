@@ -13,47 +13,51 @@ const Login: React.FC = () => {
   const { user, isLoading } = useUser();
   const [openLoginModal, setOpenLoginModal] = useState(false);
 
-  const doSignIn = async (email: string, password: string) => {
-    try {
-      await loginWithEmailPassword(email, password);
-      closeLoginModal();
-    } catch {
-      console.error("Something Went Wrong");
+  const doSignIn = async (email: string, password: string): Promise<string | undefined> => {
+    const result = await loginWithEmailPassword(email, password);
+    if (result.error) {
+      return result.error; // Return error to display in form, don't close modal
     }
-  };
-  const doSignUp = async (email: string, password: string) => {
-    try {
-      await signUpWithEmailAndPassword(email, password);
-      closeLoginModal();
-    } catch {
-      console.error("Something Went Wrong");
+    if (result.user) {
+      setOpenLoginModal(false); // Only close on success
+      return undefined;
     }
+    return "Authentication failed. Please try again.";
   };
+
+  const doSignUp = async (email: string, password: string): Promise<string | undefined> => {
+    const result = await signUpWithEmailAndPassword(email, password);
+    if (result.error) {
+      return result.error; // Return error to display in form, don't close modal
+    }
+    if (result.user) {
+      setOpenLoginModal(false); // Only close on success
+      return undefined;
+    }
+    return "Sign up failed. Please try again.";
+  };
+
   const closeLoginModal = () => setOpenLoginModal(false);
 
   if (isLoading) {
     return (
-      <React.Fragment>
-        <IonButton slot="start" className="ion-padding-start" onClick={null}>
-          <IonIcon icon={person} size="large" />
-          Loading
-        </IonButton>
-      </React.Fragment>
+      <IonButton slot="start" className="ion-padding-start">
+        <IonIcon icon={person} size="large" />
+        Loading...
+      </IonButton>
     );
   }
+
   return (
-    <React.Fragment>
+    <>
       <IonButton
         slot="start"
         className="ion-padding-start"
         onClick={async () => {
-          if (!user) setOpenLoginModal(true);
-          else {
-            try {
-              await logOut();
-            } catch {
-              console.error("Something Went Wrong");
-            }
+          if (!user) {
+            setOpenLoginModal(true);
+          } else {
+            await logOut();
           }
         }}
       >
@@ -62,9 +66,25 @@ const Login: React.FC = () => {
       </IonButton>
 
       <IonModal isOpen={openLoginModal} animated onDidDismiss={closeLoginModal}>
-        <LoginFormComponent handleSignUp={doSignUp} handleLogin={doSignIn} />
+        <div style={{ padding: "20px" }}>
+          <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
+            Login / Sign Up
+          </h3>
+          <LoginFormComponent 
+            handleLogin={doSignIn} 
+            handleSignUp={doSignUp} 
+          />
+          <IonButton
+            expand="full"
+            color="medium"
+            onClick={closeLoginModal}
+            style={{ marginTop: "10px" }}
+          >
+            Cancel
+          </IonButton>
+        </div>
       </IonModal>
-    </React.Fragment>
+    </>
   );
 };
 
