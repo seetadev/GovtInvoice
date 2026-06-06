@@ -1,0 +1,152 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# ===================================
+# SECRETS & CREDENTIALS (CRITICAL!)
+# ===================================
+# Environment variables (but allow .env.example)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Allow .env.example to be committed
+!.env.example
+
+# API Keys and configuration
+*secret*
+*token*
+*api-key*
+*api_key*
+*apikey*
+
+# Firebase config
+firebase-config.js
+firebaseConfig.js
+google-services.json
+GoogleService-Info.plist
+
+# ===================================
+# DEPENDENCIES
+# ===================================
+/node_modules
+/.pnp
+.pnp.js
+jspm_packages/
+
+# ===================================
+# TESTING
+# ===================================
+/coverage
+.nyc_output
+*.lcov
+
+# ===================================
+# PRODUCTION
+# ===================================
+/dist
+/build
+dist-ssr/
+*.local
+
+# ===================================
+# MISC
+# ===================================
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional eslint cache
+.eslintcache
+
+# ===================================
+# IDEs & EDITORS
+# ===================================
+/.vscode/*
+!/.vscode/extensions.json
+.idea
+*.swp
+*.swo
+*~
+
+# ===================================
+# ANDROID
+# ===================================
+# Android signing
+keystore.properties
+android/keystore.properties
+android/app/keystore/
+*.keystore
+*.jks
+key.properties
+signing.properties
+
+# Sensitive configuration files
+local.properties
+android/local.properties
+
+# Android build
+android/build/
+android/app/build/
+android/.gradle/
+android/captures/
+
+# ===================================
+# IOS
+# ===================================
+# iOS build and config
+ios/Pods/
+ios/build/
+ios/App/Podfile.lock
+*.xcworkspace/xcuserdata/
+xcuserdata/
+*.xcuserstate
+
+# iOS signing
+*.mobileprovision
+*.p12
+*.cer
+*.certSigningRequest
+
+# ===================================
+# DOCKER
+# ===================================
+.dockerignore
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ===================================
+# PWA & Service Workers
+# ===================================
+# Dev distribution
+/dev-dist
+
+# Service worker caches
+workbox-*.js
+
+# ===================================
+# CAPACITOR
+# ===================================
+# Capacitor generated files
+android/app/src/main/assets/public/
+ios/App/App/public/
+
+# ===================================
+# LOGS
+# ===================================
+*.log
+logs/
+log/
+
+# ===================================
+# TEMPORARY & BACKUP
+# ===================================
+*.tmp
+*.temp
+*.bak
+*.backup
+.cache
+.vercel
+.env*.local

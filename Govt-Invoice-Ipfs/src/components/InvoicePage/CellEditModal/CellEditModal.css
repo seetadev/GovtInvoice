@@ -1,0 +1,276 @@
+.cell-edit-modal.rounded-modal {
+    --width: 320px;
+    --height: auto;
+    --max-height: 85vh;
+    --border-radius: 20px;
+    /* SDK 35 Fix: safe-area for devices with nav gestures */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Pin modal content above centre of the viewport */
+.cell-edit-modal.rounded-modal::part(content) {
+    align-self: flex-start;
+    margin-top: 25vh;
+}
+
+/* SDK 35 Fix: When the keyboard is open, shift the modal up so it sits
+   just above the soft keyboard.  --keyboard-offset is set from JS via
+   the visualViewport API. */
+/* .cell-edit-modal.keyboard-open::part(content) {
+    transform: translateY(calc(var(--keyboard-offset, 0px) * -1));
+    transition: transform 0.12s ease-out;
+    margin-top: 15vh;
+} */
+
+.cell-edit-modal-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Header */
+.cell-edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 4px;
+}
+
+.cell-edit-title {
+    font-size: 18px;
+    /* Slightly smaller title */
+    font-weight: 700;
+    margin: 0;
+}
+
+.cell-edit-close-btn {
+    margin: 0;
+    --padding-start: 8px;
+    --padding-end: 8px;
+}
+
+/* Input */
+/* Input */
+.cell-edit-input-section {
+    display: flex;
+    align-items: center;
+    background: var(--ion-color-light);
+    padding: 0 12px;
+}
+
+.cell-edit-input {
+    min-height: 48px;
+    padding-left: 4px;
+    font-size: 16px;
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--ion-text-color);
+    width: 100%;
+}
+
+.cell-edit-clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    cursor: pointer;
+    color: var(--ion-color-medium);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.cell-edit-clear-btn:active {
+    opacity: 1;
+}
+
+.cell-edit-clear-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Accordion */
+.cell-properties-accordion {
+    border-radius: 12px;
+    overflow: hidden;
+    background: transparent;
+}
+
+.accordion-header {
+    font-size: 11px;
+    /* Smaller header */
+    font-weight: 600;
+    --background: transparent;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    color: var(--ion-color-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    --detail-icon-font-size: 12px;
+    --detail-icon-opacity: 0.4;
+}
+
+.accordion-label {
+    margin: 0;
+    flex: 0 0 auto;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+/* Vertical Properties List */
+.cell-edit-properties-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Tighter gap */
+}
+
+.property-row {
+    width: 100%;
+}
+
+.property-btn {
+    margin: 0;
+    height: 40px;
+    /* Shorter rows */
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --background: var(--ion-color-light);
+    --color: var(--ion-text-color);
+    --border-radius: 10px;
+    font-size: 13px;
+    /* Smaller font */
+    overflow: hidden;
+    text-transform: none;
+    /* DISABLE UPPERCASE */
+}
+
+.btn-content-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.btn-content-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.btn-icon {
+    font-size: 16px;
+    /* Smaller icon */
+    opacity: 0.7;
+}
+
+.btn-label-main {
+    font-weight: 500;
+    /* Regular weight */
+}
+
+.btn-value {
+    opacity: 0.5;
+    font-weight: 400;
+    font-size: 12px;
+    /* Smaller value text */
+}
+
+.btn-chevron {
+    font-size: 9px;
+    /* Much smaller chevron */
+    opacity: 0.4;
+}
+
+/* Color Preview Dot */
+.color-preview-dot {
+    width: 12px;
+    /* Smaller dot */
+    height: 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* List Items in Popover */
+.list-color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.list-color-swatch.default {
+    background: linear-gradient(45deg, transparent 48%, var(--ion-color-medium) 49%, var(--ion-color-medium) 51%, transparent 52%);
+    border: 1px solid var(--ion-color-medium-shade);
+    opacity: 0.5;
+}
+
+/* Actions */
+.cell-edit-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.cell-edit-actions ion-button {
+    flex: 1;
+    margin: 0;
+    --border-radius: 12px;
+    height: 44px;
+    /* Shorter action buttons */
+    font-weight: 600;
+}
+
+.cell-edit-modal.shadow-modal {
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Color Swatches Grid */
+.color-swatches-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    background: var(--ion-color-light);
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-swatch:active {
+    transform: scale(0.95);
+}
+
+.color-swatch.selected {
+    border-color: var(--ion-color-primary);
+    box-shadow: 0 0 0 2px var(--ion-color-primary-tint);
+}
+
+.color-swatch.default-swatch {
+    background: linear-gradient(135deg, #f5f5f5 45%, transparent 45%, transparent 55%, #f5f5f5 55%),
+        linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%);
+    background-size: 100% 100%, 8px 8px;
+    border: 1px solid var(--ion-color-medium-shade);
+}
+
+/* Chevron rotation when open */
+.btn-chevron {
+    transition: transform 0.2s ease;
+}
+
+.btn-chevron.chevron-up {
+    transform: rotate(180deg);
+}

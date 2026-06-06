@@ -1,0 +1,677 @@
+/* Minimal Settings Page Styles */
+
+.settings-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Default Theme */
+.settings-container {
+    --settings-bg: #ffffff;
+    --settings-card-bg: #f8f9fa;
+    --settings-border: #e5e7eb;
+    --settings-text: #1f2937;
+    --settings-text-muted: #6b7280;
+    --settings-accent: #3b82f6;
+    --settings-accent-light: rgba(59, 130, 246, 0.1);
+    --settings-toggle-bg: #d1d5db;
+    --settings-toggle-active: #3b82f6;
+    --settings-input-bg: #ffffff;
+    --settings-preview-bg: linear-gradient(135deg, #eef2ff 0%, #f0f9ff 100%);
+    --settings-preview-accent: #3b82f6;
+}
+
+/* Section */
+.settings-section {
+    margin-bottom: 32px;
+}
+
+.settings-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-left: 4px;
+}
+
+.settings-section-header svg {
+    width: 22px;
+    height: 22px;
+    color: var(--settings-accent);
+    stroke: var(--settings-accent);
+}
+
+.settings-section-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--settings-text);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+/* Card */
+.settings-card {
+    background: var(--settings-card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--settings-border);
+    overflow: hidden;
+}
+
+/* Row */
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--settings-border);
+    transition: background 0.15s ease;
+}
+
+.settings-row:last-child {
+    border-bottom: none;
+}
+
+.settings-row:hover {
+    background: var(--settings-accent-light);
+}
+
+.settings-row-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+.settings-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.settings-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.settings-row-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.settings-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--settings-text);
+    line-height: 1.4;
+}
+
+.settings-sublabel {
+    font-size: 13px;
+    color: var(--settings-text-muted);
+    line-height: 1.4;
+}
+
+/* Toggle */
+.settings-toggle {
+    position: relative;
+    width: 48px;
+    height: 28px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.settings-toggle-track {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--settings-toggle-bg);
+    border-radius: 14px;
+    transition: background 0.2s ease;
+}
+
+.settings-toggle.active .settings-toggle-track {
+    background: var(--settings-toggle-active);
+}
+
+.settings-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.settings-toggle.active .settings-toggle-thumb {
+    transform: translateX(20px);
+}
+
+/* Select */
+.settings-select {
+    appearance: none;
+    background: var(--settings-input-bg);
+    border: 1px solid var(--settings-border);
+    border-radius: 8px;
+    padding: 8px 32px 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--settings-text);
+    cursor: pointer;
+    min-width: 140px;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.settings-select:focus {
+    outline: none;
+    border-color: var(--settings-accent);
+    box-shadow: 0 0 0 3px var(--settings-accent-light);
+}
+
+.settings-select option {
+    background: var(--settings-card-bg);
+    color: var(--settings-text);
+}
+
+/* Number Input */
+.settings-number-input {
+    width: 72px;
+    padding: 8px 12px;
+    background: var(--settings-input-bg);
+    border: 1px solid var(--settings-border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--settings-text);
+    text-align: center;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.settings-number-input:focus {
+    outline: none;
+    border-color: var(--settings-accent);
+    box-shadow: 0 0 0 3px var(--settings-accent-light);
+}
+
+.settings-number-input::-webkit-outer-spin-button,
+.settings-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.settings-number-input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/* Preview */
+.settings-preview {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--settings-preview-bg);
+    border-top: 1px solid var(--settings-border);
+}
+
+.settings-preview-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+
+
+.settings-preview-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--settings-preview-accent);
+    stroke: var(--settings-preview-accent);
+}
+
+.settings-preview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-preview-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--settings-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.settings-preview-value {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+    color: var(--settings-text);
+    letter-spacing: 0.02em;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .settings-container {
+        padding: 16px 12px;
+    }
+
+    .settings-row {
+        padding: 14px 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .settings-row-left {
+        flex: 1 1 100%;
+    }
+
+    .settings-select {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .settings-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .settings-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .settings-label {
+        font-size: 14px;
+    }
+
+    .settings-sublabel {
+        font-size: 12px;
+    }
+}
+
+/* Media Grid (Signatures & Logos) */
+.settings-media-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+}
+
+.settings-media-item {
+    width: 100px;
+    height: 70px;
+    border-radius: 10px;
+    border: 2px solid var(--settings-border);
+    background: var(--settings-input-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s ease;
+}
+
+.settings-media-item:hover {
+    border-color: var(--settings-accent);
+}
+
+.settings-media-item.selected {
+    border-color: var(--settings-accent);
+    background: var(--settings-accent-light);
+}
+
+.settings-media-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+}
+
+.settings-media-none {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--settings-text-muted);
+}
+
+.settings-media-check {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    background: var(--settings-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-media-check svg {
+    color: #fff;
+    stroke: #fff;
+}
+
+.settings-media-delete {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    background: rgba(239, 68, 68, 0.9);
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.settings-media-item:hover .settings-media-delete {
+    opacity: 1;
+}
+
+.settings-media-delete svg {
+    color: #fff;
+    stroke: #fff;
+}
+
+.settings-media-add {
+    width: 100px;
+    height: 70px;
+    border-radius: 10px;
+    border: 2px dashed var(--settings-border);
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.settings-media-add:hover {
+    border-color: var(--settings-accent);
+    background: var(--settings-accent-light);
+}
+
+.settings-media-add svg {
+    color: var(--settings-text-muted);
+    stroke: var(--settings-text-muted);
+    transition: color 0.15s ease, stroke 0.15s ease;
+}
+
+.settings-media-add:hover svg {
+    color: var(--settings-accent);
+    stroke: var(--settings-accent);
+}
+
+.settings-media-add span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--settings-text-muted);
+    transition: color 0.15s ease;
+}
+
+.settings-media-add:hover span {
+    color: var(--settings-accent);
+}
+
+/* Signature Modal */
+.signature-modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.signature-modal {
+    background: #ffffff;
+    color: #1f2937;
+}
+
+.signature-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--settings-border);
+}
+
+.signature-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.signature-modal-header button {
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.signature-modal-header button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.signature-modal-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 20px;
+}
+
+.signature-canvas-wrapper {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.signature-canvas {
+    display: block;
+    touch-action: none;
+}
+
+.signature-colors {
+    display: flex;
+    gap: 12px;
+}
+
+.signature-color {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.signature-color:hover {
+    transform: scale(1.1);
+}
+
+.signature-color.active {
+    border-color: var(--settings-accent);
+    transform: scale(1.15);
+}
+
+/* Signature Options Container */
+.signature-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Signature Thickness Control */
+.signature-thickness {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.signature-thickness label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--settings-text-muted);
+    min-width: 60px;
+}
+
+.signature-thickness-control {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.signature-thickness-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--settings-border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+/* Track for Webkit/Blink */
+/* Track for Webkit/Blink */
+.signature-thickness-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: #cbd5e1;
+    border-radius: 2px;
+    border: none;
+}
+
+/* Thumb for Webkit/Blink */
+.signature-thickness-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--settings-accent);
+    cursor: pointer;
+    margin-top: -8px;
+    /* Centers thumb on track */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease;
+}
+
+.signature-thickness-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Track for Firefox */
+.signature-thickness-slider::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: #cbd5e1;
+    border-radius: 2px;
+    border: none;
+}
+
+.signature-preview-container {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.signature-thickness-preview {
+    border-radius: 50%;
+    transition: all 0.15s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Thumb for Firefox */
+.signature-thickness-slider::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border: 2px solid var(--settings-accent);
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease;
+}
+
+.signature-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+@media (max-width: 480px) {
+    .settings-media-grid {
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
+    .settings-media-item,
+    .settings-media-add {
+        width: 80px;
+        height: 56px;
+    }
+
+    .signature-modal-content {
+        padding: 16px;
+    }
+
+    .signature-canvas-wrapper {
+        max-width: 100%;
+    }
+}

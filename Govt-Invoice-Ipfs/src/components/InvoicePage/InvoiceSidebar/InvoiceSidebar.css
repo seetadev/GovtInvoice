@@ -1,0 +1,454 @@
+/* Quick Insert Sidebar - Unique CSS (avoiding conflicts with DynamicInvoiceForm) */
+
+.quick-insert-sidebar {
+  position: fixed;
+  /* Only gap for status bar / safe area; sidebar overlaps the toolbars */
+  top: max(env(safe-area-inset-top, 0px), 30px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20000;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0.3s steps(1);
+}
+
+.quick-insert-sidebar.open {
+  visibility: visible;
+  pointer-events: auto;
+  transition: visibility 0s;
+}
+
+.quick-insert-sidebar .sidebar-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quick-insert-sidebar.open .sidebar-backdrop {
+  opacity: 1;
+}
+
+.quick-insert-sidebar .sidebar-content {
+  width: 320px;
+  max-width: 85vw;
+  height: 100%;
+  background: var(--ion-background-color, #ffffff);
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.36, 0.66, 0.04, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.quick-insert-sidebar.open .sidebar-content {
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-content {
+  background: #161b22;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header Styling */
+.quick-insert-sidebar .sidebar-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: var(--ion-background-color, #ffffff);
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #161b22;
+}
+
+.quick-insert-sidebar .sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ion-color-dark);
+  padding: 0;
+  margin: 0;
+}
+
+.quick-insert-sidebar .sidebar-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.quick-insert-sidebar .sidebar-actions ion-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin: 0;
+  height: 36px;
+}
+
+/* Tab Segment */
+.quick-insert-sidebar .sidebar-tabs {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.quick-insert-sidebar .sidebar-tabs ion-segment {
+  --background: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-tabs ion-segment {
+  --background: rgba(255, 255, 255, 0.05);
+}
+
+.quick-insert-sidebar .sidebar-tabs ion-segment-button {
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  min-height: 36px;
+}
+
+/* Scrollable Body */
+.quick-insert-sidebar .sidebar-scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.quick-insert-sidebar .sidebar-scrollable-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.quick-insert-sidebar .sidebar-scrollable-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-scrollable-content {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-scrollable-content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Search Container */
+.quick-insert-sidebar .search-container {
+  margin-bottom: 12px;
+}
+
+.quick-insert-sidebar .search-container ion-searchbar {
+  --border-radius: 10px;
+  --box-shadow: none;
+  --background: rgba(0, 0, 0, 0.04);
+  padding: 0;
+  --height: 36px;
+}
+
+.quick-insert-sidebar.dark-theme .search-container ion-searchbar {
+  --background: rgba(255, 255, 255, 0.06);
+}
+
+/* Sub Tabs */
+.quick-insert-sidebar .sub-tabs-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.quick-insert-sidebar .sub-tabs-container ion-button {
+  --border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  height: 28px;
+}
+
+/* List Items */
+.quick-insert-sidebar .sidebar-list {
+  background: transparent;
+}
+
+.quick-insert-sidebar .sidebar-list ion-item {
+  --background: transparent;
+  --padding-start: 10px;
+  --padding-end: 8px;
+  --inner-padding-end: 0;
+  --min-height: 56px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.quick-insert-sidebar .sidebar-list ion-item:active {
+  background: rgba(var(--ion-color-primary-rgb), 0.06);
+  border-color: rgba(var(--ion-color-primary-rgb), 0.15);
+}
+
+.quick-insert-sidebar.dark-theme .sidebar-list ion-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quick-insert-sidebar .sidebar-list ion-item h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: var(--ion-text-color);
+}
+
+.quick-insert-sidebar .sidebar-list ion-item p {
+  font-size: 0.75rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+}
+
+.quick-insert-sidebar .add-btn {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  height: 26px;
+}
+
+.quick-insert-sidebar .price-tag {
+  font-weight: 700;
+  color: var(--ion-color-success);
+}
+
+/* Section Header */
+.quick-insert-sidebar .section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.quick-insert-sidebar .section-header ion-icon {
+  font-size: 14px;
+  color: var(--ion-color-primary);
+}
+
+.quick-insert-sidebar .section-header span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ion-color-medium);
+  flex: 1;
+}
+
+/* Section Remove Button */
+.quick-insert-sidebar .section-remove-btn {
+  background: transparent;
+  border: 1px solid var(--ion-color-danger);
+  color: var(--ion-color-danger);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.quick-insert-sidebar .section-remove-btn:active {
+  background: rgba(var(--ion-color-danger-rgb), 0.1);
+}
+
+/* Assets Grid */
+.quick-insert-sidebar .assets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Compact Assets Grid - for smaller cards */
+.quick-insert-sidebar .assets-grid-compact {
+  grid-template-columns: repeat(auto-fill, minmax(85px, 85px));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.quick-insert-sidebar .asset-card {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-insert-sidebar .asset-card:active {
+  background: rgba(var(--ion-color-primary-rgb), 0.06);
+  border-color: rgba(var(--ion-color-primary-rgb), 0.15);
+  transform: scale(0.98);
+}
+
+.quick-insert-sidebar.dark-theme .asset-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Fixed size image container for consistent cards */
+.quick-insert-sidebar .asset-image-container {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Compact asset card variant */
+.quick-insert-sidebar .asset-card-compact {
+  padding: 8px;
+  gap: 6px;
+}
+
+.quick-insert-sidebar .asset-card-compact .asset-image-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+}
+
+.quick-insert-sidebar .asset-card-compact .asset-none-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.quick-insert-sidebar .asset-card-compact .asset-none-icon ion-icon {
+  font-size: 20px;
+}
+
+.quick-insert-sidebar .asset-card-compact span {
+  font-size: 0.6rem;
+}
+
+.quick-insert-sidebar.dark-theme .asset-image-container {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.quick-insert-sidebar .asset-card img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.quick-insert-sidebar .asset-card span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ion-text-color);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* None option card styling */
+.quick-insert-sidebar .asset-card-none {
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  background: transparent;
+}
+
+.quick-insert-sidebar.dark-theme .asset-card-none {
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.quick-insert-sidebar .asset-card-none:active {
+  background: rgba(var(--ion-color-danger-rgb), 0.06);
+  border-color: rgba(var(--ion-color-danger-rgb), 0.3);
+}
+
+.quick-insert-sidebar .asset-none-icon {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-insert-sidebar .asset-none-icon ion-icon {
+  font-size: 28px;
+  color: var(--ion-color-medium);
+}
+
+/* Empty State */
+.quick-insert-sidebar .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.quick-insert-sidebar .empty-state ion-icon {
+  font-size: 36px;
+  color: var(--ion-color-light-shade);
+  margin-bottom: 10px;
+}
+
+.quick-insert-sidebar .empty-state p {
+  font-size: 0.8rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+}
+
+/* Inline Empty State - compact version for inside sections */
+.quick-insert-sidebar .empty-state-inline {
+  padding: 16px;
+  text-align: center;
+}
+
+.quick-insert-sidebar .empty-state-inline p {
+  font-size: 0.8rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+}
+
+/* Content Animation - slideInRight like DynamicInvoiceForm */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.quick-insert-sidebar .sidebar-scrollable-content>div {
+  animation: slideInRight 0.4s ease-out;
+}

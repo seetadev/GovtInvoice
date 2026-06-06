@@ -1,0 +1,576 @@
+/* Onboarding Page Styles */
+
+.onboarding-page {
+    --background: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+
+
+.onboarding-content {
+    --background: inherit;
+    --overflow: hidden;
+}
+
+.onboarding-content::part(scroll) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Status bar blocker - prevents content overflow into status bar */
+.onboarding-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: max(env(safe-area-inset-top, 0px), 24px);
+    background: #ffffff;
+    z-index: 1000;
+}
+
+/* Progress Bar */
+.onboarding-progress {
+    position: fixed;
+    top: max(env(safe-area-inset-top, 0px), 24px);
+    /* Push down by safe area with minimum */
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    /* Lighter background */
+    z-index: 100;
+}
+
+
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 2px 2px 0;
+}
+
+/* Skip Container */
+.skip-container {
+    position: fixed;
+    top: calc(max(env(safe-area-inset-top, 0px), 24px) + 8px);
+    /* Adjusted spacing with minimum */
+    right: 16px;
+    z-index: 99;
+}
+
+.skip-container ion-button {
+    --color: #64748b;
+    font-weight: 500;
+    font-size: 14px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    height: 32px;
+}
+
+
+
+/* Main Content */
+.onboarding-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: calc(max(env(safe-area-inset-top, 0px), 24px) + 60px) 24px 140px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.step-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Step Header */
+.step-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.step-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 32px;
+    /* Softer, larger radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    /* Removed heavy shadow, focusing on clean flat/subtle look */
+    transition: transform 0.3s ease;
+}
+
+.step-title {
+    font-size: 28px;
+    font-weight: 800;
+    /* Bolder */
+    color: #0f172a;
+    margin: 0 0 12px;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+
+
+.step-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    margin: 0 auto;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+
+
+/* Step Content */
+.step-content {
+    flex: 1;
+}
+
+/* Welcome Step */
+.onboarding-welcome {
+    padding-top: 8px;
+}
+
+.welcome-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    /* Larger radius */
+    font-size: 15px;
+    font-weight: 600;
+    color: #334155;
+    border: 1px solid #f1f5f9;
+    box-shadow: none;
+}
+
+
+
+.feature-item ion-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+/* Form Styles */
+.onboarding-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: 0.3px;
+    margin-left: 4px;
+}
+
+
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    background: #f8fafc;
+    border: 1px solid transparent;
+    /* No border initially */
+    border-radius: 16px;
+    transition: all 0.2s ease;
+}
+
+
+
+.input-wrapper:focus-within {
+    background: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+
+
+.input-wrapper ion-icon {
+    font-size: 20px;
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+.input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    /* Larger font for mobile inputs */
+    color: #0f172a;
+    outline: none;
+    padding: 0;
+    font-weight: 500;
+}
+
+
+
+.input-wrapper input::placeholder {
+    color: #cbd5e1;
+    font-weight: 400;
+}
+
+/* Logo & Signature Areas */
+.onboarding-logo,
+.onboarding-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.logo-upload-area {
+    aspect-ratio: 1.6;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.logo-upload-area.has-logo {
+    border-style: solid;
+    border-color: transparent;
+    background: #ffffff;
+    padding: 20px;
+}
+
+
+
+.logo-upload-area:active {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.upload-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: #3b82f6;
+}
+
+
+
+.upload-icon ion-icon {
+    font-size: 24px;
+}
+
+.upload-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 6px;
+}
+
+
+
+.upload-hint {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.logo-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.change-logo-btn {
+    align-self: center;
+    --color: #3b82f6;
+    font-weight: 600;
+}
+
+/* Signature Pad */
+.signature-pad-container {
+    height: 240px;
+    background: #f8fafc;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+
+
+.signature-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.signature-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.signature-saved-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: #ecfdf5;
+    border-radius: 100px;
+    color: #059669;
+    font-size: 14px;
+    font-weight: 600;
+    align-self: center;
+}
+
+
+
+/* Inventory Form */
+.onboarding-inventory .form-group input {
+    width: 100%;
+    padding: 16px 18px;
+    background: #f8fafc;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    font-size: 16px;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+
+
+.onboarding-inventory .form-group input:focus {
+    background: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+
+
+.add-item-btn {
+    margin-top: 12px;
+    --border-radius: 14px;
+    height: 52px;
+    font-weight: 600;
+    --box-shadow: none;
+    font-size: 16px;
+}
+
+.inventory-list {
+    margin-top: 32px;
+    padding-top: 0;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.inventory-list h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #f1f5f9;
+}
+
+
+
+.item-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #334155;
+}
+
+
+
+.item-price {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 15px;
+}
+
+
+
+/* Completion Step */
+.onboarding-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.completion-icon {
+    width: 120px;
+    height: 120px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    color: #8b5cf6;
+}
+
+.completion-icon ion-icon {
+    font-size: 48px;
+}
+
+.completion-stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-item {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+
+
+.stat-label {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.completion-hint {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 260px;
+}
+
+/* Footer & Navigation */
+.onboarding-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    padding-bottom: calc(max(env(safe-area-inset-bottom, 0px), 24px) + 24px);
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 100;
+}
+
+
+
+.step-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    /* Circles initially */
+    background: #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+}
+
+.dot.completed {
+    background: #cbd5e1;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 56px;
+}
+
+.back-btn {
+    --color: #64748b;
+    font-weight: 600;
+    height: 48px;
+    margin: 0;
+}
+
+.action-btn {
+    flex: 1;
+    margin: 0;
+    height: 56px;
+    --border-radius: 16px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: none;
+}

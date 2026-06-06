@@ -1,0 +1,190 @@
+/* IPFS Cloud Modal Styles */
+
+/* Modal styling for both light and dark theme */
+.ipfs-cloud-modal {
+  --background: #ffffff;
+  --color: #0f172a;
+}
+
+.dark-theme .ipfs-cloud-modal {
+  --background: #0d1117;
+  --color: #f0f6fc;
+}
+
+/* Form controls styling */
+.ipfs-modal-input,
+.ipfs-modal-textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+  font-size: 13.5px !important;
+  outline: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+.ipfs-password-input {
+  padding-right: 42px !important;
+}
+
+.ipfs-modal-textarea {
+  min-height: 80px;
+  font-family: monospace !important;
+  resize: vertical;
+}
+
+.ipfs-modal-input:focus,
+.ipfs-modal-textarea:focus {
+  border-color: #3880ff !important;
+  box-shadow: 0 0 0 3px rgba(56, 128, 255, 0.15) !important;
+}
+
+.ipfs-modal-input::placeholder,
+.ipfs-modal-textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+
+/* Dark Theme Overrides */
+.dark-theme .ipfs-modal-input,
+.dark-theme .ipfs-modal-textarea {
+  background-color: #21262d !important;
+  color: #f0f6fc !important;
+  border: 1px solid #30363d !important;
+}
+
+.dark-theme .ipfs-modal-input:focus,
+.dark-theme .ipfs-modal-textarea:focus {
+  border-color: #58a6ff !important;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15) !important;
+}
+
+.dark-theme .ipfs-modal-input::placeholder,
+.dark-theme .ipfs-modal-textarea::placeholder {
+  color: #8b949e !important;
+}
+
+/* Container styling for cloud info card */
+.ipfs-info-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #eff6ff;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  font-size: 12px;
+  color: #1e3a8a;
+  line-height: 1.4;
+}
+
+.dark-theme .ipfs-info-card {
+  background: #172a45;
+  border-color: #1b3d6c;
+  color: #8cb4ff;
+}
+
+/* Import form dash-container */
+.ipfs-dash-box {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.dark-theme .ipfs-dash-box {
+  background: #161b22;
+  border-color: #30363d;
+}
+
+/* History List Card */
+.ipfs-history-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.dark-theme .ipfs-history-card {
+  background: #161b22;
+  border-color: #30363d;
+}
+
+.ipfs-history-title {
+  font-weight: 600;
+  fontSize: 13.5px;
+  color: #1e293b;
+}
+
+.dark-theme .ipfs-history-title {
+  color: #c9d1d9;
+}
+
+.ipfs-history-cid-box {
+  background: #f8fafc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #64748b;
+  font-family: monospace;
+  word-break: break-all;
+  border: 1px solid #f1f5f9;
+}
+
+.dark-theme .ipfs-history-cid-box {
+  background: #0d1117;
+  border-color: #21262d;
+  color: #8b949e;
+}
+
+/* Segment customization for clean look */
+.ipfs-cloud-modal ion-segment {
+  --background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.dark-theme .ipfs-cloud-modal ion-segment {
+  --background: #161b22;
+}
+
+.ipfs-cloud-modal ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+.dark-theme .ipfs-cloud-modal ion-toolbar {
+  --background: #161b22;
+  --color: #f0f6fc;
+}
+
+.ipfs-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.ipfs-input-toggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  z-index: 5;
+}
+
+.dark-theme .ipfs-input-toggle {
+  color: #8b949e;
+}

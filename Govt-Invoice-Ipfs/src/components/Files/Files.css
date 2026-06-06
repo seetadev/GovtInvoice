@@ -1,0 +1,1063 @@
+/* File Manager Header Styling - mobile optimized */
+.files-modal-header {
+  background: linear-gradient(135deg,
+      var(--ion-color-primary),
+      var(--ion-color-primary-shade));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --min-height: 48px;
+}
+
+.files-modal-header ion-toolbar {
+  --background: transparent;
+  --border-color: transparent;
+  --min-height: 48px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+}
+
+.files-modal-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.files-close-button {
+  --background: #dc3545;
+  --background-hover: #c82333;
+  --background-activated: #bd2130;
+  --color: white;
+  --border-radius: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  margin-right: 8px;
+}
+
+/* Enhanced Segment Styling - mobile optimized */
+.files-modal-content ion-segment {
+  --background: #f8f9fa;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
+}
+
+.files-modal-content ion-segment-button {
+  --background-checked: var(--ion-color-primary);
+  --color-checked: white;
+  --border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  transition: all 0.2s ease;
+}
+
+/* Search Bar Styling */
+.files-modal-content ion-searchbar {
+  --background: #f8f9fa;
+  --border-radius: 12px;
+  --box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  --placeholder-color: var(--ion-color-medium);
+  --color: var(--ion-color-dark);
+  --icon-color: var(--ion-color-medium);
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+}
+
+.files-modal-content ion-searchbar:focus-within {
+  --background: white;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal scrollable files container - updated for mobile */
+.files-scrollable-container {
+
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+/* Enhanced modal padding - reduced for mobile */
+.files-modal-content {
+  padding: 8px;
+}
+
+/* Mobile-friendly file list container */
+.files-scrollable-container {
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+/* Custom scrollbar for better UX */
+.files-scrollable-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.files-scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.files-scrollable-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.files-scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* File Icon Styling - bigger for better visibility */
+.file-icon {
+  margin-right: 6px;
+  font-size: 1.5rem;
+  color: var(--ion-color-medium);
+  min-width: 28px;
+}
+
+/* Mobile-friendly file items */
+.mobile-file-item {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  --min-height: 48px;
+  cursor: pointer;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+  --background: transparent;
+  background-color: transparent;
+}
+
+.mobile-file-item:hover {
+  --background: rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-file-item:active {
+  --background: rgba(var(--ion-color-primary-rgb), 0.1) !important;
+  background-color: rgba(var(--ion-color-primary-rgb), 0.1) !important;
+  transform: translateY(0);
+}
+
+/* Compact label styling for mobile */
+.mobile-file-label h3 {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  margin-bottom: 2px !important;
+  line-height: 1.2 !important;
+}
+
+.mobile-file-label p {
+  font-size: 0.75rem !important;
+  margin: 0 !important;
+  opacity: 0.7 !important;
+  line-height: 1.1 !important;
+}
+
+/* Compact badges for mobile */
+.mobile-badge {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  margin-left: auto;
+}
+
+/* Smaller template chips */
+.template-chip {
+  font-size: 0.6rem !important;
+  height: 20px !important;
+  --padding-start: 1px !important;
+  --padding-end: 1px !important;
+  --padding-top: 2px !important;
+  --padding-bottom: 2px !important;
+  min-height: 20px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.template-chip ion-label {
+  font-size: 0.6rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.template-chip ion-icon {
+  font-size: 0.6rem !important;
+  margin-right: 2px !important;
+  margin-left: 0 !important;
+}
+
+/* Smaller font size for specific segment buttons */
+.smaller-segment-text ion-segment-button {
+  font-size: 0.75rem !important;
+}
+
+.smaller-segment-text ion-segment-button ion-label {
+  font-size: 0.75rem !important;
+}
+
+/* Date header styling - more compact */
+.date-header-item {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  --min-height: 32px;
+}
+
+.date-header-text {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+.file-icon.document-icon {
+  color: #007bff;
+}
+
+
+
+.file-icon.encrypted-icon {
+  color: #ffc107;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Dark Theme Overrides */
+.dark-theme .files-modal-header {
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme .files-modal-header ion-toolbar {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+  background: #161b22 !important;
+}
+
+.dark-theme .files-modal-title {
+  color: #f0f6fc !important;
+  text-shadow: none !important;
+}
+
+/* Dark mode page header fix */
+.dark-theme ion-header {
+  background: #161b22 !important;
+}
+
+.dark-theme ion-header ion-toolbar {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  background: #161b22 !important;
+}
+
+/* Dark Mode Segment Styling */
+.dark-theme .files-modal-content ion-segment {
+  --background: #21262d !important;
+  border: 1px solid #30363d;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .files-modal-content ion-segment-button {
+  --background: transparent !important;
+  --background-checked: #238636 !important;
+  --color: #f0f6fc !important;
+  --color-checked: #ffffff !important;
+  --border-color: #30363d;
+}
+
+.dark-theme .files-modal-content ion-segment-button ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme .files-modal-content ion-segment-button.segment-button-checked ion-label {
+  color: #ffffff !important;
+}
+
+/* Dark theme support for smaller segment text */
+.dark-theme .smaller-segment-text ion-segment-button ion-label {
+  color: #f0f6fc !important;
+  font-size: 0.75rem !important;
+}
+
+.dark-theme .smaller-segment-text ion-segment-button.segment-button-checked ion-label {
+  color: #ffffff !important;
+  font-size: 0.75rem !important;
+}
+
+/* Dark Mode Content Background */
+.dark-theme .files-modal-content {
+  background: #0d1117;
+}
+
+.dark-theme .files-scrollable-container {
+  background: #0d1117;
+}
+
+/* Dark Mode Scrollbar */
+.dark-theme .files-scrollable-container::-webkit-scrollbar-track {
+  background: #161b22;
+}
+
+.dark-theme .files-scrollable-container::-webkit-scrollbar-thumb {
+  background: #30363d;
+}
+
+.dark-theme .files-scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Dark Mode List Items */
+.dark-theme ion-list {
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-item,
+.dark-theme .mobile-file-item {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+  background: #21262d !important;
+  background-color: #21262d !important;
+  color: #f0f6fc !important;
+  border-bottom: 1px solid #30363d !important;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+.dark-theme ion-item:hover,
+.dark-theme .mobile-file-item:hover {
+  --background: #30363d !important;
+  background: #30363d !important;
+  background-color: #30363d !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .mobile-file-item:active {
+  --background: rgba(88, 166, 255, 0.1) !important;
+  background-color: rgba(88, 166, 255, 0.1) !important;
+  transform: translateY(0);
+}
+
+.dark-theme ion-label,
+.dark-theme .mobile-file-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-label h2,
+.dark-theme ion-label h3,
+.dark-theme ion-label p,
+.dark-theme .mobile-file-label h3,
+.dark-theme .mobile-file-label p {
+  color: #f0f6fc !important;
+}
+
+.dark-theme .date-header-item {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+}
+
+.dark-theme .date-header-text {
+  color: #58a6ff !important;
+}
+
+/* Dark mode badges */
+.dark-theme ion-badge {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+  background: #238636 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme ion-badge[color="secondary"] {
+  --background: #6c757d !important;
+  background: #6c757d !important;
+}
+
+.dark-theme ion-badge[color="primary"] {
+  --background: #58a6ff !important;
+  background: #58a6ff !important;
+}
+
+.dark-theme ion-badge[color="tertiary"] {
+  --background: #6f42c1 !important;
+  background: #6f42c1 !important;
+}
+
+/* Dark Mode Cards */
+.dark-theme ion-card {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  border: 1px solid #30363d;
+}
+
+.dark-theme ion-card-header {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-card-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-card-content {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+}
+
+/* Dark Mode Input Styling */
+.dark-theme ion-input {
+  --background: #21262d;
+  --color: #f0f6fc;
+  --placeholder-color: #8b949e;
+  border: 1px solid #30363d;
+}
+
+/* Dark Mode Icons */
+.dark-theme .file-icon {
+  color: #8b949e;
+}
+
+.dark-theme .file-icon.document-icon {
+  color: #58a6ff;
+}
+
+
+
+.dark-theme .file-icon.encrypted-icon {
+  color: #ff9800;
+  animation: pulse 2s infinite;
+}
+
+/* Light Theme Files Component (Explicit) */
+.light-theme .files-modal-header,
+:root .files-modal-header {
+  background: linear-gradient(135deg,
+      var(--ion-color-primary),
+      var(--ion-color-primary-shade));
+}
+
+.light-theme .files-modal-header ion-toolbar,
+:root .files-modal-header ion-toolbar {
+  --background: transparent !important;
+  --color: #ffffff !important;
+  --border-color: transparent !important;
+}
+
+.light-theme .files-modal-title,
+:root .files-modal-title {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Segment Styling */
+.light-theme .files-modal-content ion-segment,
+:root .files-modal-content ion-segment {
+  --background: #f8f9fa !important;
+  border: 1px solid #e1e4e8;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .files-modal-content ion-segment-button,
+:root .files-modal-content ion-segment-button {
+  --background: transparent !important;
+  --background-checked: var(--ion-color-primary) !important;
+  --color: #24292f !important;
+  --color-checked: #ffffff !important;
+  --border-color: #e1e4e8;
+}
+
+.light-theme .files-modal-content ion-segment-button ion-label,
+:root .files-modal-content ion-segment-button ion-label {
+  color: #24292f !important;
+}
+
+.light-theme .files-modal-content ion-segment-button.segment-button-checked ion-label,
+:root .files-modal-content ion-segment-button.segment-button-checked ion-label {
+  color: #ffffff !important;
+}
+
+/* Light Mode Content Background */
+.light-theme .files-modal-content,
+:root .files-modal-content {
+  background: #ffffff;
+}
+
+.light-theme .files-scrollable-container,
+:root .files-scrollable-container {
+  background: #ffffff;
+}
+
+/* Light Mode Scrollbar */
+.light-theme .files-scrollable-container::-webkit-scrollbar-track,
+:root .files-scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.light-theme .files-scrollable-container::-webkit-scrollbar-thumb,
+:root .files-scrollable-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.light-theme .files-scrollable-container::-webkit-scrollbar-thumb:hover,
+:root .files-scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Light Mode List Items */
+.light-theme ion-list,
+:root ion-list {
+  background: transparent !important;
+}
+
+.light-theme ion-item,
+:root ion-item {
+  --background: transparent !important;
+  --color: #24292f !important;
+  --border-color: #e1e4e8;
+}
+
+.light-theme ion-label,
+:root ion-label {
+  color: #24292f !important;
+}
+
+.light-theme ion-label h2,
+.light-theme ion-label h3,
+.light-theme ion-label p,
+:root ion-label h2,
+:root ion-label h3,
+:root ion-label p {
+  color: #24292f !important;
+}
+
+/* Light Mode Cards */
+.light-theme ion-card,
+:root ion-card {
+  --background: #ffffff !important;
+  --color: #24292f !important;
+  border: 1px solid #e1e4e8;
+}
+
+.light-theme ion-card-header,
+:root ion-card-header {
+  --background: #f6f8fa !important;
+  --color: #24292f !important;
+}
+
+.light-theme ion-card-title,
+:root ion-card-title {
+  color: #24292f !important;
+}
+
+.light-theme ion-card-content,
+:root ion-card-content {
+  --background: #ffffff !important;
+  --color: #24292f !important;
+}
+
+/* Legacy styles - keeping for compatibility */
+.file ul {
+  list-style: none;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.file li {
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 0.1rem solid #e1e1e1;
+  padding: 2px 2px;
+  text-align: left;
+}
+
+.file span {
+  font-size: 12px;
+  color: #9b4dca;
+  margin-right: 20px;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+  .files-modal-title {
+    font-size: 1rem;
+  }
+
+  .files-modal-content {
+    padding: 4px;
+  }
+
+  .files-scrollable-container {
+    padding: 0 4px;
+  }
+
+  .mobile-file-item {
+    --padding-start: 6px;
+    --padding-end: 6px;
+    --min-height: 44px;
+  }
+
+  .mobile-file-label h3 {
+    font-size: 0.85rem !important;
+  }
+
+  .mobile-file-label p {
+    font-size: 0.7rem !important;
+  }
+
+  .mobile-badge {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+
+  .date-header-text {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Touch improvements for mobile */
+.mobile-file-item {
+  -webkit-tap-highlight-color: rgba(var(--ion-color-primary-rgb), 0.2);
+  touch-action: manipulation;
+}
+
+.mobile-file-item:hover {
+  --background: rgba(var(--ion-color-primary-rgb), 0.05);
+}
+
+/* Icon touch targets */
+ion-icon[slot="end"] {
+  padding: 8px;
+  margin: -8px;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Improved spacing for action icons */
+.mobile-file-item ion-icon[slot="end"]:last-child {
+  margin-left: 4px;
+}
+
+/* Dark theme adjustments */
+.dark-theme .files-modal-content ion-segment,
+.dark-theme .files-modal-content .smaller-segment-text {
+  --background: #181c20 !important;
+  background: #181c20 !important;
+  border: 1px solid #30363d;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme search bar styling */
+.dark-theme .files-modal-content ion-searchbar {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --placeholder-color: #7d8590 !important;
+  --icon-color: #7d8590 !important;
+  --box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-theme .files-modal-content ion-searchbar:focus-within {
+  --background: #30363d !important;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-theme .files-modal-content {
+  background: #0d1117;
+}
+
+/* Template Creation Section - mobile optimized */
+.template-creation-section {
+  padding: 16px;
+  background-color: var(--ion-color-light, #f8f9fa);
+  border-bottom: 1px solid var(--ion-color-light-shade, #e9ecef);
+}
+
+.template-creation-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: var(--ion-color-dark);
+  text-align: center;
+  font-weight: 500;
+}
+
+.template-options-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.template-option-card {
+  background-color: white;
+  border: 1px solid var(--ion-color-medium-tint);
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: center;
+  cursor: pointer;
+  min-width: 100px;
+  flex: 1;
+  max-width: 140px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.dark-theme .template-option-card {
+  background: #0d1117;
+}
+
+.template-option-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-color: var(--ion-color-primary);
+}
+
+.template-option-card:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.template-option-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.template-option-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ion-color-dark);
+  line-height: 1.2;
+}
+
+/* Custom Tab Styling - mobile friendly */
+.custom-tabs-container {
+  padding: 16px 16px 0 16px;
+  background-color: white;
+}
+
+.dark-theme .custom-tabs-container {
+  background: #0d1117;
+}
+
+.custom-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--ion-color-light-shade, #e9ecef);
+  margin-bottom: 16px;
+}
+
+.custom-tab-button {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+.custom-tab-button.active {
+  color: var(--ion-color-primary);
+  border-bottom-color: var(--ion-color-primary);
+}
+
+.custom-tab-button:not(.active) {
+  color: var(--ion-color-medium);
+}
+
+.custom-tab-button:hover:not(.active) {
+  color: var(--ion-color-step-600);
+  background-color: var(--ion-color-light, rgba(0, 0, 0, 0.04));
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .template-options-container {
+    gap: 6px;
+  }
+
+  .template-option-card {
+    min-width: 90px;
+    max-width: 120px;
+    padding: 10px 12px;
+  }
+
+  .template-option-icon {
+    font-size: 20px;
+  }
+
+  .template-option-text {
+    font-size: 11px;
+  }
+
+  .custom-tab-button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .files-modal-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .template-creation-section {
+    padding: 12px;
+  }
+
+  .template-option-card {
+    min-width: 80px;
+    max-width: 110px;
+    padding: 8px 10px;
+  }
+
+  .template-option-icon {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .template-option-text {
+    font-size: 10px;
+  }
+
+  .custom-tabs-container {
+    padding: 12px 12px 0 12px;
+  }
+
+  .custom-tab-button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+/* File Card Styling - Horizontal Rectangle Layout */
+.file-card {
+  margin: 8px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.file-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.file-card-content {
+  padding: 12px 16px;
+}
+
+.file-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.file-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.15), rgba(var(--ion-color-primary-rgb), 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.file-icon-card {
+  font-size: 24px;
+  color: var(--ion-color-primary);
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ion-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.file-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.file-invoice-id {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ion-color-medium);
+}
+
+.file-total {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ion-color-success);
+}
+
+.file-date {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ion-color-medium);
+}
+
+.file-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.file-action-btn {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  margin: 0;
+  height: 36px;
+  width: 36px;
+}
+
+.file-action-btn ion-icon {
+  font-size: 18px;
+}
+
+/* Status chip styling */
+.file-status-chip {
+  height: 22px;
+  font-size: 11px;
+  margin: 0;
+  padding: 0 8px;
+}
+
+/* Dark Mode Support */
+.dark-theme .file-card {
+  background: #1e1e1e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-theme .file-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .file-icon-wrapper {
+  background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.25), rgba(var(--ion-color-primary-rgb), 0.15));
+}
+
+/* Grid Container */
+.files-grid-container {
+  padding-bottom: 20px;
+}
+
+.date-group {
+  margin-bottom: 24px;
+}
+
+.date-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+  margin: 0 0 12px 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark-theme .date-header {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .file-card-content {
+    padding: 10px 12px;
+  }
+
+  .file-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .file-icon-card {
+    font-size: 20px;
+  }
+
+  .file-card-header {
+    gap: 12px;
+  }
+
+  .file-name {
+    font-size: 0.9rem;
+  }
+
+  .file-action-btn {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+/* Grid Container */
+.files-grid-container {
+  padding-bottom: 20px;
+}
+
+.date-group {
+  margin-bottom: 24px;
+}
+
+.date-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+  margin: 0 0 12px 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark-theme .date-header {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}

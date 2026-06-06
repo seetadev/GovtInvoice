@@ -1,0 +1,12 @@
+.env
+node_modules
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.git
+*.log
+.DS_Store
+dev-dist
+android
+ios

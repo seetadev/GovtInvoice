@@ -1,0 +1,945 @@
+/* Mobile Tab Bar Styling */
+ion-tab-bar {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-medium);
+  --color-selected: var(--ion-color-primary);
+  height: 60px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-tab-button {
+  --color: var(--ion-color-medium);
+  --color-selected: var(--ion-color-primary);
+  --background-focused: transparent;
+  --ripple-color: var(--ion-color-primary-tint);
+  padding: 8px 0;
+  transition: all 0.2s ease;
+}
+
+ion-tab-button:hover {
+  --color: var(--ion-color-primary-tint);
+}
+
+ion-tab-button.tab-selected {
+  --color: var(--ion-color-primary);
+  --background: rgba(var(--ion-color-primary-rgb), 0.1);
+}
+
+ion-tab-button ion-icon {
+  font-size: 22px;
+  margin-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+ion-tab-button.tab-selected ion-icon {
+  transform: scale(1.1);
+}
+
+ion-tab-button ion-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.3px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  ion-tab-bar {
+    height: 65px;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  ion-tab-button {
+    padding: 6px 0;
+  }
+
+  ion-tab-button ion-icon {
+    font-size: 20px;
+  }
+
+  ion-tab-button ion-label {
+    font-size: 11px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  ion-tab-bar {
+    height: 60px;
+  }
+
+  ion-tab-button ion-icon {
+    font-size: 18px;
+  }
+
+  ion-tab-button ion-label {
+    font-size: 10px;
+  }
+}
+
+/* Tab content area adjustments */
+ion-router-outlet {
+  padding-bottom: 0;
+}
+
+/* Ensure content doesn't overlap with tab bar */
+ion-content {
+  --padding-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  ion-content {
+    --padding-bottom: 65px;
+  }
+}
+
+/* Active tab indicator */
+/* ion-tab-button.tab-selected::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: var(--ion-color-primary);
+  border-radius: 0 0 3px 3px;
+} */
+
+/* Tab button press effect */
+ion-tab-button:active {
+  transform: scale(0.95);
+}
+
+
+
+
+
+/* 
+/* Global Light Theme Styles */
+.light-theme,
+:root {
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+  --ion-color-step-50: #f7f7f7;
+  --ion-color-step-100: #f1f1f1;
+  --ion-color-step-150: #ebebeb;
+  --ion-color-step-200: #e1e1e1;
+}
+
+.light-theme ion-tab-bar {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-medium);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-theme ion-tab-button {
+  --color: var(--ion-color-medium);
+  --color-selected: var(--ion-color-primary);
+}
+
+.light-theme ion-tab-button.tab-selected {
+  --color: var(--ion-color-primary);
+}
+
+.light-theme ion-router-outlet {
+  background: #ffffff;
+}
+
+.light-theme ion-modal {
+  --background: #ffffff;
+  --color: #000000;
+}
+
+.light-theme ion-modal ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+  --border-color: var(--ion-color-primary-shade);
+}
+
+.light-theme ion-loading {
+  --background: #ffffff;
+  --color: #000000;
+  --spinner-color: var(--ion-color-primary);
+}
+
+.light-theme ion-actionsheet {
+  --background: #ffffff;
+  --color: #000000;
+}
+
+.light-theme ion-actionsheet .action-sheet-button {
+  --background: transparent;
+  --color: #000000;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.light-theme ion-actionsheet .action-sheet-button:hover {
+  --background: #f7f7f7;
+}
+
+.light-theme ion-actionsheet .action-sheet-cancel {
+  --background: #f7f7f7;
+  --color: #000000;
+}
+
+
+
+.dark-theme ion-header ion-toolbar {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-item {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-tab-bar {
+  --background: #161b22;
+  --color: #f0f6fc;
+  border-top: 1px solid #30363d;
+}
+
+.dark-theme ion-tab-button {
+  --color: #f0f6fc;
+  --color-selected: #58a6ff;
+}
+
+.dark-theme ion-tab-button.tab-selected {
+  --color: #58a6ff;
+  --background: rgba(88, 166, 255, 0.1);
+}
+
+.dark-theme ion-tab-button ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-tab-button.tab-selected ion-label {
+  color: #58a6ff !important;
+}
+
+.dark-theme ion-router-outlet {
+  background: #0d1117;
+}
+
+/* Smooth transitions for theme switching */
+/* * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+} */
+
+/* Dark Mode Subscription Component Fixes */
+.dark-theme ion-modal {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-modal ion-content {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-card {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+}
+
+.dark-theme ion-card-header {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme ion-card-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-card-content {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+}
+
+.dark-theme ion-grid {
+  background: transparent !important;
+}
+
+.dark-theme ion-row {
+  background: transparent !important;
+}
+
+.dark-theme ion-col {
+  background: transparent !important;
+}
+
+/* Dark mode text elements */
+.dark-theme ion-text {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-text h2,
+.dark-theme ion-text h3,
+.dark-theme ion-text h4,
+.dark-theme ion-text p {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-text[color="medium"] {
+  color: #8b949e !important;
+}
+
+.dark-theme ion-text[color="success"] {
+  color: #3fb950 !important;
+}
+
+.dark-theme ion-text[color="warning"] {
+  color: #d29922 !important;
+}
+
+.dark-theme ion-text[color="danger"] {
+  color: #f85149 !important;
+}
+
+/* Dark mode chips */
+.dark-theme ion-chip {
+  --background: #30363d !important;
+  --color: #f0f6fc !important;
+  background: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-chip[color="success"] {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+  background: #238636 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme ion-chip[color="warning"] {
+  --background: #d29922 !important;
+  --color: #000000 !important;
+  background: #d29922 !important;
+  color: #000000 !important;
+}
+
+/* Dark mode progress bar */
+.dark-theme ion-progress-bar {
+  --background: #30363d !important;
+  --progress-background: #58a6ff !important;
+}
+
+/* Dark mode buttons */
+.dark-theme ion-button {
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-button[color="primary"] {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+}
+
+.dark-theme ion-button[color="warning"] {
+  --background: #d29922 !important;
+  --color: #000000 !important;
+}
+
+.dark-theme ion-button[fill="outline"] {
+  --border-color: #30363d !important;
+  --color: #f0f6fc !important;
+}
+
+/* Dark mode loading */
+.dark-theme ion-loading {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --spinner-color: #58a6ff !important;
+}
+
+/* Ensure all text in dark theme is visible */
+.dark-theme * {
+  color: #f0f6fc !important;
+}
+
+/* Override for specific elements that should keep their colors */
+.dark-theme ion-icon[color="success"] {
+  color: #3fb950 !important;
+}
+
+.dark-theme ion-icon[color="warning"] {
+  color: #d29922 !important;
+}
+
+.dark-theme ion-icon[color="danger"] {
+  color: #f85149 !important;
+}
+
+.dark-theme ion-icon[color="primary"] {
+  color: #58a6ff !important;
+}
+
+.dark-theme ion-icon[color="medium"] {
+  color: #8b949e !important;
+}
+
+/* Mobile-friendly header styling */
+ion-header {
+  --min-height: 44px;
+}
+
+ion-toolbar {
+  --min-height: 44px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Mobile responsive header adjustments */
+@media (max-width: 768px) {
+  ion-header {
+    --min-height: 40px;
+  }
+
+  ion-toolbar {
+    --min-height: 40px;
+    --padding-top: 2px;
+    --padding-bottom: 2px;
+  }
+
+  ion-title {
+    font-size: 16px;
+  }
+
+  ion-back-button,
+  ion-menu-button,
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  ion-header {
+    --min-height: 36px;
+  }
+
+  ion-toolbar {
+    --min-height: 36px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+
+  ion-title {
+    font-size: 15px;
+  }
+}
+
+.dark-theme ion-content {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-header ion-toolbar {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-item {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-tab-bar {
+  --background: #161b22;
+  --color: #f0f6fc;
+  border-top: 1px solid #30363d;
+}
+
+.dark-theme ion-tab-button {
+  --color: #f0f6fc;
+  --color-selected: #58a6ff;
+}
+
+.dark-theme ion-tab-button.tab-selected {
+  --color: #58a6ff;
+  --background: rgba(88, 166, 255, 0.1);
+}
+
+.dark-theme ion-tab-button ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-tab-button.tab-selected ion-label {
+  color: #58a6ff !important;
+}
+
+.dark-theme ion-router-outlet {
+  background: #0d1117;
+}
+
+/* Smooth transitions for theme switching */
+/* * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+} */
+
+/* Dark Mode Subscription Component Fixes */
+.dark-theme ion-modal {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-modal ion-content {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-card {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+}
+
+.dark-theme ion-card-header {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme ion-card-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-card-content {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+}
+
+.dark-theme ion-grid {
+  background: transparent !important;
+}
+
+.dark-theme ion-row {
+  background: transparent !important;
+}
+
+.dark-theme ion-col {
+  background: transparent !important;
+}
+
+/* Dark mode text elements */
+.dark-theme ion-text {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-text h2,
+.dark-theme ion-text h3,
+.dark-theme ion-text h4,
+.dark-theme ion-text p {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-text[color="medium"] {
+  color: #8b949e !important;
+}
+
+.dark-theme ion-text[color="success"] {
+  color: #3fb950 !important;
+}
+
+.dark-theme ion-text[color="warning"] {
+  color: #d29922 !important;
+}
+
+.dark-theme ion-text[color="danger"] {
+  color: #f85149 !important;
+}
+
+/* Dark mode chips */
+.dark-theme ion-chip {
+  --background: #30363d !important;
+  --color: #f0f6fc !important;
+  background: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-chip[color="success"] {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+  background: #238636 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme ion-chip[color="warning"] {
+  --background: #d29922 !important;
+  --color: #000000 !important;
+  background: #d29922 !important;
+  color: #000000 !important;
+}
+
+/* Dark mode progress bar */
+.dark-theme ion-progress-bar {
+  --background: #30363d !important;
+  --progress-background: #58a6ff !important;
+}
+
+/* Dark mode buttons */
+.dark-theme ion-button {
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-button[color="primary"] {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+}
+
+.dark-theme ion-button[color="warning"] {
+  --background: #d29922 !important;
+  --color: #000000 !important;
+}
+
+.dark-theme ion-button[fill="outline"] {
+  --border-color: #30363d !important;
+  --color: #f0f6fc !important;
+}
+
+/* Dark mode loading */
+.dark-theme ion-loading {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --spinner-color: #58a6ff !important;
+}
+
+/* Ensure all text in dark theme is visible */
+.dark-theme * {
+  color: #f0f6fc !important;
+}
+
+/* Override for specific elements that should keep their colors */
+.dark-theme ion-icon[color="success"] {
+  color: #3fb950 !important;
+}
+
+.dark-theme ion-icon[color="warning"] {
+  color: #d29922 !important;
+}
+
+.dark-theme ion-icon[color="danger"] {
+  color: #f85149 !important;
+}
+
+.dark-theme ion-icon[color="primary"] {
+  color: #58a6ff !important;
+}
+
+.dark-theme ion-icon[color="medium"] {
+  color: #8b949e !important;
+}
+
+/* Mobile-friendly header styling */
+ion-header {
+  --min-height: 44px;
+}
+
+ion-toolbar {
+  --min-height: 44px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Mobile responsive header adjustments */
+@media (max-width: 768px) {
+  ion-header {
+    --min-height: 40px;
+  }
+
+  ion-toolbar {
+    --min-height: 40px;
+    --padding-top: 2px;
+    --padding-bottom: 2px;
+  }
+
+  ion-title {
+    font-size: 16px;
+  }
+
+  ion-back-button,
+  ion-menu-button,
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  ion-header {
+    --min-height: 36px;
+  }
+
+  ion-toolbar {
+    --min-height: 36px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+
+  ion-title {
+    font-size: 15px;
+  }
+}
+
+.dark-theme ion-content {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-header ion-toolbar {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-item {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --border-color: #30363d !important;
+}
+
+.dark-theme ion-tab-bar {
+  --background: #161b22;
+  --color: #f0f6fc;
+  border-top: 1px solid #30363d;
+}
+
+.dark-theme ion-tab-button {
+  --color: #f0f6fc;
+  --color-selected: #58a6ff;
+}
+
+.dark-theme ion-tab-button.tab-selected {
+  --color: #58a6ff;
+  --background: rgba(88, 166, 255, 0.1);
+}
+
+.dark-theme ion-tab-button ion-label {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-tab-button.tab-selected ion-label {
+  color: #58a6ff !important;
+}
+
+.dark-theme ion-router-outlet {
+  background: #0d1117;
+}
+
+/* Smooth transitions for theme switching */
+/* * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+} */
+
+/* Dark Mode Subscription Component Fixes */
+.dark-theme ion-modal {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-modal ion-content {
+  --background: #0d1117 !important;
+  --color: #f0f6fc !important;
+  background: #0d1117 !important;
+}
+
+.dark-theme ion-card {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+}
+
+.dark-theme ion-card-header {
+  --background: #161b22 !important;
+  --color: #f0f6fc !important;
+  background: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+.dark-theme ion-card-title {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-card-content {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  background: #21262d !important;
+}
+
+.dark-theme ion-grid {
+  background: transparent !important;
+}
+
+.dark-theme ion-row {
+  background: transparent !important;
+}
+
+.dark-theme ion-col {
+  background: transparent !important;
+}
+
+/* Dark mode text elements */
+.dark-theme ion-text {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-text h2,
+.dark-theme ion-text h3,
+.dark-theme ion-text h4,
+.dark-theme ion-text p {
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-text[color="medium"] {
+  color: #8b949e !important;
+}
+
+.dark-theme ion-text[color="success"] {
+  color: #3fb950 !important;
+}
+
+.dark-theme ion-text[color="warning"] {
+  color: #d29922 !important;
+}
+
+.dark-theme ion-text[color="danger"] {
+  color: #f85149 !important;
+}
+
+/* Dark mode chips */
+.dark-theme ion-chip {
+  --background: #30363d !important;
+  --color: #f0f6fc !important;
+  background: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+.dark-theme ion-chip[color="success"] {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+  background: #238636 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme ion-chip[color="warning"] {
+  --background: #d29922 !important;
+  --color: #000000 !important;
+  background: #d29922 !important;
+  color: #000000 !important;
+}
+
+/* Dark mode progress bar */
+.dark-theme ion-progress-bar {
+  --background: #30363d !important;
+  --progress-background: #58a6ff !important;
+}
+
+/* Dark mode buttons */
+.dark-theme ion-button {
+  --color: #f0f6fc !important;
+}
+
+.dark-theme ion-button[color="primary"] {
+  --background: #238636 !important;
+  --color: #ffffff !important;
+}
+
+.dark-theme ion-button[color="warning"] {
+  --background: #d29922 !important;
+  --color: #000000 !important;
+}
+
+.dark-theme ion-button[fill="outline"] {
+  --border-color: #30363d !important;
+  --color: #f0f6fc !important;
+}
+
+/* Dark mode loading */
+.dark-theme ion-loading {
+  --background: #21262d !important;
+  --color: #f0f6fc !important;
+  --spinner-color: #58a6ff !important;
+}
+
+/* Ensure all text in dark theme is visible */
+.dark-theme * {
+  color: #f0f6fc !important;
+}
+
+/* Override for specific elements that should keep their colors */
+.dark-theme ion-icon[color="success"] {
+  color: #3fb950 !important;
+}
+
+.dark-theme ion-icon[color="warning"] {
+  color: #d29922 !important;
+}
+
+.dark-theme ion-icon[color="danger"] {
+  color: #f85149 !important;
+}
+
+.dark-theme ion-icon[color="primary"] {
+  color: #58a6ff !important;
+}
+
+.dark-theme ion-icon[color="medium"] {
+  color: #8b949e !important;
+}

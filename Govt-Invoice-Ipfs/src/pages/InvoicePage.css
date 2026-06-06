@@ -1,0 +1,697 @@
+#container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* .invoice-header-abc { */
+/* height: calc(56px + max(env(safe-area-inset-top, 0px), 24px)); */
+/* } */
+
+/* .invoice-toolbar { */
+/* padding-top: env(safe-area-inset-top); */
+/* padding-top: 60px; */
+/* } */
+
+#workbookControl,
+#tableeditor,
+#msg {
+  max-width: 100vw;
+}
+
+#tableeditor {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Edge-to-edge safe area for IonHeader - Handled in InvoicePage.tsx via inline styles now */
+/* Keeping this as fallback but using the variable method is preferred for IonToolbar */
+/* ion-header ion-toolbar:first-of-type {
+  --padding-top: max(env(safe-area-inset-top, 0px), 24px);
+} */
+
+/* Remove bottom padding from Home page content */
+ion-page ion-content {
+  --padding-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* Ensure invoice page fills available space properly */
+.invoice-page {
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+}
+
+/* Ensure invoice page content doesn't add extra space */
+.invoice-page ion-content {
+  --padding-bottom: 0px !important;
+  padding-bottom: 0px !important;
+  --padding-top: 0px !important;
+  flex: 1;
+  min-height: 0;
+}
+
+/* SocialCalc specific fixes - consolidated */
+#te_griddiv {
+  position: relative !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Force SocialCalc container to not have extra bottom space */
+.SocialCalc-spreadsheet {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Ensure the spreadsheet control fills available space properly */
+#tableeditor>div {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+
+
+
+
+
+/* Header button and icon styles */
+
+
+
+
+
+
+/* Enhanced Med Token Balance Styling */
+.med-token-balance {
+  margin-right: 8px;
+  font-size: 0.85rem;
+  height: 32px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.med-token-balance:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.med-token-balance ion-icon {
+  margin-right: 4px;
+}
+
+.med-token-balance ion-label {
+  font-weight: 600;
+}
+
+/* Editing Title Styling */
+.editing-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ion-color-light);
+  margin-left: 16px;
+  letter-spacing: 0.3px;
+}
+
+.editing-title ion-icon {
+  color: var(--ion-color-warning);
+  margin-right: 8px;
+}
+
+.editing-title ion-button {
+  --color: var(--ion-color-warning);
+  --color-hover: var(--ion-color-warning-tint);
+  margin-right: 4px;
+}
+
+
+
+/* Spinning animation for auto-save icon */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Save button styling in header */
+.editing-title {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Enhanced Toolbar Icons */
+ion-toolbar ion-buttons ion-icon {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+ion-toolbar ion-buttons ion-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+
+
+/* Info Button Special Styling */
+ion-button[title="Keyboard Shortcuts"] {
+  --color: var(--ion-color-light);
+}
+
+ion-button[title="Keyboard Shortcuts"]:hover {
+  --color: var(--ion-color-warning);
+}
+
+/* Keyboard Shortcuts Popover Styling */
+.keyboard-shortcuts-popover ion-card {
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.keyboard-shortcuts-popover ion-card-content>div {
+  padding: 4px 0;
+}
+
+.keyboard-shortcuts-popover span {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+}
+
+.keyboard-shortcuts-popover ion-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Enhanced Fab Button Styling */
+ion-fab-button {
+  --color: white;
+  --background: var(--ion-color-primary);
+  --box-shadow: 0 4px 16px rgba(var(--ion-color-primary-rgb), 0.4);
+  transition: all 0.3s ease;
+}
+
+ion-fab-button:hover {
+  --box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.6);
+  transform: translateY(-2px);
+}
+
+/* Button Hover Effects */
+ion-button {
+  transition: all 0.2s ease;
+}
+
+ion-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Modal Backdrop Enhancement */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+/* Segment Button Enhancements */
+ion-segment-button {
+  transition: all 0.2s ease;
+}
+
+ion-segment-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Toast Enhancements */
+ion-toast {
+  --border-radius: 12px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* Color Picker Modal Styles */
+.color-picker-modal {
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
+  --width: 92vw;
+  --max-width: 360px;
+  --height: auto;
+  --max-height: 80vh;
+  --border-radius: 16px;
+}
+
+.color-picker-modal::part(content) {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Color picker content container */
+.color-picker-content {
+  padding: 20px;
+  background: var(--ion-background-color, #ffffff);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Color picker header */
+.color-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ion-border-color, #e0e0e0);
+}
+
+.color-picker-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ion-text-color, #333);
+}
+
+.color-picker-close-btn {
+  --color: var(--ion-text-color, #666);
+  margin: 0;
+}
+
+/* Color grid layout */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+  padding: 8px;
+}
+
+.color-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.color-grid-item:hover {
+  background-color: var(--ion-color-light, #f4f5f8);
+}
+
+.color-grid-item:active {
+  transform: scale(0.95);
+}
+
+/* Color circle swatch */
+.color-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.color-circle.active {
+  border-color: var(--ion-color-primary, #3880ff);
+  border-width: 3px;
+  box-shadow: 0 0 0 3px rgba(56, 128, 255, 0.3);
+}
+
+.color-circle-label {
+  font-size: 11px;
+  color: var(--ion-text-color, #666);
+  text-align: center;
+  max-width: 64px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+@media (max-width: 380px) {
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .color-circle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Color picker modal header styling */
+.color-picker-modal ion-header ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --color: var(--ion-toolbar-color);
+}
+
+/* Segment button styling for better visibility */
+.color-picker-modal ion-segment-button {
+  --background: var(--ion-item-background);
+  --background-checked: #3880ff;
+  --color: var(--ion-text-color);
+  --color-checked: #ffffff;
+  --border-color: var(--ion-border-color, #d0d7de);
+  --border-radius: 8px;
+  --indicator-color: #3880ff;
+  min-height: 44px;
+  margin: 0 4px;
+}
+
+
+
+/* Light mode segment buttons */
+.color-picker-modal ion-segment-button {
+  --background: #f4f5f8;
+  --background-checked: #3880ff;
+  --color: #000000;
+  --color-checked: #ffffff;
+  --border-color: #d0d7de;
+}
+
+.color-picker-modal ion-segment-button.segment-button-checked ion-label {
+  color: #ffffff;
+}
+
+/* Close button styling for better visibility */
+.color-picker-modal .close-button {
+  color: var(--ion-text-color) !important;
+  --color: var(--ion-text-color) !important;
+}
+
+
+
+/* Light mode close button */
+.color-picker-modal .close-button {
+  color: #000000 !important;
+  --color: #000000 !important;
+}
+
+/* Segment container styling */
+.color-picker-modal ion-segment {
+  background: var(--ion-item-background);
+  border-radius: 12px;
+  padding: 4px;
+  margin: 16px 0;
+}
+
+
+
+/* Light mode segment container */
+.color-picker-modal ion-segment {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+/* Item divider styling */
+.color-picker-modal ion-item-divider {
+  --background: var(--ion-item-background);
+  --color: var(--ion-text-color);
+  font-weight: 600;
+}
+
+
+
+/* Light mode item divider */
+.color-picker-modal ion-item-divider {
+  --background: #f4f5f8;
+  --color: #000000;
+}
+
+/* Color swatch hover effects */
+.color-swatch {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom color input styling */
+.color-picker-modal ion-input {
+  --background: var(--ion-item-background);
+  --color: var(--ion-text-color);
+  --border-color: var(--ion-border-color);
+}
+
+
+
+/* Light mode input */
+.color-picker-modal ion-input {
+  --background: #ffffff;
+  --color: #000000;
+  --border-color: #d0d7de;
+}
+
+/* Cell formatting buttons styles */
+#cell-formatting-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  max-width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+
+
+#cell-formatting-buttons .format-btn {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+
+
+#cell-formatting-buttons .format-btn:hover {
+  background: #f0f0f0;
+  border-color: #007bff;
+}
+
+
+
+#cell-formatting-buttons .format-btn:active,
+#cell-formatting-buttons .format-btn.selected {
+  border: 3px solid #007bff !important;
+  background: #e3f2fd;
+}
+
+
+
+#cell-formatting-buttons button[style*="background: black"] {
+  border: 2px solid #333 !important;
+}
+
+#cell-formatting-buttons button[style*="background: white"] {
+  border: 2px solid #ddd !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  #cell-formatting-buttons {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+    max-width: none;
+  }
+
+  #cell-formatting-buttons .format-btn {
+    min-width: 35px;
+    min-height: 35px;
+    padding: 6px;
+  }
+}
+
+/* Invoice Edit FAB Styling */
+ion-fab {
+  z-index: 99999;
+  position: fixed !important;
+  /* Safe area respecting margins - using max() to prevent excessive spacing */
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.custom-fab-trigger {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-tertiary) 100%);
+  box-shadow: 0 8px 20px rgba(var(--ion-color-primary-rgb), 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-fab-trigger::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.custom-fab-trigger:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(var(--ion-color-primary-rgb), 0.5);
+}
+
+.custom-fab-trigger:active {
+  transform: translateY(-2px) scale(0.95);
+  box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.4);
+}
+
+.custom-fab-trigger:hover::after {
+  opacity: 1;
+}
+
+.fab-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Remove default Ionic FAB Button styles if any leak through */
+ion-fab-button {
+  --background-focused: transparent;
+  --background-activated: transparent;
+  --background-hover: transparent;
+  --ripple-color: transparent;
+}
+
+ion-fab-button::part(native) {
+  background: var(--ion-color-primary);
+  box-shadow: 0 4px 16px rgba(var(--ion-color-primary-rgb), 0.3);
+}
+
+ion-fab ion-fab-button {
+  --box-shadow: 0 4px 16px rgba(var(--ion-color-primary-rgb), 0.3);
+  --border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  margin: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+ion-fab ion-fab-button:hover {
+  --box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+ion-fab ion-fab-button:active {
+  transform: translateY(0);
+  --box-shadow: 0 2px 8px rgba(var(--ion-color-primary-rgb), 0.3);
+}
+
+ion-fab ion-fab-button ion-icon {
+  font-size: 24px;
+}
+
+
+
+/* Mobile FAB adjustments */
+@media (max-width: 768px) {
+  ion-fab ion-fab-button ion-icon {
+    font-size: 20px;
+  }
+
+  ion-fab.custom-edit-fab {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+}
+
+/* Small screens - ensure FAB stays visible */
+@media (max-width: 576px) {
+  ion-fab.custom-edit-fab {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+}
+
+/* iPad and tablet specific styles to prevent overflow */
+@media (min-width: 577px) and (max-width: 1024px) {
+  ion-fab.custom-edit-fab {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+}
+
+/* Animation for FAB appearance */
+@keyframes fabFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+ion-fab.custom-edit-fab {
+  animation: fabFadeIn 0.3s ease-out;
+}
+
+/* Ensure FAB stays visible during scrolling */
+ion-content {
+  --overflow: auto;
+}
+
+/* Spin animation for auto-save indicator */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

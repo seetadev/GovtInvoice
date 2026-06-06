@@ -1,0 +1,487 @@
+name: Automated APK Release
+
+on:
+  pull_request:
+    types: [closed, labeled]
+    branches: [main]
+
+permissions:
+  contents: write # For pushing commits and tags
+  pull-requests: read # For reading PR information
+
+jobs:
+  check-release-trigger:
+    if: github.event.pull_request.merged == true || (github.event.action == 'labeled' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    outputs:
+      should-release: ${{ steps.check.outputs.should-release }}
+      version-bump: ${{ steps.check.outputs.version-bump }}
+      release-notes: ${{ steps.check.outputs.release-notes }}
+    steps:
+      - name: Check Release Trigger
+        id: check
+        run: |
+          # Check if PR has release label or [release] in title
+          LABELS="${{ join(github.event.pull_request.labels.*.name, ' ') }}"
+          TITLE="${{ github.event.pull_request.title }}"
+          PR_BODY="${{ github.event.pull_request.body }}"
+          ACTION="${{ github.event.action }}"
+
+          echo "Action: $ACTION"
+          echo "Checking labels: $LABELS"
+          echo "Checking title: $TITLE"
+          echo "PR merged: ${{ github.event.pull_request.merged }}"          # Determine version bump type from commit messages and PR title
+          VERSION_BUMP="patch"
+          if [[ "$TITLE" == *"[major]"* ]] || [[ "$TITLE" == *"BREAKING CHANGE"* ]]; then
+            VERSION_BUMP="major"
+          elif [[ "$TITLE" == *"[minor]"* ]] || [[ "$TITLE" == *"feat"* ]] || [[ "$TITLE" == *"feature"* ]]; then
+            VERSION_BUMP="minor"
+          fi
+
+          # Check if should release
+          SHOULD_RELEASE=false
+          if [[ "$LABELS" == *"release"* ]] || [[ "$TITLE" == *"[release]"* ]]; then
+            SHOULD_RELEASE=true
+          fi
+
+          # Special handling for label events - check if release label was just added
+          if [[ "$ACTION" == "labeled" ]]; then
+            ADDED_LABEL="${{ github.event.label.name }}"
+            echo "Label added: $ADDED_LABEL"
+            if [[ "$ADDED_LABEL" != "release" ]]; then
+              echo "Label '$ADDED_LABEL' is not a release trigger, skipping..."
+              SHOULD_RELEASE=false
+            fi
+          fi
+
+          # Prepare release notes from PR body
+          RELEASE_NOTES=$(echo "$PR_BODY" | head -n 20)
+
+          echo "should-release=$SHOULD_RELEASE" >> $GITHUB_OUTPUT
+          echo "version-bump=$VERSION_BUMP" >> $GITHUB_OUTPUT
+          echo "release-notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+  build-and-release:
+    needs: check-release-trigger
+    if: needs.check-release-trigger.outputs.should-release == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Extract Repository Name
+        id: repo-name
+        run: |
+          REPO_NAME="${{ github.repository }}"
+          REPO_NAME_ONLY="${REPO_NAME##*/}"
+          echo "full=$REPO_NAME" >> $GITHUB_OUTPUT
+          echo "name=$REPO_NAME_ONLY" >> $GITHUB_OUTPUT
+          echo "Repository: $REPO_NAME"
+          echo "App name: $REPO_NAME_ONLY"
+
+      - name: Check for Existing Release
+        id: check-existing
+        run: |
+          # Get current version first
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          BUMP_TYPE="${{ needs.check-release-trigger.outputs.version-bump }}"
+
+          # Parse current version
+          IFS='.' read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
+          MAJOR=${VERSION_PARTS[0]}
+          MINOR=${VERSION_PARTS[1]}
+          PATCH=${VERSION_PARTS[2]}
+
+          # Calculate new version
+          case $BUMP_TYPE in
+            "major")
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            "minor")
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            "patch")
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+
+          # Check if tag already exists
+          if git rev-parse "v$NEW_VERSION" >/dev/null 2>&1; then
+            echo "⚠️ Tag v$NEW_VERSION already exists!"
+            echo "existing=true" >> $GITHUB_OUTPUT
+            
+            # Check if GitHub release exists
+            RELEASE_EXISTS=$(gh release view "v$NEW_VERSION" >/dev/null 2>&1 && echo "true" || echo "false")
+            echo "github-release-exists=$RELEASE_EXISTS" >> $GITHUB_OUTPUT
+            echo "skip-build=true" >> $GITHUB_OUTPUT
+          else
+            echo "✅ No existing release found for v$NEW_VERSION"
+            echo "existing=false" >> $GITHUB_OUTPUT
+            echo "github-release-exists=false" >> $GITHUB_OUTPUT
+            echo "skip-build=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Detect Package Manager
+        id: package-manager
+        run: |
+          # Detect package manager based on lock files
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_OUTPUT
+            echo "lockfile=pnpm-lock.yaml" >> $GITHUB_OUTPUT
+            echo "cache-path=~/.pnpm-store" >> $GITHUB_OUTPUT
+            echo "install-cmd=pnpm install --frozen-lockfile" >> $GITHUB_OUTPUT
+            echo "run-cmd=pnpm run" >> $GITHUB_OUTPUT
+            echo "📦 Detected package manager: pnpm"
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "lockfile=yarn.lock" >> $GITHUB_OUTPUT
+            echo "cache-path=~/.yarn/cache" >> $GITHUB_OUTPUT
+            echo "install-cmd=yarn install --frozen-lockfile" >> $GITHUB_OUTPUT
+            echo "run-cmd=yarn" >> $GITHUB_OUTPUT
+            echo "📦 Detected package manager: yarn"
+          elif [ -f "package-lock.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "lockfile=package-lock.json" >> $GITHUB_OUTPUT
+            echo "cache-path=~/.npm" >> $GITHUB_OUTPUT
+            echo "install-cmd=npm ci" >> $GITHUB_OUTPUT
+            echo "run-cmd=npm run" >> $GITHUB_OUTPUT
+            echo "📦 Detected package manager: npm"
+          else
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "lockfile=none" >> $GITHUB_OUTPUT
+            echo "cache-path=~/.npm" >> $GITHUB_OUTPUT
+            echo "install-cmd=npm install" >> $GITHUB_OUTPUT
+            echo "run-cmd=npm run" >> $GITHUB_OUTPUT
+            echo "📦 No lock file found, defaulting to npm"
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ steps.package-manager.outputs.manager }}
+
+      - name: Setup PNPM (if detected)
+        if: steps.package-manager.outputs.manager == 'pnpm'
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ${{ steps.package-manager.outputs.cache-path }}
+          key: ${{ runner.os }}-${{ steps.package-manager.outputs.manager }}-${{ hashFiles(format('**/{0}', steps.package-manager.outputs.lockfile)) }}
+          restore-keys: |
+            ${{ runner.os }}-${{ steps.package-manager.outputs.manager }}-
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "21"
+
+      - name: Install Dependencies
+        run: |
+          echo "Installing dependencies with ${{ steps.package-manager.outputs.manager }}..."
+          ${{ steps.package-manager.outputs.install-cmd }}
+          echo "✅ Dependencies installed successfully"
+
+      - name: Setup Environment Variables
+        run: |
+          echo "🔧 Setting up environment variables..."
+
+          # Create .env file if your app requires one
+          # UNCOMMENT AND MODIFY THE LINES BELOW TO ADD YOUR ENVIRONMENT VARIABLES
+          # Replace the placeholder values with your actual environment variables
+
+          # cat > .env << EOF
+          # # API Configuration
+          # API_BASE_URL=${{ secrets.API_BASE_URL }}
+          # API_KEY=${{ secrets.API_KEY }}
+          # 
+          # # Database Configuration  
+          # DATABASE_URL=${{ secrets.DATABASE_URL }}
+          # 
+          # # Authentication
+          # JWT_SECRET=${{ secrets.JWT_SECRET }}
+          # OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}
+          # OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}
+          # 
+          # # Third-party Services
+          # FIREBASE_CONFIG=${{ secrets.FIREBASE_CONFIG }}
+          # ANALYTICS_ID=${{ secrets.ANALYTICS_ID }}
+          # 
+          # # App Configuration
+          # APP_ENV=production
+          # DEBUG=false
+          # LOG_LEVEL=info
+          # EOF
+
+          # For apps with multiple .env files (e.g., .env.production, .env.staging):
+          # cat > .env.production << EOF
+          # NODE_ENV=production
+          # API_URL=${{ secrets.PROD_API_URL }}
+          # DATABASE_URL=${{ secrets.PROD_DATABASE_URL }}
+          # EOF
+
+          # For React Native or Expo apps, you might need:
+          # cat > .env << EOF
+          # EXPO_PUBLIC_API_URL=${{ secrets.EXPO_PUBLIC_API_URL }}
+          # EXPO_PUBLIC_APP_ENV=production
+          # EOF
+
+          echo "📝 Instructions for setup:"
+          echo "1. Add your secrets to GitHub repository settings: Settings > Secrets and variables > Actions"
+          echo "2. Uncomment and modify the .env creation block above with your actual environment variables"
+          echo "3. Make sure your app's .gitignore includes .env files to keep secrets secure"
+          echo "✅ Environment setup completed (modify this step as needed for your app)"
+
+      - name: Get Current Version
+        id: current-version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "current=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Calculate New Version
+        id: new-version
+        run: |
+          CURRENT="${{ steps.current-version.outputs.current }}"
+          BUMP_TYPE="${{ needs.check-release-trigger.outputs.version-bump }}"
+
+          # Parse current version
+          IFS='.' read -ra VERSION_PARTS <<< "$CURRENT"
+          MAJOR=${VERSION_PARTS[0]}
+          MINOR=${VERSION_PARTS[1]}
+          PATCH=${VERSION_PARTS[2]}
+
+          # Calculate new version based on bump type
+          case $BUMP_TYPE in
+            "major")
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            "minor")
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            "patch")
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          echo "new=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Update Version in Files
+        if: steps.check-existing.outputs.skip-build == 'false'
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new }}"
+
+          # Update package.json version based on package manager
+          case "${{ steps.package-manager.outputs.manager }}" in
+            "pnpm")
+              pnpm version $NEW_VERSION --no-git-tag-version
+              ;;
+            "yarn")
+              yarn version --new-version $NEW_VERSION --no-git-tag-version
+              ;;
+            *)
+              npm version $NEW_VERSION --no-git-tag-version
+              ;;
+          esac
+
+          # Update Android versionName and versionCode
+          VERSION_CODE=$(grep "versionCode" android/app/build.gradle | grep -o '[0-9]\+')
+          NEW_VERSION_CODE=$((VERSION_CODE + 1))
+
+          sed -i "s/versionCode $VERSION_CODE/versionCode $NEW_VERSION_CODE/" android/app/build.gradle
+          sed -i "s/versionName \".*\"/versionName \"$NEW_VERSION\"/" android/app/build.gradle
+
+          echo "Updated version to $NEW_VERSION (code: $NEW_VERSION_CODE)"
+
+      - name: Release Already Exists
+        if: steps.check-existing.outputs.skip-build == 'true'
+        run: |
+          echo "## ⚠️ Release Already Exists"
+          echo "A release for this version already exists. Skipping build to prevent duplicates."
+          echo "If you need to rebuild, please:"
+          echo "1. Delete the existing tag and release, OR"
+          echo "2. Increment the version manually and re-trigger"
+
+      - name: Setup Keystore
+        if: steps.check-existing.outputs.skip-build == 'false'
+        run: |
+          # Decode base64 keystore and create the actual keystore file
+          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > android/app/temp-keystore.jks
+
+          # Create keystore.properties with paths to the actual keystore file
+          cat > android/keystore.properties << EOF
+          # Android Release Signing Configuration
+          RELEASE_STORE_FILE=./temp-keystore.jks
+          RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}
+          EOF
+
+          echo "✅ Keystore file created and configuration set up"
+
+      - name: Build Release APK
+        if: steps.check-existing.outputs.skip-build == 'false'
+        run: |
+          # Build web assets first
+          echo "🏗️ Building web assets..."
+          ${{ steps.package-manager.outputs.run-cmd }} build
+
+          # Sync with Capacitor
+          echo "🔄 Syncing with Capacitor..."
+          npx cap sync android
+
+          # Build Android APK
+          echo "🔨 Building Android APK..."
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease --stacktrace
+
+          # Verify APK was created
+          if [ ! -f "app/build/outputs/apk/release/app-release.apk" ]; then
+            echo "❌ APK build failed!"
+            exit 1
+          fi
+
+          # Rename APK with version and repo name
+          NEW_VERSION="${{ steps.new-version.outputs.new }}"
+          REPO_NAME="${{ steps.repo-name.outputs.name }}"
+          cp app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/${REPO_NAME}-v${NEW_VERSION}.apk
+
+          # Get APK info
+          APK_SIZE=$(du -h app/build/outputs/apk/release/${REPO_NAME}-v${NEW_VERSION}.apk | cut -f1)
+          echo "✅ APK built successfully! Size: $APK_SIZE"
+
+      - name: Create Git Tag
+        if: steps.check-existing.outputs.skip-build == 'false'
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add package.json android/app/build.gradle
+          git commit -m "🔖 Release version v$NEW_VERSION"
+          git tag -a "v$NEW_VERSION" -m "Release version v$NEW_VERSION"
+          git push origin main
+          git push origin "v$NEW_VERSION"
+
+      - name: Generate Release Notes
+        if: steps.check-existing.outputs.skip-build == 'false'
+        id: release-notes
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new }}"
+          CURRENT_VERSION="${{ steps.current-version.outputs.current }}"
+
+          # Create comprehensive release notes
+          cat > release-notes.md << EOF
+          ## 🚀 What's New in v$NEW_VERSION
+
+          ### 📋 Changes from PR #${{ github.event.pull_request.number }}
+          **${{ github.event.pull_request.title }}**
+
+          ${{ needs.check-release-trigger.outputs.release-notes }}
+
+          ### 📊 Release Information
+          - **Previous Version:** v$CURRENT_VERSION
+          - **New Version:** v$NEW_VERSION  
+          - **Version Bump:** ${{ needs.check-release-trigger.outputs.version-bump }}
+          - **Build Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          - **Commit SHA:** ${{ github.sha }}
+
+          ### 💻 Installation
+          1. Download the APK file below
+          2. Enable "Install from Unknown Sources" in Android settings
+          3. Install the APK on your device
+
+          ### 🔧 Technical Details
+          - **Min SDK:** 21 (Android 5.0)
+          - **Target SDK:** 34 (Android 14)
+          - **Architecture:** Universal APK
+          - **Signed:** Yes ✅
+
+          ---
+          *This release was automatically generated by GitHub Actions*
+          EOF
+
+          echo "Release notes generated successfully"
+
+      - name: Create GitHub Release
+        if: steps.check-existing.outputs.skip-build == 'false'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.new-version.outputs.new }}
+          name: ${{ steps.repo-name.outputs.name }} v${{ steps.new-version.outputs.new }}
+          body_path: release-notes.md
+          files: |
+            android/app/build/outputs/apk/release/${{ steps.repo-name.outputs.name }}-v${{ steps.new-version.outputs.new }}.apk
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup
+        if: always()
+        run: |
+          # Remove sensitive files
+          rm -f android/keystore.properties
+          rm -f android/temp-keystore.jks
+
+          # Remove environment files that may contain secrets
+          rm -f .env
+          rm -f .env.production
+          rm -f .env.staging
+          rm -f .env.local
+          rm -f .env.development
+
+          echo "🧹 Cleanup completed - removed keystore and environment files"
+
+      - name: Post-Release Summary
+        if: steps.check-existing.outputs.skip-build == 'false'
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new }}"
+          REPO_NAME="${{ steps.repo-name.outputs.name }}"
+          APK_PATH="android/app/build/outputs/apk/release/${REPO_NAME}-v${NEW_VERSION}.apk"
+          APK_SIZE=$(du -h "$APK_PATH" | cut -f1)
+
+          echo "## 🎉 Release Summary"
+          echo "✅ **Repository:** $REPO_NAME"
+          echo "✅ **Version:** v$NEW_VERSION"
+          echo "✅ **Package Manager:** ${{ steps.package-manager.outputs.manager }}"
+          echo "✅ **APK Size:** $APK_SIZE"
+          echo "✅ **Release URL:** ${{ github.server_url }}/${{ github.repository }}/releases/tag/v$NEW_VERSION"
+          echo "✅ **Status:** Successfully Released!"
+
+  notify-failure:
+    needs: [check-release-trigger, build-and-release]
+    if: failure() && needs.check-release-trigger.outputs.should-release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Build Failure
+        run: |
+          echo "❌ Release build failed for PR #${{ github.event.pull_request.number }}"
+          echo "Please check the workflow logs and fix the issues."

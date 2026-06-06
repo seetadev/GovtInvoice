@@ -1,0 +1,16 @@
+{
+  "name": "socialcalc",
+  "version": "1.0.0",
+  "description": "socialcalc npm module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socialcalc",
+    "spreadsheet",
+    "javascript"
+  ],
+  "author": "Mini Bhati",
+  "license": "MIT"
+}

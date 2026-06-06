@@ -1,0 +1,582 @@
+{
+  "mainSheet": "sheet1",
+  "msc": {
+    "numsheets": 4,
+    "currentid": "sheet1",
+    "currentname": "sheet1",
+    "sheetArr": {
+      "sheet1": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:B1:b:::3::l:1:f:12\ncell:C1:b:::3::l:1:f:12\ncell:D1:b:::3::l:1:f:12\ncell:E1:b:::3::l:1:f:12\ncell:F1:b:::3::l:1:f:12\ncell:G1:b:::3::l:1:f:12\ncell:A2:b::3:::l:1:f:12\ncell:B2:t:INVOICE:b:2:2:2:2:f:9:cf:1:colspan:6\ncell:C2:t::b:3::3::l:1:f:12\ncell:D2:t::b:3::3::l:1:f:12\ncell:E2:t::b:3::3::l:1:f:12\ncell:F2:t::b:3::3::l:1:f:12\ncell:G2:t::b:3::3::l:1:f:12\ncell:A3:b::3:::l:3:f:12\ncell:B3:b:3:::3:l:3:f:12\ncell:C3:b:3::::l:1:f:12\ncell:D3:b:3::::l:1:f:12\ncell:E3:b:3::::l:1:f:12\ncell:F3:b:3::::l:1:f:12\ncell:G3:b:3:3:::l:3:f:12\ncell:A4:b::3:::l:3:f:12\ncell:B4:b::::3:l:3:f:6\ncell:C4:t:BILL TO\\c:f:5:colspan:2\ncell:E4:f:5:cf:2\ncell:G4:b::3:::l:3:f:12\ncell:A5:b::3:::l:3:f:12\ncell:B5:b::::3:l:3:f:8\ncell:C5:t:[Name]:f:11:cf:2:colspan:2\ncell:E5:f:1:cf:2:tvf:3:colspan:2:rowspan:4\ncell:F5:l:2:f:12:tvf:3\ncell:G5:t::b::2:::l:2:f:12\ncell:A6:b::3:::l:3:f:12\ncell:B6:b::::3:l:3:f:8\ncell:C6:t:[Street Address]:f:11:cf:2:colspan:2\ncell:E6:f:1:cf:2\ncell:F6:l:2:f:12\ncell:G6:b::2:::l:2:f:12\ncell:A7:b::3:::l:3:f:12\ncell:B7:b::::3:l:3:f:8\ncell:C7:t:[City, State, Zip]:f:11:cf:2:colspan:2\ncell:E7:f:1:cf:2\ncell:G7:b::3:::l:3:f:12\ncell:A8:b::3:::l:3:f:12\ncell:B8:b::::3:l:3:f:8\ncell:C8:t:Phone\\c:f:11:cf:2:colspan:2\ncell:D8:f:10:cf:2\ncell:E8:f:1:cf:2\ncell:G8:b::3:::l:3:f:12\ncell:A9:b::3:::l:3:f:12\ncell:B9:b::::3:l:3:f:8\ncell:C9:t:Email\\c:f:11:cf:2:colspan:4\ncell:E9:f:1:cf:2\ncell:G9:b::3:::l:3:f:12\ncell:A10:b::3:::l:3:f:12\ncell:B10:b::::3:l:3:f:8\ncell:C10:colspan:2\ncell:G10:b::3:::l:3:f:12\ncell:A11:b::3:::l:3:f:12\ncell:B11:b::::3:l:3:f:8\ncell:C11:t:FROM\\c:f:5:colspan:2\ncell:E11:f:10:colspan:2\ncell:G11:b::3:::l:3:f:12\ncell:A12:b::3:::l:3:f:12\ncell:B12:b::::3:l:3:f:8\ncell:C12:t:[Name]:f:11:colspan:4\ncell:E12:colspan:2\ncell:G12:b::3:::l:3:f:12\ncell:A13:b::3:::l:3:f:12\ncell:B13:b::::3:l:3:f:8\ncell:C13:t:[Street Address]:f:11:colspan:4\ncell:E13:colspan:2\ncell:G13:b::3:::l:3:f:12\ncell:A14:b::3:::l:3:f:12\ncell:B14:b::::3:l:3:f:8\ncell:C14:t:[City, State, Zip]:f:11:colspan:4\ncell:E14:colspan:2\ncell:G14:b::3:::l:3:f:12\ncell:A15:b::3:::l:3:f:12\ncell:B15:b::::3:l:3:f:8\ncell:C15:t:Phone\\c:f:11:colspan:4\ncell:D15:f:10:cf:2:colspan:3\ncell:E15:colspan:2\ncell:G15:b::3:::l:3:f:12\ncell:A16:b::3:::l:3:f:12\ncell:B16:b::::3:l:3:f:8\ncell:C16:t:Email\\c:f:11:colspan:4\ncell:E16:colspan:2\ncell:G16:b::3:::l:3:f:12\ncell:A17:b::3:::l:3:f:12\ncell:B17:b::::3:l:3:f:6\ncell:G17:b::3:::l:3:f:12\ncell:A18:b::3:::l:3:f:12\ncell:B18:b::::3:l:3:f:12\ncell:C18:t:INVOICE #:f:1:cf:2\ncell:D18:t:DATE\\c:l:4:f:1:cf:3\ncell:E18:vtf:nd:46061:TODAY():colspan:2\ncell:G18:b::3:::l:3:f:12\ncell:A19:b::3:::l:3:f:12\ncell:B19:b::::3:l:3:f:6:cf:2\ncell:C19:b:::3::l:1:f:12\ncell:D19:b:::3::l:3:f:6:cf:2\ncell:E19:b:::3::l:1:f:12\ncell:F19:b:::3::l:1:f:12\ncell:G19:b::3:::l:3:f:12\ncell:A20:b::3:::l:3:f:12\ncell:B20:b::3::3:l:3:f:12\ncell:C20:t:Description:b:2::2:2:f:5:cf:1:colspan:3\ncell:D20:t:Description:b:2::2::l:3:f:5:cf:2:colspan:2:rowspan:1\ncell:E20:t::b:3:3:3::l:1:f:5\ncell:F20:t:Amount:b:2:2:2:2:f:5:cf:1\ncell:G20:b::3::3:l:3:f:12\ncell:A21:b::3:::l:3:f:12\ncell:B21:b::3::3:l:3:f:12\ncell:C21:b:2:2::2:f:2:cf:2:colspan:3\ncell:D21:b:2:2:::l:3:f:12:cf:2:colspan:2:rowspan:1\ncell:E21:t::b:3:3:3::l:1:f:12\ncell:F21:b:2:2:::f:2:ntvf:1\ncell:G21:b::3::3:l:3:f:12\ncell:A22:b::3:::l:3:f:12\ncell:B22:b::3::3:l:3:f:12:cf:2\ncell:C22:b::2::2:f:2:cf:2:colspan:3\ncell:D22:b::2:::l:1:f:12:colspan:2\ncell:E22:l:1:f:12\ncell:F22:b::2:::f:2:ntvf:1\ncell:G22:b::3::3:l:3:f:12\ncell:A23:b::3:::l:3:f:12\ncell:B23:b::3::3:l:3:f:12:cf:2:ntvf:2\ncell:C23:b::2::2:f:2:cf:2:colspan:3\ncell:D23:b::2:::colspan:2\ncell:F23:b::2:::f:2:ntvf:1\ncell:G23:b::3::3:l:3:f:12\ncell:A24:b::3:::l:3:f:12\ncell:B24:b::3::3:l:3:f:12:cf:2:ntvf:2\ncell:C24:b::2::2:f:2:cf:2:colspan:3\ncell:D24:b::2:::colspan:2\ncell:F24:b::2:::f:2:ntvf:1\ncell:G24:b::3::3:l:3:f:12\ncell:A25:b::3:::l:3:f:12\ncell:B25:b::3::3:l:3:f:12:cf:2:ntvf:2\ncell:C25:b::2::2:f:2:cf:2:colspan:3\ncell:D25:b::2:::colspan:2\ncell:F25:b::2:::f:2:ntvf:1\ncell:G25:b::3::3:l:3:f:12\ncell:A26:b::3:::l:3:f:12\ncell:B26:b::3::3:l:3:f:12:cf:2:ntvf:2\ncell:C26:b::2::2:f:2:cf:2:colspan:3\ncell:D26:b::2:::colspan:2\ncell:F26:b::2:::f:2:ntvf:1\ncell:G26:b::3::3:l:3:f:12\ncell:A27:b::3:::l:3:f:12\ncell:B27:b::3::3:l:3:f:12:cf:2:ntvf:2\ncell:C27:b::2::2:f:2:cf:2:colspan:3\ncell:D27:b::2:::colspan:2\ncell:F27:b::2:::f:2:ntvf:1\ncell:G27:b::3::3:l:3:f:12\ncell:A28:b::3:::l:3:f:12\ncell:B28:b::3::3:l:3:f:12:cf:2\ncell:C28:b::2::2:f:2:cf:2:colspan:3\ncell:D28:b::2:::colspan:2\ncell:F28:b::2:::f:2:ntvf:1\ncell:G28:b::3::3:l:3:f:12\ncell:A29:b::3:::l:3:f:12\ncell:B29:b::3::3:l:3:f:12:cf:2\ncell:C29:b::2::2:f:2:cf:2:colspan:3\ncell:D29:b::2:::colspan:2\ncell:F29:b::2:::f:2:ntvf:1\ncell:G29:b::3::3:l:3:f:12\ncell:A30:b::3:::l:3:f:12\ncell:B30:b::3::3:l:3:f:12:cf:2\ncell:C30:b::2::2:f:2:cf:2:colspan:3\ncell:D30:b::2:::colspan:2\ncell:F30:b::2:::f:2:ntvf:1\ncell:G30:b::3::3:l:3:f:12\ncell:A31:b::3:::l:3:f:12\ncell:B31:b::3::3:l:3:f:12:cf:2\ncell:C31:b::2::2:f:2:cf:2:colspan:3\ncell:D31:b::2:::colspan:2\ncell:F31:b::2:::f:2:ntvf:1\ncell:G31:b::3::3:l:3:f:12\ncell:A32:b::3:::l:3:f:12\ncell:B32:b::3::3:l:3:f:12:cf:2\ncell:C32:b::2::2:f:2:cf:2:colspan:3\ncell:D32:b::2:::colspan:2\ncell:F32:b::2:::f:2:ntvf:1\ncell:G32:b::3::3:l:3:f:12\ncell:A33:b::3:::l:3:f:8\ncell:B33:b::3::3:l:3:f:12:cf:2\ncell:C33:b::2:2:2:f:2:cf:2:colspan:3\ncell:D33:b::2:2::l:3:f:12:cf:2:colspan:2\ncell:E33:b:::3::l:3:f:12:cf:2\ncell:F33:b::2:2::f:2:ntvf:1\ncell:G33:b::3::3:l:3:f:12\ncell:A34:b::3:::l:3:f:6\ncell:B34:b::3::3:l:3:f:6\ncell:C34:t:TOTAL:b:2:2:2:2:f:7:cf:2:colspan:3\ncell:D34:b:3::3::l:3:f:13:cf:2\ncell:E34:b:3:3:3::l:3:f:13:cf:2\ncell:F34:vtf:n:0:SUM(F21\\cF33):b:2:2:2::f:7:ntvf:1\ncell:G34:b::3::3:l:3:f:8\ncell:A35:b::3:::l:3:f:12\ncell:B35:b::::3:l:3:f:6:cf:2\ncell:C35:b:3::::l:1:f:12\ncell:D35:b:3::::l:1:f:12\ncell:E35:b:3::::l:1:f:12\ncell:F35:b:3::::l:1:f:12\ncell:G35:b::3:::l:3:f:6\ncell:A36:b::3:::l:3:f:12\ncell:B36:b::::3:l:3:f:12\ncell:D36:b:::1::tvf:3:colspan:3:rowspan:3\ncell:G36:b::3:::l:3:f:12\ncell:A37:b::3:::l:3:f:12\ncell:B37:b::::3:l:3:f:12:cf:2\ncell:C37:f:4:cf:1\ncell:E37:f:3\ncell:F37:t::l:2:f:12\ncell:G37:b::3:::l:3:f:12\ncell:A38:b::3:::l:3:f:12\ncell:B38:b:::1:2:l:3:f:12\ncell:C38:b:::1:\ncell:G38:b::2:1::l:3:f:12\ncell:A39:l:3:f:12\ncell:B39:b:1::::l:3:f:12\ncell:C39:b:1::::l:3:f:12\ncell:D39:b:1::::l:3:f:12\ncell:E39:b:1::::l:3:f:12\ncell:F39:b:1::::l:3:f:12\ncell:G39:b:1::::l:3:f:12\ncol:A:w:10\ncol:B:w:10\ncol:C:w:106\ncol:D:w:45\ncol:E:w:23\ncol:F:w:64\ncol:G:w:10\nrow:1:h:14.25\nrow:2:h:18.75\nrow:3:h:14.25\nrow:4:h:14.25\nrow:5:h:15.75\nrow:6:h:15.75\nrow:7:h:15.75\nrow:8:h:15.75\nrow:9:h:14.25\nrow:10:h:14.25\nrow:11:h:14.25\nrow:12:h:14.25\nrow:13:h:14.25\nrow:14:h:14.25\nrow:15:h:14.25\nrow:16:h:14.25\nrow:17:h:14.25\nrow:18:h:14.25\nrow:19:h:14.25\nrow:20:h:14.25\nrow:21:h:14.25\nrow:22:h:14.25\nrow:23:h:14.25\nrow:24:h:14.25\nrow:25:h:14.25\nrow:26:h:14.25\nrow:27:h:14.25\nrow:28:h:14.25\nrow:29:h:14.25\nrow:30:h:14.25\nrow:31:h:14.25\nrow:32:h:14.25\nrow:33:h:14.25\nrow:34:h:14.25\nrow:35:h:15.75\nrow:36:h:15.75\nrow:37:h:14.25\nrow:38:h:14.25\nrow:39:h:14.25\nrow:40:h:14.25\nrow:41:h:14.25\nsheet:c:7:r:41:h:12.75\nborder:1:1px solid rgb(0, 0, 0)\nborder:2:1px solid rgb(0,0,0)\nborder:3:thin solid rgb(0,0,0)\ncellformat:1:center\ncellformat:2:left\ncellformat:3:right\nfont:1:* * Trebuchet MS\nfont:2:* 9pt Trebuchet MS\nfont:3:italic bold * Trebuchet MS\nfont:4:italic bold 10pt Trebuchet MS\nfont:5:normal bold * Trebuchet MS\nfont:6:normal bold 10pt Arial\nfont:7:normal bold 11pt Trebuchet MS\nfont:8:normal bold 12pt Arial\nfont:9:normal bold 16pt Trebuchet MS\nfont:10:normal normal * *\nfont:11:normal normal * Trebuchet MS\nfont:12:normal normal 10pt Arial\nfont:13:normal normal 12pt Arial\nlayout:1:padding:* * * *;vertical-align:bottom;\nlayout:2:padding:* * * *;vertical-align:middle;\nlayout:3:padding:* * * *;vertical-align:top;\nlayout:4:padding:* * * 4px;vertical-align:*;\nvalueformat:1:#,##0.00\nvalueformat:2:d-mmm\nvalueformat:3:text-html\n"
+        },
+        "name": "sheet1",
+        "hidden": "0"
+      },
+      "sheet2": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:B2:t:INVOICE:l:1:f:10:cf:1:colspan:6\ncell:C2:t::l:2:f:13\ncell:D2:t::l:2:f:13\ncell:E2:l:1:f:11:c:2:cf:3\ncell:F2:t:INVOICE:l:1:f:9:c:2:cf:2:colspan:2\ncell:G2:t::l:2:f:13\ncell:B3:f:6:cf:2:colspan:4\ncell:C3:t::l:2:f:13\ncell:D3:t::l:2:f:13\ncell:F3:l:1:f:8:cf:2\ncell:G3:l:1:f:14:cf:2:ntvf:3\ncell:B4:t:INVOICE #\\c:f:2:colspan:4\ncell:F4:t:Date:l:1:f:14:cf:2\ncell:G4:vtf:nd:46061:TODAY():l:1:f:14:cf:2:ntvf:3\ncell:B5:f:3\ncell:C5:cf:2\ncell:F5:l:1:f:8:cf:2:colspan:2\ncell:G5:l:1:f:14:cf:2\ncell:B6:f:2:colspan:2\ncell:F6:l:1:f:8:cf:2:colspan:2\ncell:G6:l:1:f:14:cf:2\ncell:B7:t:FROM\\c:f:7\ncell:F7:l:1:f:8:cf:2:tvf:4:colspan:2:rowspan:5\ncell:G7:l:1:f:14:cf:2\ncell:B8:t:[Company Name]:f:3:colspan:4\ncell:F8:l:1:f:8:cf:2\ncell:G8:l:1:f:14:cf:2\ncell:B9:t:[Street Address]:f:1:cf:2:colspan:4\ncell:F9:l:1:f:8\ncell:G9:l:1:f:14:cf:1\ncell:B10:t:[City, State,  Zip]:f:1:cf:2:colspan:4\ncell:G10:l:1:f:13\ncell:B11:t:Phone\\c :f:1:cf:2:colspan:4\ncell:B12:t:Email\\c:f:1:cf:2:colspan:6\ncell:B13:colspan:2\ncell:B14:t:BILL TO\\c:f:7:cf:2\ncell:B15:t:[Name]:f:1:cf:2:colspan:6\ncell:B16:t:[Company Name]:f:1:cf:2:colspan:6\ncell:F16:t:  \ncell:B17:t:[Street Address]:f:1:cf:2:colspan:6\ncell:B18:t:[City, State,  Zip]:f:1:cf:2:colspan:6\ncell:B19:t:Phone\\c :f:1:cf:2:colspan:6\ncell:B20:t:Email\\c:f:1:cf:2:colspan:6\ncell:A22:b::2::\ncell:B22:t:DESCRIPTION:b:2:2:2:2:l:1:f:14:c:1:bg:3:cf:1:colspan:5:rowspan:1\ncell:C22:t::l:2:f:13\ncell:D22:t::l:2:f:13\ncell:E22:t::l:2:f:13\ncell:F22:t::l:2:f:13\ncell:G22:t:AMOUNT:b:2:2:2::l:1:f:14:c:1:bg:3:cf:1\ncell:A23:b::2::\ncell:B23:b:2:2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C23:t::l:2:f:4\ncell:D23:t::l:2:f:4\ncell:E23:t::l:2:f:4\ncell:F23:t::b::3:::l:1:f:4\ncell:G23:b::2::2:f:4:ntvf:1\ncell:A24:b::2::\ncell:B24:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C24:t::l:2:f:4\ncell:D24:t::l:2:f:4\ncell:E24:t::l:2:f:4\ncell:F24:t::b::3:::l:1:f:4\ncell:G24:b::2::2:f:4:ntvf:1\ncell:A25:b::2::\ncell:B25:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C25:t::l:2:f:4\ncell:D25:t::l:2:f:4\ncell:E25:t::l:2:f:4\ncell:F25:t::b::3:::l:1:f:4\ncell:G25:b::2::2:f:4:ntvf:1\ncell:A26:b::2::\ncell:B26:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C26:t::l:2:f:4\ncell:D26:t::l:2:f:4\ncell:E26:t::l:2:f:4\ncell:F26:t::b::3:::l:1:f:4\ncell:G26:b::2::2:f:4:ntvf:1\ncell:A27:b::2::\ncell:B27:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C27:t::l:2:f:4\ncell:D27:t::l:2:f:4\ncell:E27:t::l:2:f:4\ncell:F27:t::b::3:::l:1:f:4\ncell:G27:b::2::2:f:4:ntvf:1\ncell:A28:b::2::\ncell:B28:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C28:t::l:2:f:4\ncell:D28:t::l:2:f:4\ncell:E28:t::l:2:f:4\ncell:F28:t::b::3:::l:1:f:4\ncell:G28:b::2::2:f:4:ntvf:1\ncell:A29:b::2::\ncell:B29:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C29:t::l:2:f:4\ncell:D29:t::l:2:f:4\ncell:E29:t::l:2:f:4\ncell:F29:t::b::3:::l:1:f:4\ncell:G29:b::2::2:f:4:ntvf:1\ncell:A30:b::2::\ncell:B30:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C30:t::l:2:f:4\ncell:D30:t::l:2:f:4\ncell:E30:t::l:2:f:4\ncell:F30:t::b::3:::l:1:f:4\ncell:G30:b::2::2:f:4:ntvf:1\ncell:A31:b::2::\ncell:B31:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C31:t::l:2:f:4\ncell:D31:t::l:2:f:4\ncell:E31:t::l:2:f:4\ncell:F31:t::b::3:::l:1:f:4\ncell:G31:b::2::2:f:4:ntvf:1\ncell:A32:b::2::\ncell:B32:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C32:t::l:2:f:4\ncell:D32:t::l:2:f:4\ncell:E32:t::l:2:f:4\ncell:F32:t::b::3:::l:1:f:4\ncell:G32:b::2::2:f:4:ntvf:1\ncell:A33:b::2::\ncell:B33:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C33:t::l:2:f:4\ncell:D33:t::l:2:f:4\ncell:E33:t::l:2:f:4\ncell:F33:t::b::3:::l:1:f:4\ncell:G33:b::2::2:f:4:ntvf:1\ncell:A34:b::2::\ncell:B34:b::2::2:f:4:cf:2:colspan:5:rowspan:1\ncell:C34:l:2:f:4\ncell:D34:l:2:f:4\ncell:E34:l:2:f:4\ncell:F34:b::3:::l:1:f:4\ncell:G34:b::2::2:f:4:ntvf:1\ncell:A35:b::2::\ncell:B35:b::2:2:2:f:4:cf:2:colspan:5:rowspan:1\ncell:C35:t::b:::3::l:1:f:4\ncell:D35:t::b:::3::l:1:f:4\ncell:E35:t::b:::3::l:1:f:4\ncell:F35:t::b::3:3::l:1:f:4\ncell:G35:b::2:2:2:f:4:ntvf:1\ncell:B36:b:3::::l:1:f:13\ncell:C36:b:3::::l:1:f:13\ncell:D36:b:3::::l:1:f:13\ncell:E36:b:3::::l:1:f:14\ncell:F36:t:Subtotal:b:3::::l:1:f:12\ncell:G36:vtf:n:0:SUM(G23\\cG35):b:2::::f:12:ntvf:1\ncell:B37:t:NOTES:b:::2::l:1:f:14:cf:2:colspan:3:rowspan:1\ncell:C37:t::b:::3::l:1:f:13\ncell:D37:t::b:::3::l:1:f:13\ncell:E37:t:Tax Rate:cf:3:colspan:2\ncell:F37:l:1:f:12\ncell:G37:v:0:f:1:ntvf:2\ncell:B38:b:2::::f:1:cf:2:colspan:3\ncell:C38:t::b:3::::l:1:f:13\ncell:D38:t::b:3::::l:1:f:13\ncell:F38:t:Tax:l:1:f:12:cf:3\ncell:G38:vtf:n:0:G37*G36:f:1:ntvf:1\ncell:B39:f:1:cf:2:colspan:3\ncell:C39:t::l:2:f:13\ncell:D39:t::l:2:f:13\ncell:F39:t:Other:b:::2::l:1:f:12:cf:3\ncell:G39:v:0:b:::2::f:1:ntvf:1\ncell:B40:b:::2::f:1:cf:2:colspan:3:rowspan:1\ncell:C40:t::l:2:f:13\ncell:D40:t::l:2:f:13\ncell:F40:t:TOTAL:b:2::::l:1:f:14:cf:3\ncell:G40:vtf:n:0:(G36+G38)+G39:b:2::::f:12:ntvf:1\ncell:B41:b:1:::\ncell:C41:b:1:::\ncell:D41:b:1:::\ncell:E41:tvf:4:colspan:3:rowspan:3\ncell:E42:colspan:3:rowspan:2\ncell:B43:l:1:f:5:cf:1\ncell:C43:t::l:2:f:13\ncell:D43:t::l:2:f:13\ncell:E43:t::l:2:f:13\ncell:F43:t::l:2:f:13\ncell:G43:t::l:2:f:13\ncol:A:w:10\ncol:B:w:90\ncol:C:w:19\ncol:D:w:10\ncol:E:w:29\ncol:F:w:53\ncol:G:w:64\nrow:1:h:34.5\nrow:2:h:34.5\nrow:3:h:14.25\nrow:4:h:14.25\nrow:5:h:14.25\nrow:6:h:14.25\nrow:7:h:14.25\nrow:8:h:14.25\nrow:9:h:14.25\nrow:10:h:14.25\nrow:11:h:14.25\nrow:12:h:14.25\nrow:14:h:14.25\nrow:15:h:14.25\nrow:16:h:14.25\nrow:17:h:14.25\nrow:18:h:14.25\nrow:19:h:14.25\nrow:22:h:14.25\nrow:23:h:14.25\nrow:24:h:14.25\nrow:25:h:14.25\nrow:26:h:14.25\nrow:27:h:14.25\nrow:28:h:14.25\nrow:29:h:14.25\nrow:30:h:14.25\nrow:31:h:14.25\nrow:32:h:14.25\nrow:33:h:14.25\nrow:34:h:14.25\nrow:35:h:14.25\nrow:36:h:14.25\nrow:37:h:14.25\nrow:38:h:14.25\nrow:39:h:14.25\nrow:40:h:14.25\nrow:43:h:15.75\nsheet:c:7:r:43:h:12.75\nborder:1:1px solid rgb(0, 0, 0)\nborder:2:1px solid rgb(0,0,0)\nborder:3:thin solid rgb(0,0,0)\ncellformat:1:center\ncellformat:2:left\ncellformat:3:right\ncolor:1:rgb(0, 0, 0)\ncolor:2:rgb(0,0,0)\ncolor:3:rgb(221, 221, 221)\nfont:1:* * Trebuchet MS\nfont:2:* 10pt *\nfont:3:* 10pt Trebuchet MS\nfont:4:* 9pt Trebuchet MS\nfont:5:italic bold 10pt Trebuchet MS\nfont:6:italic normal * Trebuchet MS\nfont:7:normal bold * arial,helvetica,sans-serif\nfont:8:normal bold 10pt Trebuchet MS\nfont:9:normal bold 14pt Trebuchet MS\nfont:10:normal bold 16pt Trebuchet MS\nfont:11:normal bold 28pt Trebuchet MS\nfont:12:normal normal * Trebuchet MS\nfont:13:normal normal 10pt Arial\nfont:14:normal normal 10pt Trebuchet MS\nlayout:1:padding:* * * *;vertical-align:bottom;\nlayout:2:padding:* * * *;vertical-align:middle;\nvalueformat:1:#,##0.00\nvalueformat:2:#,##0.00%\nvalueformat:3:m/d/yy\nvalueformat:4:text-html\n"
+        },
+        "name": "sheet2",
+        "hidden": "0"
+      },
+      "sheet3": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:B1:b:::4::l:1:f:12\ncell:C1:b:::4::l:1:f:12\ncell:D1:b:::4::l:1:f:12\ncell:E1:b:::4::l:1:f:12\ncell:F1:b:::4::l:1:f:12\ncell:G1:b:::4::l:1:f:12\ncell:A2:b::4:::l:1:f:12\ncell:B2:t:INVOICE:b:2:2:2:2:f:9:cf:1:colspan:6\ncell:C2:t::b:4::4::l:1:f:12\ncell:D2:t::b:4::4::l:1:f:12\ncell:E2:t::b:4::4::l:1:f:12\ncell:F2:t::b:4::4::l:1:f:12\ncell:G2:t::b:4::4::l:1:f:12\ncell:A3:b::4:::l:3:f:12\ncell:B3:b:4:::4:l:3:f:12\ncell:C3:b:4::::l:1:f:12\ncell:D3:b:4::::l:1:f:12\ncell:E3:b:4::::l:1:f:12\ncell:F3:b:4::::l:1:f:12\ncell:G3:b:4:4:::l:3:f:12\ncell:A4:b::4:::l:3:f:12\ncell:B4:b::::4:l:3:f:6\ncell:C4:t:BILL TO\\c:f:5:colspan:2\ncell:E4:f:5:cf:1:tvf:4:colspan:2:rowspan:4\ncell:F4:f:5\ncell:G4:b::4:::l:3:f:12\ncell:A5:b::4:::l:3:f:12\ncell:B5:b::::4:l:3:f:8\ncell:C5:t:[Name]:f:11:cf:2:colspan:2\ncell:E5:t:  <rect width='80' height='80' rx='15' fill='#6b7280'/>:f:1:cf:2\ncell:F5:f:11\ncell:G5:t::b::2:::l:2:f:12\ncell:A6:b::4:::l:3:f:12\ncell:B6:b::::4:l:3:f:8\ncell:C6:t:[Street Address]:f:11:cf:2:colspan:2\ncell:E6:t:  <text x='40' y='47' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='20' fill='#ffffff'>LOGO</text>:f:1:cf:2\ncell:F6:f:11\ncell:G6:b::2:::l:2:f:12\ncell:A7:b::4:::l:3:f:12\ncell:B7:b::::4:l:3:f:8\ncell:C7:t:[City, State, Zip]:f:11:cf:2:colspan:2\ncell:E7:t:</svg>:f:1:cf:2\ncell:F7:f:11\ncell:G7:b::4:::l:3:f:12\ncell:A8:b::4:::l:3:f:12\ncell:B8:b::::4:l:3:f:8\ncell:C8:t:Phone\\cdfds:f:11:cf:2:colspan:2\ncell:D8:f:10:cf:2\ncell:E8:f:1:cf:2\ncell:F8:f:11\ncell:G8:b::4:::l:3:f:12\ncell:A9:b::4:::l:3:f:12\ncell:B9:b::::4:l:3:f:8\ncell:C9:t:Email\\c:f:11:cf:2:colspan:2\ncell:E9:f:1:cf:2\ncell:F9:f:11\ncell:G9:b::4:::l:3:f:12\ncell:A10:b::4:::l:3:f:12\ncell:B10:b::::4:l:3:f:8\ncell:G10:b::4:::l:3:f:12\ncell:A11:b::4:::l:3:f:12\ncell:B11:b::::4:l:3:f:8\ncell:C11:t:Invoice #:f:11:cf:2\ncell:D11:t:Date\\c:f:11:cf:2:ntvf:3\ncell:E11:vtf:nd:46061:TODAY():colspan:2\ncell:G11:b::4:::l:3:f:12\ncell:A12:b::4:::l:3:f:12\ncell:B12:b::::4:l:3:f:8\ncell:C12:b:::4::l:1:f:12\ncell:D12:b:::4::l:3:f:6:cf:2\ncell:E12:b:::4::l:1:f:12\ncell:F12:b:::4::l:1:f:12\ncell:G12:b::4:::l:3:f:12\ncell:A13:b::4:::l:3:f:12\ncell:B13:b::1::2:l:3:f:8\ncell:C13:t:Description:b:2::2:2:f:5:cf:1\ncell:D13:t:Qty:b:2::2:2:f:5:cf:1\ncell:E13:t:Price:b:2::2:2:f:5:cf:1\ncell:F13:t:Amount:b:2:2:2:2:f:5:cf:1\ncell:G13:b::4:::l:3:f:12\ncell:A14:b::4:::l:3:f:12\ncell:B14:b::1::2:l:3:f:8\ncell:C14:b:2:2::2:f:2:cf:2\ncell:D14:b:2:2:::l:1:f:12\ncell:E14:b:2:2:::l:1:f:12\ncell:F14:vtf:t::IF(D14*E14,D14*E14,\"\"):b:2:2:::f:2:ntvf:1\ncell:G14:b::4:::l:3:f:12\ncell:A15:b::4:::l:3:f:12\ncell:B15:b::1::2:l:3:f:8\ncell:C15:b::2::2:f:2:cf:2\ncell:D15:b::2:::l:1:f:12\ncell:E15:b::1:::l:1:f:12\ncell:F15:vtf:t::IF(D15*E15,D15*E15,\"\"):b::2:::f:2:ntvf:1\ncell:G15:b::4:::l:3:f:12\ncell:A16:b::4:::l:3:f:12\ncell:B16:b::1::2:l:3:f:8\ncell:C16:b::2::2:f:2:cf:2\ncell:D16:b::2::\ncell:E16:b::1::\ncell:F16:vtf:t::IF(D16*E16,D16*E16,\"\"):b::2:::f:2:ntvf:1\ncell:G16:b::4:::l:3:f:12\ncell:A17:b::4:::l:3:f:12\ncell:B17:b::1::2:l:3:f:6\ncell:C17:b::2::2:f:2:cf:2\ncell:D17:b::2::\ncell:E17:b::1::\ncell:F17:vtf:t::IF(D17*E17,D17*E17,\"\"):b::2:::f:2:ntvf:1\ncell:G17:b::4:::l:3:f:12\ncell:A18:b::4:::l:3:f:12\ncell:B18:b::1::2:l:3:f:12\ncell:C18:b::2::2:f:2:cf:2\ncell:D18:b::2::\ncell:E18:b::1::\ncell:F18:vtf:t::IF(D18*E18,D18*E18,\"\"):b::2:::f:2:ntvf:1\ncell:G18:b::4:::l:3:f:12\ncell:A19:b::4:::l:3:f:12\ncell:B19:b::1::2:l:3:f:12\ncell:C19:b::2::2:f:2:cf:2\ncell:D19:b::2::\ncell:E19:b::1::\ncell:F19:vtf:t::IF(D19*E19,D19*E19,\"\"):b::2:::f:2:ntvf:1\ncell:G19:b::4:::l:3:f:12\ncell:A20:b::4:::l:3:f:12\ncell:B20:b::1::2:l:3:f:12\ncell:C20:b::2::2:f:2:cf:2\ncell:D20:b::2::\ncell:E20:b::1::\ncell:F20:vtf:t::IF(D20*E20,D20*E20,\"\"):b::2:::f:2:ntvf:1\ncell:G20:b::4:::l:3:f:12\ncell:A21:b::4:::l:3:f:12\ncell:B21:b::1::2:l:3:f:6:cf:2\ncell:C21:b::2::2:f:2:cf:2\ncell:D21:b::2::\ncell:E21:b::1::\ncell:F21:vtf:t::IF(D21*E21,D21*E21,\"\"):b::2:::f:2:ntvf:1\ncell:G21:b::4:::l:3:f:12\ncell:A22:b::4:::l:3:f:12\ncell:B22:b::4::4:l:3:f:12\ncell:C22:b::2::2:f:2:cf:2\ncell:D22:b::2::\ncell:E22:b::1::\ncell:F22:vtf:t::IF(D22*E22,D22*E22,\"\"):b::2:::f:2:ntvf:1\ncell:G22:b::4::4:l:3:f:12\ncell:A23:b::4:::l:3:f:12\ncell:B23:b::4::4:l:3:f:12\ncell:C23:b::2::2:f:2:cf:2\ncell:D23:b::2::\ncell:E23:b::1::\ncell:F23:vtf:t::IF(D23*E23,D23*E23,\"\"):b::2:::f:2:ntvf:1\ncell:G23:b::4::4:l:3:f:12\ncell:A24:b::4:::l:3:f:12\ncell:B24:b::4::4:l:3:f:12:cf:2\ncell:C24:b::2::2:f:2:cf:2\ncell:D24:b::2::\ncell:E24:b::1::\ncell:F24:vtf:t::IF(D24*E24,D24*E24,\"\"):b::2:::f:2:ntvf:1\ncell:G24:b::4::4:l:3:f:12\ncell:A25:b::4:::l:3:f:12\ncell:B25:b::4::4:l:3:f:12:cf:2:ntvf:2\ncell:C25:b::2::2:f:2:cf:2\ncell:D25:b::2::\ncell:E25:b::1::\ncell:F25:vtf:t::IF(D25*E25,D25*E25,\"\"):b::2:::f:2:ntvf:1\ncell:G25:b::4::4:l:3:f:12\ncell:A26:b::4:::l:3:f:12\ncell:B26:b::4::4:l:3:f:12:cf:2:ntvf:2\ncell:C26:b::2:2:2:f:2:cf:2\ncell:D26:b::2::\ncell:E26:b::2::\ncell:F26:vtf:t::IF(D26*E26,D26*E26,\"\"):b::2:::f:2:ntvf:1\ncell:G26:b::4::4:l:3:f:12\ncell:A27:b::4:::l:3:f:12\ncell:B27:b::4::4:l:3:f:12:cf:2:ntvf:2\ncell:C27:t:TOTAL:b:2:2:2:2:f:7:cf:2:colspan:3\ncell:D27:b:4::4::l:3:f:13:cf:2\ncell:E27:b:4:4:4::l:3:f:13:cf:2\ncell:F27:vtf:n:0:SUM(F14\\cF26):b:2:2:2::f:7:ntvf:1\ncell:G27:b::4::4:l:3:f:12\ncell:A28:b::4:::l:3:f:12\ncell:B28:b::::2:l:3:f:12:cf:2:ntvf:2\ncell:C28:b:4::::l:1:f:12\ncell:D28:b:4::::l:1:f:12\ncell:E28:b:4::::l:1:f:12\ncell:F28:b:2::::l:1:f:12\ncell:G28:b::2:::l:3:f:12\ncell:A29:b::4:::l:3:f:12\ncell:B29:b::::2:l:3:f:12:cf:2:ntvf:2\ncell:C29:t:[From\\c Address line 1, City, State, zip, contact]:f:3:cf:1:colspan:4:rowspan:2\ncell:D29:tvf:4\ncell:G29:b::2:::l:3:f:12\ncell:A30:b::4:::l:3:f:12\ncell:B30:b::::2:l:3:f:12:cf:2\ncell:F30:t:\ncell:G30:b::2:::l:3:f:12\ncell:A31:b::4:::l:3:f:12\ncell:B31:b::::2:l:3:f:12:cf:2\ncell:C31:t:Thank you for your business:f:4:cf:1:colspan:4\ncell:G31:b::2:::l:3:f:12\ncell:A32:b::4:::l:3:f:12\ncell:B32:b:::1:2:l:3:f:12:cf:2\ncell:C32:b:::3:\ncell:D32:b:::3:\ncell:E32:b:::3:\ncell:F32:b:::3:\ncell:G32:b::2:1::l:3:f:12\ncell:B33:b:1:::\ncell:C33:b:1:::\ncell:D33:b:1:::\ncell:E33:b:1:::\ncell:F33:b:1:::\ncell:G33:b:1:::\ncol:A:w:10\ncol:B:w:10\ncol:C:w:114\ncol:D:w:42\ncol:E:w:39\ncol:F:w:53\ncol:G:w:10\nsheet:c:7:r:33\nborder:1:1px solid rgb(0, 0, 0)\nborder:2:1px solid rgb(0,0,0)\nborder:3:1px solid rgb(17, 17, 17)\nborder:4:thin solid rgb(0,0,0)\ncellformat:1:center\ncellformat:2:left\nfont:1:* * Trebuchet MS\nfont:2:* 9pt Trebuchet MS\nfont:3:* 9pt arial,helvetica,sans-serif\nfont:4:italic bold 10pt Trebuchet MS\nfont:5:normal bold * Trebuchet MS\nfont:6:normal bold 10pt Arial\nfont:7:normal bold 11pt Trebuchet MS\nfont:8:normal bold 12pt Arial\nfont:9:normal bold 16pt Trebuchet MS\nfont:10:normal normal * *\nfont:11:normal normal * Trebuchet MS\nfont:12:normal normal 10pt Arial\nfont:13:normal normal 12pt Arial\nlayout:1:padding:* * * *;vertical-align:bottom;\nlayout:2:padding:* * * *;vertical-align:middle;\nlayout:3:padding:* * * *;vertical-align:top;\nvalueformat:1:#,##0.00\nvalueformat:2:d-mmm\nvalueformat:3:m/d/yy\nvalueformat:4:text-html\n"
+        },
+        "name": "sheet3",
+        "hidden": "0"
+      },
+      "sheet4": {
+        "sheetstr": {
+          "savestr": "version:1.5\ncell:B2:t:INVOICE:l:3:f:12:c:4:cf:1:colspan:4\ncell:C2:t::l:2:f:14\ncell:D2:l:1:f:11:c:2:cf:2\ncell:E2:t::l:2:f:14\ncell:B3:f:8:cf:2\ncell:C3:t::l:2:f:14\ncell:D3:l:1:f:10:cf:2\ncell:E3:l:1:f:15:cf:2:ntvf:3\ncell:B4:t:INVOICE #\\c:f:2\ncell:D4:t:DATE\\c:l:1:f:15:cf:2\ncell:E4:vtf:nd:46061:TODAY():l:1:f:15:cf:2:ntvf:3\ncell:B5:f:3\ncell:C5:cf:2\ncell:D5:l:1:f:10:cf:2\ncell:E5:l:1:f:15:cf:2\ncell:B6:t:BILL TO\\c:f:9:c:4:colspan:2\ncell:D6:f:13:cf:2:tvf:4:colspan:2:rowspan:5\ncell:B7:t:[Name]:f:3:colspan:2\ncell:D7:f:1:cf:2\ncell:B8:t:[Company Name]:f:1:cf:2:colspan:2\ncell:D8:f:1:cf:2\ncell:F8:t:  \ncell:B9:t:[Street Address]:f:1:cf:2:colspan:2\ncell:D9:f:1:cf:2\ncell:B10:t:[City, State,  Zip]:f:1:cf:2:colspan:2\ncell:D10:f:1:cf:2\ncell:B11:t:Phone\\c :f:1:cf:2:colspan:2\ncell:D11:f:1:cf:2\ncell:B12:t:Email\\c:colspan:2\ncell:D12:f:1:cf:2\ncell:B13:f:13:cf:2\ncell:A15:b::2::\ncell:B15:t:DESCRIPTION:b:2:2:2:2:l:1:f:15:c:1:bg:3:cf:1\ncell:C15:t:QTY:b:2:2:2:2:l:1:f:15:c:1:bg:3:cf:1\ncell:D15:t:PRICE:b:2:2:2:2:l:1:f:15:c:1:bg:3:cf:1\ncell:E15:t:AMOUNT:b:2:2:2::l:1:f:15:c:1:bg:3:cf:1\ncell:A16:b::2::\ncell:B16:b:2:2::2:f:4:cf:2\ncell:C16:b::1:::l:2:f:4\ncell:D16:b::4:::l:1:f:4\ncell:E16:vtf:t::IF(C16*D16,C16*D16,\"\"):b::2::2:f:4:ntvf:1\ncell:A17:b::2::\ncell:B17:b::2::2:f:4:cf:2\ncell:C17:b::1:::l:2:f:4\ncell:D17:b::4:::l:1:f:4\ncell:E17:vtf:t::IF(C17*D17,C17*D17,\"\"):b::2::2:f:4:ntvf:1\ncell:A18:b::2::\ncell:B18:b::2::2:f:4:cf:2\ncell:C18:b::1:::l:2:f:4\ncell:D18:b::4:::l:1:f:4\ncell:E18:vtf:t::IF(C18*D18,C18*D18,\"\"):b::2::2:f:4:ntvf:1\ncell:A19:b::2::\ncell:B19:b::2::2:f:4:cf:2\ncell:C19:b::1:::l:2:f:4\ncell:D19:b::4:::l:1:f:4\ncell:E19:vtf:t::IF(C19*D19,C19*D19,\"\"):b::2::2:f:4:ntvf:1\ncell:A20:b::2::\ncell:B20:b::2::2:f:4:cf:2\ncell:C20:b::1:::l:2:f:4\ncell:D20:b::4:::l:1:f:4\ncell:E20:vtf:t::IF(C20*D20,C20*D20,\"\"):b::2::2:f:4:ntvf:1\ncell:A21:b::2::\ncell:B21:b::2::2:f:4:cf:2\ncell:C21:b::1:::l:2:f:4\ncell:D21:b::4:::l:1:f:4\ncell:E21:vtf:t::IF(C21*D21,C21*D21,\"\"):b::2::2:f:4:ntvf:1\ncell:A22:b::2::\ncell:B22:b::2::2:f:4:cf:2\ncell:C22:b::1:::l:2:f:4\ncell:D22:b::4:::l:1:f:4\ncell:E22:vtf:t::IF(C22*D22,C22*D22,\"\"):b::2::2:f:4:ntvf:1\ncell:A23:b::2::\ncell:B23:b::2::2:f:4:cf:2\ncell:C23:b::1:::l:2:f:4\ncell:D23:b::4:::l:1:f:4\ncell:E23:vtf:t::IF(C23*D23,C23*D23,\"\"):b::2::2:f:4:ntvf:1\ncell:A24:b::2::\ncell:B24:b::2::2:f:4:cf:2\ncell:C24:b::1:::l:2:f:4\ncell:D24:b::4:::l:1:f:4\ncell:E24:vtf:t::IF(C24*D24,C24*D24,\"\"):b::2::2:f:4:ntvf:1\ncell:A25:b::2::\ncell:B25:b::2::2:f:4:cf:2\ncell:C25:b::1:::l:2:f:4\ncell:D25:b::4:::l:1:f:4\ncell:E25:vtf:t::IF(C25*D25,C25*D25,\"\"):b::2::2:f:4:ntvf:1\ncell:A26:b::2::\ncell:B26:b::2::2:f:4:cf:2\ncell:C26:b::1:::l:2:f:4\ncell:D26:b::4:::l:1:f:4\ncell:E26:vtf:t::IF(C26*D26,C26*D26,\"\"):b::2::2:f:4:ntvf:1\ncell:A27:b::2::\ncell:B27:b::2::2:f:4:cf:2\ncell:C27:b::1:::l:2:f:4\ncell:D27:b::4:::l:1:f:4\ncell:E27:vtf:t::IF(C27*D27,C27*D27,\"\"):b::2::2:f:4:ntvf:1\ncell:A28:b::2::\ncell:B28:b::2:2:2:f:4:cf:2\ncell:C28:b::1:2::l:1:f:4\ncell:D28:b::4:4::l:1:f:4\ncell:E28:vtf:t::IF(C28*D28,C28*D28,\"\"):b::2::2:f:4:ntvf:1\ncell:B29:b:4::::l:1:f:14\ncell:C29:t:Subtotal\\c:b:4::::l:1:f:14:cf:3:colspan:2\ncell:D29:b:4::::l:1:f:13\ncell:E29:vtf:n:0:SUM(E16\\cE28):b:2::::f:13:ntvf:1\ncell:B30:t:Notes:b:::3::l:1:f:15:cf:2\ncell:C30:t:Tax Rate:l:1:f:14:cf:3:colspan:2\ncell:D30:l:1:f:13\ncell:E30:v:0:f:1:ntvf:2\ncell:B31:b:1::::f:1:cf:2\ncell:C31:t:Tax:l:1:f:14:cf:3:colspan:2\ncell:D31:l:1:f:13\ncell:E31:vtf:n:0:E30*E29:f:1:ntvf:1\ncell:B32:f:1:cf:2\ncell:C32:t:Other:l:2:f:14:cf:3:colspan:2\ncell:D32:b:::2::l:1:f:13\ncell:E32:v:0:b:::2::f:1:ntvf:1\ncell:B33:b:::3::f:1:cf:2\ncell:C33:t:TOTAL:l:2:f:14:cf:3:colspan:2\ncell:D33:b:2::::l:1:f:15\ncell:E33:vtf:n:0:(E29+E31)+E32:b:2::::f:13:ntvf:1\ncell:B34:b:1:::\ncell:B35:t:[From\\c Address line 1, City, State, zip, contact]:l:4:f:5:cf:1:colspan:4:rowspan:2\ncell:B37:t:Thank you for your Business:f:7:c:4:cf:1:colspan:4\ncell:B43:l:1:f:6:cf:1\ncell:C43:t::l:2:f:14\ncell:D43:t::l:2:f:14\ncell:E43:t::l:2:f:14\ncol:A:w:17\ncol:B:w:101\ncol:C:w:41\ncol:D:w:48\ncol:E:w:59\nsheet:c:6:r:43\nborder:1:1px solid rgb(0, 0, 0)\nborder:2:1px solid rgb(0,0,0)\nborder:3:1px solid rgb(153, 153, 153)\nborder:4:thin solid rgb(0,0,0)\ncellformat:1:center\ncellformat:2:left\ncellformat:3:right\ncolor:1:rgb(0, 0, 0)\ncolor:2:rgb(0,0,0)\ncolor:3:rgb(221, 221, 221)\ncolor:4:rgb(51, 51, 51)\nfont:1:* * Trebuchet MS\nfont:2:* 10pt *\nfont:3:* 10pt Trebuchet MS\nfont:4:* 9pt Trebuchet MS\nfont:5:* 9pt arial,helvetica,sans-serif\nfont:6:italic bold 10pt Trebuchet MS\nfont:7:italic bold 9pt *\nfont:8:italic normal * Trebuchet MS\nfont:9:normal bold 10pt *\nfont:10:normal bold 10pt Trebuchet MS\nfont:11:normal bold 14pt Trebuchet MS\nfont:12:normal bold 16pt Trebuchet MS\nfont:13:normal normal * Trebuchet MS\nfont:14:normal normal 10pt Arial\nfont:15:normal normal 10pt Trebuchet MS\nlayout:1:padding:* * * *;vertical-align:bottom;\nlayout:2:padding:* * * *;vertical-align:middle;\nlayout:3:padding:5px * * 5px;vertical-align:bottom;\nlayout:4:padding:7px * * *;vertical-align:*;\nvalueformat:1:#,##0.00\nvalueformat:2:#,##0.00%\nvalueformat:3:m/d/yy\nvalueformat:4:text-html\n"
+        },
+        "name": "sheet4",
+        "hidden": "0"
+      }
+    }
+  },
+  "footers": [
+    {
+      "name": "Invoice 1",
+      "index": 1,
+      "isActive": true
+    },
+    {
+      "name": "Invoice 2",
+      "index": 2,
+      "isActive": true
+    },
+    {
+      "name": "Invoice 3",
+      "index": 3,
+      "isActive": true
+    },
+    {
+      "name": "Invoice 4",
+      "index": 4,
+      "isActive": true
+    }
+  ],
+  "appMapping": {
+    "sheet1": {
+      "BillTo": {
+        "editable": true,
+        "formContent": {
+          "Address": {
+            "cell": "C6",
+            "editable": true,
+            "type": "text"
+          },
+          "CityStateZip": {
+            "cell": "C7",
+            "editable": true,
+            "type": "text"
+          },
+          "Email": {
+            "cell": "C9",
+            "editable": true,
+            "type": "text"
+          },
+          "Name": {
+            "cell": "C5",
+            "editable": true,
+            "type": "text"
+          },
+          "Phone": {
+            "cell": "C8",
+            "editable": true,
+            "type": "text"
+          }
+        },
+        "type": "form"
+      },
+      "Date": {
+        "cell": "E18",
+        "editable": true,
+        "type": "text"
+      },
+      "From": {
+        "editable": true,
+        "formContent": {
+          "StreetAddress": {
+            "cell": "C13",
+            "editable": true,
+            "type": "text"
+          },
+          "CityStateZip": {
+            "cell": "C14",
+            "editable": true,
+            "type": "text"
+          },
+          "Email": {
+            "cell": "C16",
+            "editable": true,
+            "type": "text"
+          },
+          "Name": {
+            "cell": "C12",
+            "editable": true,
+            "type": "text"
+          },
+          "Phone": {
+            "cell": "C15",
+            "editable": true,
+            "type": "text"
+          }
+        },
+        "type": "form"
+      },
+      "InvoiceNumber": {
+        "cell": "C18",
+        "editable": true,
+        "type": "text"
+      },
+      "InvoiceTitle": {
+        "cell": "B2",
+        "editable": true,
+        "type": "text"
+      },
+      "Items": {
+        "col": {
+          "Amount": {
+            "cell": "F",
+            "editable": true,
+            "name": "Amount",
+            "type": "text"
+          },
+          "Description": {
+            "cell": "C",
+            "editable": true,
+            "name": "Description",
+            "type": "text"
+          }
+        },
+        "editable": true,
+        "rows": {
+          "end": 33,
+          "start": 21
+        },
+        "type": "table",
+        "unitname": "Item"
+      },
+      "Logo": {
+        "cell": "E5",
+        "editable": true,
+        "type": "image"
+      },
+      "Signature": {
+        "cell": "D36",
+        "editable": true,
+        "type": "image"
+      },
+      "Total": {
+        "cell": "F34",
+        "editable": false,
+        "type": "text"
+      }
+    },
+    "sheet2": {
+      "BillTo": {
+        "editable": true,
+        "formContent": {
+          "Address": {
+            "cell": "B17",
+            "editable": true,
+            "type": "text"
+          },
+          "CityStateZip": {
+            "cell": "B18",
+            "editable": true,
+            "type": "text"
+          },
+          "CompanyName": {
+            "cell": "B16",
+            "editable": true,
+            "type": "text"
+          },
+          "Email": {
+            "cell": "B20",
+            "editable": true,
+            "type": "text"
+          },
+          "Name": {
+            "cell": "B15",
+            "editable": true,
+            "type": "text"
+          },
+          "Phone": {
+            "cell": "B19",
+            "editable": true,
+            "type": "text"
+          }
+        },
+        "type": "form"
+      },
+      "Date": {
+        "cell": "G4",
+        "editable": true,
+        "type": "text"
+      },
+      "From": {
+        "editable": true,
+        "formContent": {
+          "StreetAddress": {
+            "cell": "B9",
+            "editable": true,
+            "type": "text"
+          },
+          "CityStateZip": {
+            "cell": "B10",
+            "editable": true,
+            "type": "text"
+          },
+          "CompanyName": {
+            "cell": "B8",
+            "editable": true,
+            "type": "text"
+          },
+          "Email": {
+            "cell": "B12",
+            "editable": true,
+            "type": "text"
+          },
+          "Phone": {
+            "cell": "B11",
+            "editable": true,
+            "type": "text"
+          }
+        },
+        "type": "form"
+      },
+      "InvoiceNumber": {
+        "cell": "B4",
+        "editable": true,
+        "type": "text"
+      },
+      "InvoiceTitle": {
+        "cell": "B2",
+        "editable": true,
+        "type": "text"
+      },
+      "Items": {
+        "col": {
+          "Amount": {
+            "cell": "G",
+            "editable": true,
+            "name": "Amount",
+            "type": "text"
+          },
+          "Description": {
+            "cell": "B",
+            "editable": true,
+            "name": "Description",
+            "type": "text"
+          }
+        },
+        "editable": true,
+        "rows": {
+          "end": 35,
+          "start": 23
+        },
+        "type": "table",
+        "unitname": "Item"
+      },
+      "Logo": {
+        "cell": "F7",
+        "editable": true,
+        "type": "image"
+      },
+      "Notes1": {
+        "cell": "B38",
+        "editable": true,
+        "type": "text"
+      },
+      "Notes2": {
+        "cell": "B39",
+        "editable": true,
+        "type": "text"
+      },
+      "Notes3": {
+        "cell": "B40",
+        "editable": true,
+        "type": "text"
+      },
+      "Other": {
+        "cell": "G39",
+        "editable": true,
+        "type": "text"
+      },
+      "Signature": {
+        "cell": "E41",
+        "editable": true,
+        "type": "image"
+      },
+      "Subtotal": {
+        "cell": "G36",
+        "editable": false,
+        "type": "text"
+      },
+      "Tax": {
+        "cell": "G38",
+        "editable": false,
+        "type": "text"
+      },
+      "TaxRate": {
+        "cell": "G37",
+        "editable": true,
+        "type": "text"
+      },
+      "Total": {
+        "cell": "G40",
+        "editable": false,
+        "type": "text"
+      }
+    },
+    "sheet3": {
+      "BillTo": {
+        "editable": true,
+        "formContent": {
+          "Address": {
+            "cell": "C6",
+            "editable": true,
+            "type": "text"
+          },
+          "CityStateZip": {
+            "cell": "C7",
+            "editable": true,
+            "type": "text"
+          },
+          "Email": {
+            "cell": "C9",
+            "editable": true,
+            "type": "text"
+          },
+          "Name": {
+            "cell": "C5",
+            "editable": true,
+            "type": "text"
+          },
+          "Phone": {
+            "cell": "C8",
+            "editable": true,
+            "type": "text"
+          }
+        },
+        "type": "form"
+      },
+      "Date": {
+        "cell": "E11",
+        "editable": true,
+        "type": "text"
+      },
+      "FromAddress": {
+        "cell": "C29",
+        "editable": true,
+        "type": "text"
+      },
+      "InvoiceNumber": {
+        "cell": "C11",
+        "editable": true,
+        "type": "text"
+      },
+      "InvoiceTitle": {
+        "cell": "B2",
+        "editable": true,
+        "type": "text"
+      },
+      "Items": {
+        "col": {
+          "Amount": {
+            "cell": "F",
+            "editable": false,
+            "name": "Amount",
+            "type": "text"
+          },
+          "Description": {
+            "cell": "C",
+            "editable": true,
+            "name": "Description",
+            "type": "text"
+          },
+          "Price": {
+            "cell": "E",
+            "editable": true,
+            "name": "Price",
+            "type": "text"
+          },
+          "Qty": {
+            "cell": "D",
+            "editable": true,
+            "name": "Qty",
+            "type": "text"
+          }
+        },
+        "editable": true,
+        "rows": {
+          "end": 26,
+          "start": 14
+        },
+        "type": "table",
+        "unitname": "Item"
+      },
+      "Logo": {
+        "cell": "E4",
+        "editable": true,
+        "type": "image"
+      },
+      "ThankYouMessage": {
+        "cell": "C31",
+        "editable": true,
+        "type": "text"
+      },
+      "Total": {
+        "cell": "F27",
+        "editable": false,
+        "type": "text"
+      }
+    },
+    "sheet4": {
+      "BillTo": {
+        "editable": true,
+        "formContent": {
+          "Address": {
+            "cell": "B9",
+            "editable": true,
+            "type": "text"
+          },
+          "CityStateZip": {
+            "cell": "B10",
+            "editable": true,
+            "type": "text"
+          },
+          "CompanyName": {
+            "cell": "B8",
+            "editable": true,
+            "type": "text"
+          },
+          "Email": {
+            "cell": "B12",
+            "editable": true,
+            "type": "text"
+          },
+          "Name": {
+            "cell": "B7",
+            "editable": true,
+            "type": "text"
+          },
+          "Phone": {
+            "cell": "B11",
+            "editable": true,
+            "type": "text"
+          }
+        },
+        "type": "form"
+      },
+      "Date": {
+        "cell": "E4",
+        "editable": true,
+        "type": "text"
+      },
+      "FromAddress": {
+        "cell": "B35",
+        "editable": true,
+        "type": "text"
+      },
+      "InvoiceNumber": {
+        "cell": "B4",
+        "editable": true,
+        "type": "text"
+      },
+      "InvoiceTitle": {
+        "cell": "B2",
+        "editable": true,
+        "type": "text"
+      },
+      "Items": {
+        "col": {
+          "Amount": {
+            "cell": "E",
+            "editable": false,
+            "name": "Amount",
+            "type": "text"
+          },
+          "Description": {
+            "cell": "B",
+            "editable": true,
+            "name": "Description",
+            "type": "text"
+          },
+          "Price": {
+            "cell": "D",
+            "editable": true,
+            "name": "Price",
+            "type": "text"
+          },
+          "Qty": {
+            "cell": "C",
+            "editable": true,
+            "name": "Qty",
+            "type": "text"
+          }
+        },
+        "editable": true,
+        "rows": {
+          "end": 28,
+          "start": 16
+        },
+        "type": "table",
+        "unitname": "Item"
+      },
+      "Logo": {
+        "cell": "D6",
+        "editable": true,
+        "type": "image"
+      },
+      "Note1": {
+        "cell": "B31",
+        "editable": true,
+        "type": "text"
+      },
+      "Note2": {
+        "cell": "B32",
+        "editable": true,
+        "type": "text"
+      },
+      "Note3": {
+        "cell": "B33",
+        "editable": true,
+        "type": "text"
+      },
+      "Other": {
+        "cell": "E32",
+        "editable": true,
+        "type": "text"
+      },
+      "Subtotal": {
+        "cell": "E29",
+        "editable": false,
+        "type": "text"
+      },
+      "Tax": {
+        "cell": "E31",
+        "editable": false,
+        "type": "text"
+      },
+      "TaxRate": {
+        "cell": "E30",
+        "editable": true,
+        "type": "text"
+      },
+      "ThankYouMessage": {
+        "cell": "B37",
+        "editable": true,
+        "type": "text"
+      },
+      "Total": {
+        "cell": "E33",
+        "editable": false,
+        "type": "text"
+      }
+    }
+  }
+}

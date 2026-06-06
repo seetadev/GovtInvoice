@@ -1,0 +1,65 @@
+/* Light Theme Styles for Menu Component */
+.light-theme ion-action-sheet,
+:root ion-action-sheet {
+  --background: #ffffff;
+  --color: #000000;
+  border-top: 1px solid #e1e4e8;
+}
+
+.light-theme ion-action-sheet .action-sheet-button,
+:root ion-action-sheet .action-sheet-button {
+  --background: #ffffff;
+  --color: #000000;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.light-theme ion-action-sheet .action-sheet-button:hover,
+:root ion-action-sheet .action-sheet-button:hover {
+  --background: #f8f9fa;
+}
+
+.light-theme ion-action-sheet .action-sheet-cancel,
+:root ion-action-sheet .action-sheet-cancel {
+  --background: #f8f9fa;
+  --color: #000000;
+}
+
+.light-theme ion-action-sheet ion-icon,
+:root ion-action-sheet ion-icon {
+  color: var(--ion-color-primary);
+}
+
+.light-theme ion-action-sheet .action-sheet-title,
+:root ion-action-sheet .action-sheet-title {
+  color: #000000;
+}
+
+/* Dark Theme Styles for Menu Component */
+.dark-theme ion-action-sheet {
+  --background: var(--stark-invoice-bg-secondary);
+  --color: var(--stark-invoice-text-primary);
+  border-top: 1px solid var(--stark-invoice-border);
+}
+
+.dark-theme ion-action-sheet .action-sheet-button {
+  --background: var(--stark-invoice-bg-secondary);
+  --color: var(--stark-invoice-text-primary);
+  border-bottom: 1px solid var(--stark-invoice-border);
+}
+
+.dark-theme ion-action-sheet .action-sheet-button:hover {
+  --background: var(--stark-invoice-bg-tertiary);
+}
+
+.dark-theme ion-action-sheet .action-sheet-cancel {
+  --background: var(--stark-invoice-bg-tertiary);
+  --color: var(--stark-invoice-text-primary);
+}
+
+.dark-theme ion-action-sheet ion-icon {
+  color: var(--stark-invoice-accent);
+}
+
+.dark-theme ion-action-sheet .action-sheet-title {
+  color: var(--stark-invoice-text-primary);
+}
