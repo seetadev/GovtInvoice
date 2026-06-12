@@ -12,7 +12,7 @@ export class SheetChangeMonitor {
   private static isInitialized = false;
   private static updateSheetIdCallback: ((sheetId: string) => void) | null =
     null;
-  private static intervalId: NodeJS.Timeout | null = null;
+  private static intervalId: ReturnType<typeof setTimeout> | null = null;
   private static lastKnownSheetId: string | null = null;
 
   /**

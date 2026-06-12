@@ -7,11 +7,11 @@ import {
   IonButton,
 } from "@ionic/react";
 import SignatureCanvas from "react-signature-canvas";
-
+import { Meshkit } from "../meshkit/Meshkit";
 import { useInvoice } from "../contexts/InvoiceContext";
 import { useHistory } from "react-router-dom";
 import { getInvoiceFormat, setInvoiceFormat, getSequentialNumber, setSequentialNumber, getIpfsSettings, saveIpfsSettings } from "../utils/settings";
-import { ipfsService } from "../services/ipfs-service";
+// import { ipfsService } from "../services/ipfs-service";
 import "./SettingsPage.css";
 
 // Custom SVG Icons
@@ -224,7 +224,13 @@ const SettingsPage: React.FC = () => {
     }
     setTestingConnection(true);
     try {
-      const ok = await ipfsService.testConnection(ipfsPinataJwt, ipfsPinataApiKey, ipfsPinataApiSecret);
+      const mk = await Meshkit.init({
+        provider: "pinata",
+        providerToken: ipfsPinataJwt,
+      });
+
+      const ok = await mk.testConnection();
+
       if (ok) {
         setToastMessage("Successfully connected to Pinata!");
       } else {
