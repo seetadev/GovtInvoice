@@ -30,6 +30,8 @@ import {
   getQuotaExceededMessage,
 } from "../../utils/helper";
 import { localTemplateService } from "../../services/local-template-service";
+import { Meshkit } from "../../meshkit/Meshkit";
+import { getIpfsSettings } from "../../utils/settings";
 import EmptyInvoicesIcon from "../Icons/EmptyInvoicesIcon";
 
 const Files: React.FC<{
@@ -653,17 +655,22 @@ const Files: React.FC<{
         throw new Error("Could not load invoice data.");
       }
 
-      const pinResult = await ipfsService.pinToIpfs(fullInvoice);
-      
-      setDirectCid(pinResult.IpfsHash);
-      setDirectInvoiceName(fullInvoice.name);
-      
-      try {
-        await navigator.clipboard.writeText(pinResult.IpfsHash);
-        setToastMessage("IPFS CID copied to clipboard!");
-      } catch (e) {
-        // ignore clipboard error
-      }
+      const mk = await Meshkit.init({
+  provider: "pinata",
+  providerToken: getIpfsSettings().ipfsPinataJwt,
+});
+
+    const pinResult = await mk.store(fullInvoice);
+
+    setDirectCid(pinResult.cid);
+    setDirectInvoiceName(fullInvoice.name);
+
+    try {
+      await navigator.clipboard.writeText(pinResult.cid);
+      setToastMessage("IPFS CID copied to clipboard!");
+    } catch (e) {
+      // ignore clipboard error
+    }
       
       setShowDirectIpfsAlert(true);
     } catch (error: any) {
