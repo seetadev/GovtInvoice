@@ -2,6 +2,8 @@ import { PinataProvider } from "./providers/PinataProvider";
 import {
   StorageProvider,
   MeshkitConfig,
+  StoreOptions,
+  MeshkitRecord,
 } from "./types";
 export class Meshkit {
   constructor(
@@ -15,6 +17,20 @@ export class Meshkit {
     );
 
     return new Meshkit(provider);
+  }
+
+  async store<T>(
+    data: T,
+    options?: StoreOptions
+  ): Promise<MeshkitRecord<T>> {
+    const cid = await this.provider.putJSON(data);
+
+    return {
+      cid,
+      timestamp: Date.now(),
+      data,
+      size: JSON.stringify(data).length,
+    };
   }
 
   async testConnection() {
