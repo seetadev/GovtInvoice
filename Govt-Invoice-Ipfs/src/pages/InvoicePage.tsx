@@ -34,6 +34,8 @@ import Menu from "../components/InvoicePage/Menu/Menu";
 import { useInvoice } from "../contexts/InvoiceContext";
 import { localTemplateService } from "../services/local-template-service";
 import { ipfsService } from "../services/ipfs-service";
+import { Meshkit } from "../meshkit/Meshkit";
+import { getIpfsSettings } from "../utils/settings";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import CellEditModal from "../components/InvoicePage/CellEditModal/CellEditModal";
 import { setupMouseListener } from "../components/InvoicePage/socialcalc/modules/listeners";
@@ -1158,24 +1160,28 @@ const InvoicePage: React.FC = () => {
         throw new Error("Could not find saved invoice in local storage.");
       }
 
-      // Pin to IPFS
-      const pinResult = await ipfsService.pinToIpfs(savedInvoice);
-      
-      setIpfsCid(pinResult.IpfsHash);
+      const mk = await Meshkit.init({
+        provider: "pinata",
+        providerToken: getIpfsSettings().ipfsPinataJwt,
+      });
+
+      const pinResult = await mk.store(savedInvoice);
+
+      setIpfsCid(pinResult.cid);
       setIpfsStatus("success");
-      
+
       // Save details to IPFS history
       try {
         const historyStr = localStorage.getItem("ipfs_pinned_history") || "[]";
         const historyList = JSON.parse(historyStr);
         const updatedList = [
           {
-            cid: pinResult.IpfsHash,
+            cid: pinResult.cid,
             name: savedInvoice.name,
-            timestamp: pinResult.Timestamp,
+            timestamp: new Date(pinResult.timestamp).toISOString(),
             total: savedInvoice.total
           },
-          ...historyList.filter((item: any) => item.cid !== pinResult.IpfsHash)
+          ...historyList.filter((item: any) => item.cid !== pinResult.cid)
         ].slice(0, 50);
         localStorage.setItem("ipfs_pinned_history", JSON.stringify(updatedList));
       } catch (e) {
@@ -1184,8 +1190,7 @@ const InvoicePage: React.FC = () => {
 
       // Copy CID to clipboard
       try {
-        await navigator.clipboard.writeText(pinResult.IpfsHash);
-        setToastMessage("IPFS CID copied to clipboard!");
+        await navigator.clipboard.writeText(pinResult.cid);        setToastMessage("IPFS CID copied to clipboard!");
         setToastColor("success");
         setShowToast(true);
       } catch (e) {
