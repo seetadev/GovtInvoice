@@ -229,11 +229,6 @@ const SettingsPage: React.FC = () => {
         providerToken: ipfsPinataJwt,
       });
 
-      const result = await mk.store({
-        hello: "world",
-      });
-      console.log("STORE RESULT", result);
-
       const ok = await mk.testConnection();
 
       if (ok) {

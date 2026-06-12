@@ -4,6 +4,7 @@ import {
   MeshkitConfig,
   StoreOptions,
   MeshkitRecord,
+  RetrieveOptions,
 } from "./types";
 export class Meshkit {
   constructor(
@@ -31,6 +32,13 @@ export class Meshkit {
       data,
       size: JSON.stringify(data).length,
     };
+  }
+
+  async retrieve<T>(
+    cid: string,
+    options?: RetrieveOptions
+  ): Promise<T> {
+    return await this.provider.getJSON(cid);
   }
 
   async testConnection() {
