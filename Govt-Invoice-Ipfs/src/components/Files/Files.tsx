@@ -611,10 +611,14 @@ const Files: React.FC<{
     setShowToast(true);
 
     try {
-      const invoiceData = await ipfsService.fetchFromIpfs(cid);
-      
-      let invoiceName = invoiceData.name || invoiceData.id;
-      let finalId = invoiceData.id;
+      const mk = await Meshkit.init({
+        provider: "pinata",
+        providerToken: getIpfsSettings().ipfsPinataJwt,
+      });
+
+      const invoiceData = await mk.retrieve<any>(cid);
+
+      let invoiceName = invoiceData.name || invoiceData.id;      let finalId = invoiceData.id;
       
       const exists = await localTemplateService.invoiceExists(finalId);
       if (exists) {

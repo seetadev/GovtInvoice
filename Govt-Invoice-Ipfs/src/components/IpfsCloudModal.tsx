@@ -28,6 +28,7 @@ import {
 import { getIpfsSettings, saveIpfsSettings } from "../utils/settings";
 import { ipfsService } from "../services/ipfs-service";
 import { localTemplateService } from "../services/local-template-service";
+import { Meshkit } from "../meshkit/Meshkit";
 import "./IpfsCloudModal.css";
 
 interface IpfsCloudModalProps {
@@ -162,10 +163,14 @@ export const IpfsCloudModal: React.FC<IpfsCloudModalProps> = ({
     showToastNotification("Fetching invoice from IPFS...", "primary");
 
     try {
-      const invoiceData = await ipfsService.fetchFromIpfs(cid);
-      
-      // Save data directly to temporary localStorage key
-      localStorage.setItem("ipfs_temp_invoice_content", JSON.stringify(invoiceData));
+      const mk = await Meshkit.init({
+        provider: "pinata",
+        providerToken: getIpfsSettings().ipfsPinataJwt,
+      });
+
+      const invoiceData = await mk.retrieve<any>(cid);
+
+      // Save data directly to temporary localStorage key      localStorage.setItem("ipfs_temp_invoice_content", JSON.stringify(invoiceData));
 
       // Append/prepend to IPFS pinned history list if it's not already in there!
       const historyStr = localStorage.getItem("ipfs_pinned_history") || "[]";
