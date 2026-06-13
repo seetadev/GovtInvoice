@@ -84,6 +84,34 @@ export class PinataProvider implements StorageProvider {
     return result.IpfsHash;
   }
 
+  async putFile(file: Blob | File): Promise<string> {
+    const formData = new FormData();
+    formData.append(
+      "file",
+      file,
+      file instanceof File ? file.name : "meshkit-file"
+    );
+
+    const response = await fetch(`${this.BASE_URL}/pinning/pinFileToIPFS`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+
+      throw new Error(
+        errorData.error?.details ?? `HTTP error ${response.status}`
+      );
+    }
+
+    const result = await response.json();
+    return result.IpfsHash;
+  }
+
   async getJSON(cid: string): Promise<any> {
     let cleanedCid = cid.trim();
 
@@ -114,5 +142,31 @@ export class PinataProvider implements StorageProvider {
     }
 
     return await response.json();
+  }
+
+  async getFile(cid: string): Promise<Blob> {
+    let cleanedCid = cid.trim();
+
+    if (cleanedCid.includes("/ipfs/")) {
+      cleanedCid = cleanedCid.split("/ipfs/")[1];
+    }
+
+    cleanedCid = cleanedCid.split("?")[0].replace(/\/+$/, "");
+
+    if (!cleanedCid) {
+      throw new Error("Invalid CID");
+    }
+
+    const gateway = this.gatewayUrl.endsWith("/")
+      ? this.gatewayUrl
+      : `${this.gatewayUrl}/`;
+
+    const response = await fetch(`${gateway}${cleanedCid}`);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch from gateway. HTTP error ${response.status}`);
+    }
+
+    return await response.blob();
   }
 }

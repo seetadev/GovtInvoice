@@ -44,4 +44,22 @@ export class Meshkit {
   async testConnection() {
     return this.provider.testAuth();
   }
+
+  async upload(
+    file: Blob | File,
+    options?: StoreOptions
+  ): Promise<MeshkitRecord<void>> {
+    const cid = await this.provider.putFile(file);
+
+    return {
+      cid,
+      timestamp: Date.now(),
+      data: undefined,
+      size: file.size,
+    };
+  }
+
+  async download(cid: string): Promise<Blob> {
+    return await this.provider.getFile(cid);
+  }
 }

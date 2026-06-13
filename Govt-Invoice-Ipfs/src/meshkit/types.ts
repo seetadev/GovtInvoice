@@ -25,6 +25,8 @@ export interface KeyService {
 export interface StorageProvider {
   putJSON(data: any): Promise<string>;
   getJSON(cid: string): Promise<any>;
+  putFile(file: Blob | File): Promise<string>;
+  getFile(cid: string): Promise<Blob>;
   testAuth(): Promise<boolean>;
 }
 
@@ -47,6 +49,15 @@ export interface IMeshkit {
     cid: string,
     options?: RetrieveOptions
   ): Promise<T>;
+
+  upload(
+    file: Blob | File,
+    options?: StoreOptions
+  ): Promise<MeshkitRecord<void>>;
+
+  download(
+    cid: string
+  ): Promise<Blob>;
 
   testConnection(): Promise<boolean>;
 }
