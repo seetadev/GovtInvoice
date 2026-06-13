@@ -33,6 +33,7 @@ export interface StorageProvider {
   getJSON(cid: string): Promise<any>;
   putFile(file: Blob | File): Promise<string>;
   getFile(cid: string): Promise<Blob>;
+  delete(cid: string): Promise<boolean>;
   testAuth(): Promise<boolean>;
 }
 
@@ -73,6 +74,10 @@ export interface IMeshkit {
   receive(
     cid: string
   ): Promise<MeshkitMessage>;
+
+  revoke(
+    cid: string
+  ): Promise<boolean>;
 
   testConnection(): Promise<boolean>;
 }

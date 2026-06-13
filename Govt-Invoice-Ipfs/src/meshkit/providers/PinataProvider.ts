@@ -169,4 +169,32 @@ export class PinataProvider implements StorageProvider {
 
     return await response.blob();
   }
+
+  async delete(cid: string): Promise<boolean> {
+    let cleanedCid = cid.trim();
+
+    if (cleanedCid.includes("/ipfs/")) {
+      cleanedCid = cleanedCid.split("/ipfs/")[1];
+    }
+
+    cleanedCid = cleanedCid.split("?")[0].replace(/\/+$/, "");
+
+    if (!cleanedCid) {
+      throw new Error("Invalid CID");
+    }
+
+    const response = await fetch(`${this.BASE_URL}/pinning/unpin/${cleanedCid}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error?.details ?? `HTTP error ${response.status}`);
+    }
+
+    return response.ok;
+  }
 }

@@ -82,4 +82,10 @@ export class Meshkit {
   ): Promise<MeshkitMessage> {
     return await this.retrieve<MeshkitMessage>(cid);
   }
+
+  async revoke(
+    cid: string
+  ): Promise<boolean> {
+    return await this.provider.delete(cid);
+  }
 }
