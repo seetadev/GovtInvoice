@@ -5,6 +5,7 @@ import {
   StoreOptions,
   MeshkitRecord,
   RetrieveOptions,
+  MeshkitMessage,
 } from "./types";
 export class Meshkit {
   constructor(
@@ -61,5 +62,24 @@ export class Meshkit {
 
   async download(cid: string): Promise<Blob> {
     return await this.provider.getFile(cid);
+  }
+
+  async send(
+    recipientId: string,
+    message: string
+  ): Promise<MeshkitRecord<MeshkitMessage>> {
+    const payload: MeshkitMessage = {
+      recipientId,
+      payload: message,
+      timestamp: Date.now(),
+    };
+
+    return await this.store(payload);
+  }
+
+  async receive(
+    cid: string
+  ): Promise<MeshkitMessage> {
+    return await this.retrieve<MeshkitMessage>(cid);
   }
 }

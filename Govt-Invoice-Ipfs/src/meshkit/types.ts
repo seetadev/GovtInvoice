@@ -12,6 +12,12 @@ export interface MeshkitRecord<T = any> {
   size: number;
 }
 
+export interface MeshkitMessage {
+  recipientId: string;
+  payload: string;
+  timestamp: number;
+}
+
 export interface KeyService {
   getPublicKey(): Promise<string>;
   sign(message: string): Promise<string>;
@@ -58,6 +64,15 @@ export interface IMeshkit {
   download(
     cid: string
   ): Promise<Blob>;
+
+  send(
+    recipientId: string,
+    message: string
+  ): Promise<MeshkitRecord<MeshkitMessage>>;
+
+  receive(
+    cid: string
+  ): Promise<MeshkitMessage>;
 
   testConnection(): Promise<boolean>;
 }
