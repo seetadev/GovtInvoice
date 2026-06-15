@@ -24,6 +24,15 @@ static async init(config: MeshkitConfig): Promise<Meshkit>
 | `config.gatewayUrl` | `string` | No | IPFS gateway base URL. Defaults to `https://gateway.pinata.cloud/ipfs/`. |
 | `config.keyService` | `KeyService` | No | Reserved by the type system. Not used by the current implementation. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `provider` | `"pinata" \| "filebase" \| "storacha"` | Yes | Type allows all three values. Current implementation creates `PinataProvider`. |
+| `providerToken` | `string` | Yes | Must be a non-empty Pinata JWT. |
+| `gatewayUrl` | `string` | No | Used for gateway reads in `retrieve()` and `download()`. |
+| `keyService` | `KeyService` | No | Defined in `types.ts`; not consumed by `Meshkit.init()`. |
+
 ## Response
 
 Returns a `Promise<Meshkit>`.
@@ -40,6 +49,12 @@ class Meshkit {
   revoke(cid: string): Promise<boolean>;
 }
 ```
+
+### Response schema table
+
+| Type | Description |
+| --- | --- |
+| `Meshkit` | SDK client instance with methods for auth testing, JSON storage, JSON retrieval, file upload, file download, message storage, message retrieval, and revocation. |
 
 ## Examples
 
@@ -66,6 +81,13 @@ const ok = await meshkit.testConnection();
 | Error | Cause |
 | --- | --- |
 | `Pinata JWT is required` | `providerToken` is empty or whitespace. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | Error message thrown by `PinataProvider`. |
 
 ## Notes
 

@@ -26,6 +26,12 @@ DELETE https://api.pinata.cloud/pinning/unpin/{cid}
 | --- | --- | --- | --- |
 | `cid` | `string` | Yes | Raw CID or URL containing `/ipfs/`. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `cid` | `string` | Yes | Normalized before calling Pinata's unpin endpoint. |
+
 ## Response
 
 Returns `Promise<boolean>`.
@@ -34,6 +40,12 @@ Returns `Promise<boolean>`.
 | --- | --- |
 | `true` | Pinata accepted the unpin request. |
 | Rejected promise | The CID was invalid or Pinata rejected the request. |
+
+### Response schema table
+
+| Type | Description |
+| --- | --- |
+| `boolean` | `true` when `response.ok` is true. Failed HTTP responses throw. |
 
 ## Examples
 
@@ -56,6 +68,13 @@ true
 | `Invalid CID` | CID is empty after trimming and normalization. |
 | `HTTP error 401` | Invalid Pinata JWT. |
 | Provider error details | Pinata rejected the unpin request. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | `Invalid CID`, Pinata error details, `HTTP error {status}`, or network error message. |
 
 ## Notes
 

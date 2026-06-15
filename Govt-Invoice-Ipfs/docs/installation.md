@@ -43,12 +43,12 @@ const record = await meshkit.store({ id: "invoice-001" });
 
 There is currently no published package name or npm installation command in this repository. Do not document or depend on an npm package until one exists.
 
-When MeshKit is extracted into a public SDK package, this page should be updated with:
+Planned, not yet implemented:
 
 - npm package name
 - version support policy
 - ESM/CommonJS support
-- platform-specific installation notes for Ionic, React Native, and Flutter bridges
+- platform-specific installation notes for React Native and Flutter bridges
 
 ## Related APIs
 

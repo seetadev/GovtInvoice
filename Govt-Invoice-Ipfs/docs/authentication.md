@@ -28,6 +28,11 @@ Authorization: Bearer PINATA_JWT
 | `gatewayUrl` | `string` | No | Custom IPFS gateway base URL. Defaults to `https://gateway.pinata.cloud/ipfs/`. |
 | `keyService` | `KeyService` | No | Reserved by the type system. The current implementation does not use it. |
 
+Planned, not yet implemented:
+
+- Filebase provider authentication
+- Storacha provider authentication
+
 ## Test Credentials
 
 Use `testConnection()` after initialization to verify the token.

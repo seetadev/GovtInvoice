@@ -79,7 +79,12 @@ This option is accepted by the method signature but is not currently applied by 
 
 ## Current Provider
 
-Pinata is the only implemented provider. The `provider` union type includes future provider names, but `Meshkit.init()` currently constructs `PinataProvider`.
+Pinata is the only implemented provider. The `provider` union type includes `"filebase"` and `"storacha"`, but `Meshkit.init()` currently constructs `PinataProvider`.
+
+Planned, not yet implemented:
+
+- Filebase provider support
+- Storacha provider support
 
 ## Related Guides
 

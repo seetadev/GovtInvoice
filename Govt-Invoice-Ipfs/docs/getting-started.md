@@ -28,6 +28,23 @@ Meshkit
   - [receive()](./api/receive.md)
   - [revoke()](./api/revoke.md)
 
+## Quick Example
+
+```ts
+const mk = await Meshkit.init({
+  provider: "pinata",
+  providerToken: process.env.PINATA_JWT!,
+});
+
+const record = await mk.store({
+  hello: "world",
+});
+
+const data = await mk.retrieve(record.cid);
+
+console.log(data);
+```
+
 ## Quickstart
 
 Initialize MeshKit with a Pinata JWT, test the connection, then store and retrieve JSON data.
@@ -81,7 +98,13 @@ MeshKit currently supports:
 
 MeshKit is implemented in TypeScript and uses Web Platform APIs such as `fetch`, `Blob`, `File`, and `FormData`.
 
-The current implementation is tested in an Ionic application. Future public SDK packaging can target Ionic, React Native, and Flutter integrations, but the current source API is TypeScript-first.
+The current implementation is tested in an Ionic application.
+
+Planned, not yet implemented:
+
+- React Native integration guidance
+- Flutter integration guidance
+- Standalone public SDK packaging
 
 ## Minimal Workflow
 

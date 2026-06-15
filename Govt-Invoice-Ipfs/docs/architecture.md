@@ -15,6 +15,50 @@ Application
 
 The `Meshkit` class exposes developer-facing methods. Provider-specific HTTP behavior is isolated behind the `StorageProvider` interface.
 
+## Architecture Diagram
+
+```mermaid
+flowchart TD
+  App[Application] --> Meshkit[Meshkit]
+  Meshkit --> StorageProvider[StorageProvider]
+  StorageProvider --> PinataProvider[PinataProvider]
+  PinataProvider --> PinataAPI[Pinata API]
+  PinataProvider --> Gateway[IPFS Gateway]
+
+  subgraph JSONStore[JSON store flow]
+    StoreCall[store data] --> PutJSON[putJSON]
+    PutJSON --> PinJSON[POST /pinning/pinJSONToIPFS]
+    PinJSON --> StoreCID[CID]
+  end
+
+  subgraph JSONRetrieve[JSON retrieve flow]
+    RetrieveCall[retrieve cid] --> GetJSON[getJSON]
+    GetJSON --> GatewayJSON[GET gateway/cid]
+    GatewayJSON --> JSONData[JSON data]
+  end
+
+  subgraph FileUpload[File upload flow]
+    UploadCall[upload file] --> PutFile[putFile]
+    PutFile --> PinFile[POST /pinning/pinFileToIPFS]
+    PinFile --> FileCID[CID]
+  end
+
+  subgraph FileDownload[File download flow]
+    DownloadCall[download cid] --> GetFile[getFile]
+    GetFile --> GatewayFile[GET gateway/cid]
+    GatewayFile --> BlobData[Blob]
+  end
+
+  Meshkit --> StoreCall
+  Meshkit --> RetrieveCall
+  Meshkit --> UploadCall
+  Meshkit --> DownloadCall
+  PutJSON --> PinataProvider
+  GetJSON --> PinataProvider
+  PutFile --> PinataProvider
+  GetFile --> PinataProvider
+```
+
 ## Core Components
 
 | Component | Responsibility |
@@ -69,7 +113,12 @@ For retrieval, download, and revoke operations, the Pinata provider accepts eith
 
 ## Current Provider Behavior
 
-Although the `MeshkitConfig.provider` type includes `"pinata"`, `"filebase"`, and `"storacha"`, the current implementation always creates a `PinataProvider`. External documentation should describe Pinata as the only implemented provider until additional provider classes are wired into `Meshkit.init()`.
+Although the `MeshkitConfig.provider` type includes `"pinata"`, `"filebase"`, and `"storacha"`, the current implementation always creates a `PinataProvider`.
+
+Planned, not yet implemented:
+
+- Filebase provider support
+- Storacha provider support
 
 ## Related APIs
 

@@ -24,6 +24,10 @@ GET https://api.pinata.cloud/data/testAuthentication
 
 This method does not accept parameters.
 
+### Request schema table
+
+No request body or method parameters.
+
 ## Response
 
 Returns a `Promise<boolean>`.
@@ -32,6 +36,12 @@ Returns a `Promise<boolean>`.
 | --- | --- |
 | `true` | Authentication succeeded. |
 | Rejected promise | Authentication or provider request failed. |
+
+### Response schema table
+
+| Type | Description |
+| --- | --- |
+| `boolean` | `true` when Pinata authentication succeeds. Failed HTTP responses throw instead of returning `false`. |
 
 ## Examples
 
@@ -59,6 +69,13 @@ true
 | `HTTP error 401` or provider details | Invalid or expired Pinata JWT. |
 | `HTTP error 403` or provider details | Token lacks required access. |
 | Network error | Runtime could not reach Pinata. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | Pinata error details when available, otherwise `HTTP error {status}`. |
 
 ## Notes
 

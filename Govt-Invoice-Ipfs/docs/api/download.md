@@ -26,6 +26,12 @@ GET {gatewayUrl}/{cid}
 | --- | --- | --- | --- |
 | `cid` | `string` | Yes | Raw CID or URL containing `/ipfs/`. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `cid` | `string` | Yes | Normalized by trimming, extracting the `/ipfs/` segment, removing query strings, and removing trailing slashes. |
+
 ## Response
 
 Returns `Promise<Blob>`.
@@ -33,6 +39,12 @@ Returns `Promise<Blob>`.
 | Value | Description |
 | --- | --- |
 | `Blob` | File content returned by the gateway. |
+
+### Response schema table
+
+| Type | Description |
+| --- | --- |
+| `Blob` | Result of `response.blob()` from the configured gateway. |
 
 ## Examples
 
@@ -58,6 +70,13 @@ console.log(blob.type);
 | `Invalid CID` | CID is empty after trimming and normalization. |
 | `Failed to fetch from gateway. HTTP error 404` | Gateway could not resolve the CID. |
 | Network error | Runtime could not reach the gateway. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | `Invalid CID`, gateway HTTP error, or network error message. |
 
 ## Notes
 

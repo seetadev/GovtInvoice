@@ -26,6 +26,12 @@ GET {gatewayUrl}/{cid}
 | --- | --- | --- | --- |
 | `cid` | `string` | Yes | CID returned by `send()`. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `cid` | `string` | Yes | Passed to `retrieve<MeshkitMessage>(cid)`. |
+
 ## Response
 
 Returns `Promise<MeshkitMessage>`.
@@ -37,6 +43,14 @@ interface MeshkitMessage {
   timestamp: number;
 }
 ```
+
+### Response schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `recipientId` | `string` | Application-defined recipient identifier. |
+| `payload` | `string` | Message string. |
+| `timestamp` | `number` | Timestamp created by `send()`. |
 
 ## Examples
 
@@ -63,6 +77,13 @@ const message = await meshkit.receive("bafybeimessageexamplecid");
 | `Invalid CID` | CID is empty after trimming and normalization. |
 | `Failed to fetch from gateway. HTTP error 404` | Gateway could not resolve the CID. |
 | JSON parse error | CID does not point to JSON content. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | `Invalid CID`, gateway HTTP error, JSON parse error, or network error message. |
 
 ## Notes
 

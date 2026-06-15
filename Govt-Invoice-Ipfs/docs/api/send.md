@@ -30,6 +30,13 @@ POST https://api.pinata.cloud/pinning/pinJSONToIPFS
 | `recipientId` | `string` | Yes | Application-defined recipient identifier. |
 | `message` | `string` | Yes | Message payload to store. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `recipientId` | `string` | Yes | Copied to `MeshkitMessage.recipientId`. |
+| `message` | `string` | Yes | Copied to `MeshkitMessage.payload`. |
+
 ## Response
 
 Returns `Promise<MeshkitRecord<MeshkitMessage>>`.
@@ -43,6 +50,15 @@ interface MeshkitMessage {
 ```
 
 The returned `data` field contains the message object.
+
+### Response schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `cid` | `string` | CID returned by the internal `store(payload)` call. |
+| `timestamp` | `number` | Record timestamp from `store()`. |
+| `data` | `MeshkitMessage` | Message object stored on IPFS. |
+| `size` | `number` | `JSON.stringify(payload).length`. |
 
 ## Examples
 
@@ -77,6 +93,13 @@ const record = await meshkit.send(
 | Provider error details | Pinata rejected the JSON pin request. |
 | `HTTP error 401` | Invalid Pinata JWT. |
 | Serialization error | Message object could not be stringified. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | Pinata error details, `HTTP error {status}`, or serialization error message. |
 
 ## Notes
 

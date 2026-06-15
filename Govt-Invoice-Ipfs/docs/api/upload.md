@@ -32,6 +32,14 @@ POST https://api.pinata.cloud/pinning/pinFileToIPFS
 | `options.encrypt` | `boolean` | No | Reserved. Not currently applied. |
 | `options.label` | `string` | No | Reserved. Not currently applied. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `file` | `Blob \| File` | Yes | Added to `FormData` under the `file` key. |
+| `options.encrypt` | `boolean` | No | Accepted by type; not implemented. |
+| `options.label` | `string` | No | Accepted by type; not implemented. |
+
 ## Response
 
 Returns `Promise<MeshkitRecord<void>>`.
@@ -51,6 +59,15 @@ Returns `Promise<MeshkitRecord<void>>`.
 | `timestamp` | Client-side `Date.now()` value in milliseconds. |
 | `data` | Always `undefined` for file uploads. |
 | `size` | `file.size` in bytes. |
+
+### Response schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `cid` | `string` | CID returned by `provider.putFile(file)`. |
+| `timestamp` | `number` | `Date.now()` when the record is created. |
+| `data` | `undefined` | The method returns `MeshkitRecord<void>`. |
+| `size` | `number` | `file.size` in bytes. |
 
 ## Examples
 
@@ -82,6 +99,13 @@ const record = await meshkit.upload(file);
 | Provider error details | Pinata rejected the upload. |
 | `HTTP error 401` | Invalid Pinata JWT. |
 | Network error | Runtime could not reach Pinata. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | Pinata error details, `HTTP error {status}`, or network error message. |
 
 ## Notes
 

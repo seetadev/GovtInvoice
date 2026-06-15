@@ -32,6 +32,14 @@ POST https://api.pinata.cloud/pinning/pinJSONToIPFS
 | `options.encrypt` | `boolean` | No | Reserved. Not currently applied. |
 | `options.label` | `string` | No | Reserved. Not currently applied. Pinata metadata name is generated as `meshkit-{timestamp}`. |
 
+### Request schema table
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `data` | `T` | Yes | JSON-compatible value passed to `pinataContent`. |
+| `options.encrypt` | `boolean` | No | Accepted by type; not implemented. |
+| `options.label` | `string` | No | Accepted by type; not implemented. |
+
 ## Response
 
 Returns `Promise<MeshkitRecord<T>>`.
@@ -51,6 +59,15 @@ interface MeshkitRecord<T = any> {
 | `timestamp` | Client-side `Date.now()` value in milliseconds. |
 | `data` | Original data passed to `store()`. |
 | `size` | Character length of `JSON.stringify(data)`. |
+
+### Response schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `cid` | `string` | CID returned by `provider.putJSON(data)`. |
+| `timestamp` | `number` | `Date.now()` when the record is created. |
+| `data` | `T` | Original data passed to the method. |
+| `size` | `number` | `JSON.stringify(data).length`. |
 
 ## Examples
 
@@ -92,6 +109,13 @@ const record = await meshkit.store<Invoice>({
 | Provider error details | Pinata rejected the request. |
 | `HTTP error 401` | Invalid Pinata JWT. |
 | Serialization error | `JSON.stringify(data)` fails for unsupported values such as circular references. |
+
+### Error schema table
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | Standard JavaScript error name. |
+| `message` | `string` | Pinata error details, `HTTP error {status}`, or serialization error message. |
 
 ## Notes
 
