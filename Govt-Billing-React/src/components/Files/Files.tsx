@@ -183,12 +183,16 @@ const Files: React.FC<{
             handler: () => {
               if (props.filesFrom === "Local") {
                 props.store._deleteFile(currentKey);
-                loadDefault();
+                if (currentKey === props.file) {
+                  loadDefault();
+                }
                 setCurrentKey(null);
               } else {
                 deleteFileFromFirebase(user.uid, currentKey, () => {
                   setListFiles(false);
-                  loadDefault();
+                  if (currentKey === props.file) {
+                    loadDefault();
+                  }
                   setCurrentKey(null);
                 });
               }
