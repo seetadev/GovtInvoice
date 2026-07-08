@@ -12,19 +12,27 @@ const NewFile: React.FC<{
   billType: number;
 }> = (props) => {
   const [showAlertNewFileCreated, setShowAlertNewFileCreated] = useState(false);
-  const newFile = () => {
+  const newFile = async () => {
     if (props.file !== "default") {
-      const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-      const data = props.store._getFile(props.file);
-      const file = new File(
-        (data as any).created,
-        new Date().toString(),
-        content,
-        props.file,
-        props.billType
-      );
-      props.store._saveFile(file);
-      props.updateSelectedFile(props.file);
+      try {
+        const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+        const data = await props.store._getFile(props.file);
+        if (data) {
+          const file = new File(
+            (data as any).created,
+            new Date().toString(),
+            content,
+            props.file,
+            props.billType
+          );
+          await props.store._saveFile(file);
+          props.updateSelectedFile(props.file);
+        } else {
+          alert("Current file metadata was not found. Changes were not saved.");
+        }
+      } catch {
+        alert("Unable to save current file before creating a new one.");
+      }
     }
     const msc = DATA["home"][AppGeneral.getDeviceType()]["msc"];
     AppGeneral.viewFile("default", JSON.stringify(msc));
@@ -40,7 +48,7 @@ const NewFile: React.FC<{
         className="ion-padding-end"
         size="large"
         onClick={() => {
-          newFile();
+          void newFile();
           // console.log("New file clicked");
         }}
       />
