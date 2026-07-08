@@ -5,7 +5,7 @@ import { isPlatform, IonToast } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
-import { saveOutline, save, mail, print } from "ionicons/icons";
+import { saveOutline, save, mail, print, documentText } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
 
 const Menu: React.FC<{
@@ -132,6 +132,19 @@ const Menu: React.FC<{
     }
   };
 
+  const downloadCSV = () => {
+    const csvContent = AppGeneral.getCSVContent();
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `${getCurrentFileName() || "Invoice"}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <React.Fragment>
       <IonActionSheet
@@ -170,6 +183,14 @@ const Menu: React.FC<{
             handler: () => {
               sendEmail();
               console.log("Email clicked");
+            },
+          },
+          {
+            text: "Export CSV",
+            icon: documentText,
+            handler: () => {
+              downloadCSV();
+              console.log("Export CSV clicked");
             },
           },
         ]}
