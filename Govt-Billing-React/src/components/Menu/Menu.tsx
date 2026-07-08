@@ -5,8 +5,9 @@ import { isPlatform, IonToast } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
-import { saveOutline, save, mail, print } from "ionicons/icons";
+import { saveOutline, save, mail, print, download } from "ionicons/icons";
 import { APP_NAME } from "../../app-data.js";
+import { validateInvoice } from "../../services/InvoiceValidator";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -73,7 +74,14 @@ const Menu: React.FC<{
       setShowAlert1(true);
       return;
     }
-    const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
+    const rawContent = AppGeneral.getSpreadsheetContent();
+    const validation = validateInvoice(props.file, rawContent);
+    if (!validation.valid) {
+      setToastMessage(validation.message);
+      setShowToast1(true);
+      return;
+    }
+    const content = encodeURIComponent(rawContent);
     const data = props.store._getFile(props.file);
     const file = new File(
       (data as any).created,
@@ -88,13 +96,16 @@ const Menu: React.FC<{
   };
 
   const doSaveAs = async (filename) => {
-    // event.preventDefault();
     if (filename) {
-      // console.log(filename, _validateName(filename));
       if (await _validateName(filename)) {
-        // filename valid . go on save
-        const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-        // console.log(content);
+        const rawContent = AppGeneral.getSpreadsheetContent();
+        const validation = validateInvoice(filename, rawContent);
+        if (!validation.valid) {
+          setToastMessage(validation.message);
+          setShowToast1(true);
+          return;
+        }
+        const content = encodeURIComponent(rawContent);
         const file = new File(
           new Date().toString(),
           new Date().toString(),
@@ -102,8 +113,6 @@ const Menu: React.FC<{
           filename,
           props.bT
         );
-        // const data = { created: file.created, modified: file.modified, content: file.content, password: file.password };
-        // console.log(JSON.stringify(data));
         props.store._saveFile(file);
         props.updateSelectedFile(filename);
         setShowAlert4(true);
@@ -119,16 +128,46 @@ const Menu: React.FC<{
       const base64 = btoa(content);
 
       EmailComposer.open({
-        to: ["jackdwell08@gmail.com"],
+        to: [],
         cc: [],
         bcc: [],
-        body: "PFA",
+        body: "Please find the invoice attached.",
         attachments: [{ type: "base64", path: base64, name: "Invoice.html" }],
-        subject: `${APP_NAME} attached`,
+        subject: `${APP_NAME} - Invoice`,
         isHtml: true,
       });
     } else {
-      alert("This Functionality works on Anroid/IOS devices");
+      alert("This functionality works on Android/iOS devices");
+    }
+  };
+
+  const exportCSV = () => {
+    if (isPlatform("hybrid")) {
+      const csvContent = AppGeneral.getCSVContent();
+      const base64 = btoa(unescape(encodeURIComponent(csvContent)));
+      const filename = `${props.file === "default" ? "Invoice" : props.file}.csv`;
+
+      EmailComposer.open({
+        to: [],
+        cc: [],
+        bcc: [],
+        body: "Please find the invoice CSV attached.",
+        attachments: [{ type: "base64", path: base64, name: filename }],
+        subject: `${APP_NAME} - ${filename}`,
+        isHtml: false,
+      });
+    } else {
+      const csvContent = AppGeneral.getCSVContent();
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const filename = `${props.file === "default" ? "Invoice" : props.file}.csv`;
+      link.setAttribute("href", url);
+      link.setAttribute("download", filename);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
   };
 
@@ -170,6 +209,14 @@ const Menu: React.FC<{
             handler: () => {
               sendEmail();
               console.log("Email clicked");
+            },
+          },
+          {
+            text: "Export as CSV",
+            icon: download,
+            handler: () => {
+              exportCSV();
+              console.log("Export CSV clicked");
             },
           },
         ]}
@@ -230,11 +277,16 @@ const Menu: React.FC<{
         isOpen={showToast1}
         onDidDismiss={() => {
           setShowToast1(false);
-          setShowAlert3(true);
+          if (toastMessage === "Filename already exists" ||
+              toastMessage === "Filename too long" ||
+              toastMessage === "Special Characters cannot be used" ||
+              toastMessage === "Filename cannot be empty") {
+            setShowAlert3(true);
+          }
         }}
         position="bottom"
         message={toastMessage}
-        duration={500}
+        duration={2500}
       />
     </React.Fragment>
   );
