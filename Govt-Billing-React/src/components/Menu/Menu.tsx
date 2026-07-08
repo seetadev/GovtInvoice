@@ -5,8 +5,10 @@ import { isPlatform, IonToast } from "@ionic/react";
 import { EmailComposer } from "capacitor-email-composer";
 import { Printer } from "@ionic-native/printer";
 import { IonActionSheet, IonAlert } from "@ionic/react";
-import { saveOutline, save, mail, print } from "ionicons/icons";
+import { saveOutline, save, mail, print, download } from "ionicons/icons";
+import { Directory, Encoding, Filesystem } from "@capacitor/filesystem";
 import { APP_NAME } from "../../app-data.js";
+import { convertSpreadsheetToCSV } from "../../services/csvExportService";
 
 const Menu: React.FC<{
   showM: boolean;
@@ -113,6 +115,47 @@ const Menu: React.FC<{
     }
   };
 
+  const doExportCSV = async () => {
+    const rawContent = AppGeneral.getSpreadsheetContent();
+    const invoiceName = props.file === "default" ? "invoice" : props.file;
+    const { csv, filename } = convertSpreadsheetToCSV(rawContent, invoiceName);
+
+    if (!csv.trim()) {
+      setToastMessage("Nothing to export");
+      setShowToast1(true);
+      return;
+    }
+
+    if (isPlatform("hybrid")) {
+      try {
+        await Filesystem.writeFile({
+          path: filename,
+          data: csv,
+          directory: Directory.Documents,
+          encoding: Encoding.UTF8,
+        });
+        setToastMessage(`CSV saved: ${filename}`);
+      } catch (err: any) {
+        setToastMessage(`Export failed: ${err?.message ?? "Unknown error"}`);
+      }
+      setShowToast1(true);
+      return;
+    }
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setToastMessage(`CSV exported: ${filename}`);
+    setShowToast1(true);
+  };
+
   const sendEmail = () => {
     if (isPlatform("hybrid")) {
       const content = AppGeneral.getCurrentHTMLContent();
@@ -154,6 +197,14 @@ const Menu: React.FC<{
             handler: () => {
               setShowAlert3(true);
               console.log("Save As clicked");
+            },
+          },
+          {
+            text: "Export as CSV",
+            icon: download,
+            handler: () => {
+              doExportCSV();
+              console.log("Export CSV clicked");
             },
           },
           {
@@ -230,11 +281,18 @@ const Menu: React.FC<{
         isOpen={showToast1}
         onDidDismiss={() => {
           setShowToast1(false);
-          setShowAlert3(true);
+          if (
+            toastMessage !== "" &&
+            !toastMessage.startsWith("CSV") &&
+            !toastMessage.startsWith("Export") &&
+            !toastMessage.startsWith("Nothing")
+          ) {
+            setShowAlert3(true);
+          }
         }}
         position="bottom"
         message={toastMessage}
-        duration={500}
+        duration={1500}
       />
     </React.Fragment>
   );
