@@ -79,6 +79,9 @@ const downloadFileFromFirebase = async (userId, key, onSuccess) => {
     const local = new Local();
     const getFile = async () => {
       const docSnapshot = await getDoc(doc(db, "invoices", `${userId}-${key}`));
+      if (!docSnapshot.exists()) {
+        throw new Error("File not found on the server. It may have been deleted.");
+      }
       const data = docSnapshot.data();
       delete data["owner"];
       return data;
