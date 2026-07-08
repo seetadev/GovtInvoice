@@ -1,3 +1,5 @@
+import Dashboard from "../components/Dashboard/Dashboard";
+
 import {
   IonButton,
   IonContent,
@@ -32,6 +34,7 @@ const Home: React.FC = () => {
   const [selectedFile, updateSelectedFile] = useState("default");
   const [billType, updateBillType] = useState(1);
   const [device] = useState("default");
+  const [showDashboard, setShowDashboard] = useState(false);
 
   initFirebase();
 
@@ -108,6 +111,13 @@ const Home: React.FC = () => {
               console.log("Popover clicked");
             }}
           />
+          <IonIcon
+            icon={statsChart}
+            slot="end"
+            className="ion-padding-end"
+            size="large"
+            onClick={() => setShowDashboard(true)}
+          />
           <Files
             filesFrom="Local"
             store={store}
@@ -168,6 +178,11 @@ const Home: React.FC = () => {
           <div id="tableeditor"></div>
           <div id="msg"></div>
         </div>
+
+        <Dashboard
+          showDashboard={showDashboard}
+          setShowDashboard={setShowDashboard}
+        />
       </IonContent>
     </IonPage>
   );
