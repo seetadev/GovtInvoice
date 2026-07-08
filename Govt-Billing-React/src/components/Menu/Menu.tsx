@@ -68,15 +68,22 @@ const Menu: React.FC<{
       printWindow.print();
     }
   };
-  const doSave = () => {
+  const doSave = async () => {
     if (props.file === "default") {
       setShowAlert1(true);
       return;
     }
     const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-    const data = props.store._getFile(props.file);
+    const data = await props.store._getFile(props.file);
+
+    if (!data) {
+      setToastMessage("Save failed: file data could not be retrieved.");
+      setShowToast1(true);
+      return;
+    }
+
     const file = new File(
-      (data as any).created,
+      data.created,
       new Date().toString(),
       content,
       props.file,
