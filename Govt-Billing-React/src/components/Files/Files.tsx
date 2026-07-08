@@ -86,6 +86,8 @@ const Files: React.FC<{
       if (isLoading) return;
       if (!user) {
         alert("Login to Continue");
+        setListFiles(false);
+        return;
       } else {
         files = await getFilesKeysFromFirestore(user.uid);
       }
