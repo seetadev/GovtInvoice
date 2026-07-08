@@ -302,6 +302,38 @@ body, td, input, texarea {font-family:verdana,helvetica,sans-serif;font-size:sma
 <div id="workbookControl" style="background-color:#3a5c9b;">
 </div>
 
+<div style="background-color:#ffffff; border:1px solid #c9c9c9; margin:8px 10px 0px 10px; padding:10px;">
+  <form id="invoiceMetadataForm">
+    <table cellspacing="0" cellpadding="4" style="width:100%; background-color:#ffffff;">
+      <tr>
+        <td style="font-weight:bold; color:#333333; width:140px;">Invoice Details</td>
+        <td>
+          <input type="text" id="invoiceNo" placeholder="Invoice No" style="width:150px;">
+        </td>
+        <td>
+          <input type="date" id="invoiceDate" style="width:150px;">
+        </td>
+        <td>
+          <input type="text" id="institutionName" placeholder="Institution Name" style="width:220px;">
+        </td>
+        <td>
+          <input type="text" id="billTo" placeholder="Bill To" style="width:220px;">
+        </td>
+        <td>
+          <input type="text" id="gstin" placeholder="GSTIN" style="width:170px;">
+        </td>
+        <td style="text-align:right;">
+          <input
+            type="submit"
+            value="Add Header"
+            style="background-color:#3a5c9b; color:#ffffff; border:0; padding:7px 14px; cursor:pointer;"
+          >
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
 <div style="margin:8px 0px 10px 0px;">
  <div id="tableeditor" style="margin:8px 0px 10px 0px;">Loading editor</div>
 </div>
@@ -831,6 +863,98 @@ function editablecellscheck()  {
  return false;
 }
 
+function addInvoiceMetadataHeader(event) {
+  event.preventDefault();
+
+  var invoiceNo = document.getElementById("invoiceNo").value.trim();
+  var invoiceDate = document.getElementById("invoiceDate").value.trim();
+  var institutionName = document.getElementById("institutionName").value.trim();
+  var billTo = document.getElementById("billTo").value.trim();
+  var gstin = document.getElementById("gstin").value.trim();
+
+  if (!invoiceNo || !invoiceDate || !institutionName || !billTo || !gstin) {
+    alert("Please fill all invoice detail fields");
+    return false;
+  }
+
+  var control = SocialCalc.GetCurrentWorkBookControl();
+  var sheetid = control.currentSheetButton.id;
+  var sheetobj = control.workbook.sheetArr[sheetid].sheet;
+
+  if (
+    sheetobj.cells.A1 &&
+    sheetobj.cells.A1.datavalue &&
+    !confirm("Replace existing invoice header?")
+  ) {
+    return false;
+  }
+
+  var setText = function(coord, value) {
+    return "set " + coord + " text t " + SocialCalc.encodeForSave(value);
+  };
+
+  var cmdstr = [
+    "set A width 120",
+    "set B width 220",
+    "set C width 120",
+    "set D width 130",
+    "set E width 170",
+    setText("A1", "INVOICE"),
+    setText("A3", "Invoice No"),
+    setText("B3", invoiceNo),
+    setText("D3", "Date"),
+    setText("E3", invoiceDate),
+    setText("A4", "Institution Name"),
+    setText("B4", institutionName),
+    setText("A5", "Bill To"),
+    setText("B5", billTo),
+    setText("D5", "GSTIN"),
+    setText("E5", gstin),
+    setText("A7", "Item"),
+    setText("B7", "Description"),
+    setText("C7", "Quantity"),
+    setText("D7", "Rate"),
+    setText("E7", "Amount"),
+    "set A1:E1 bgcolor #d9e8ff",
+    "set A3:E7 bgcolor #f7f7f7",
+    "set A7:E7 bgcolor #d9e8ff",
+    "set A1:E7 bt 1px solid #999999",
+    "set A1:E7 bb 1px solid #999999",
+    "set A1:E7 bl 1px solid #999999",
+    "set A1:E7 br 1px solid #999999"
+  ].join("\n");
+
+  control.ExecuteWorkBookControlCommand(
+    {cmdtype: "scmd", id: sheetid, cmdstr: cmdstr, saveundo: true},
+    false
+  );
+  return false;
+}
+
+function setDefaultInvoiceDate() {
+  var invoiceDate = document.getElementById("invoiceDate");
+  if (invoiceDate && !invoiceDate.value) {
+    invoiceDate.value = new Date().toISOString().slice(0, 10);
+  }
+}
+
+function loadWorkbookData(savestr) {
+  if (!savestr) {
+    return;
+  }
+
+  var trimmedSaveStr = savestr.trim();
+  if (!trimmedSaveStr || trimmedSaveStr.indexOf("{{") === 0) {
+    return;
+  }
+
+  try {
+    SocialCalc.WorkBookControlLoad(trimmedSaveStr);
+  } catch (error) {
+    console.error("Unable to load workbook data:", error);
+  }
+}
+
 
 function MyEndsWith(str, suffix) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
@@ -849,14 +973,18 @@ workbookcontrol.InitializeWorkBookControl();
 var fname = '{{ entry["fname"] }}'
 
 if (MyEndsWith(fname,".msce") || MyEndsWith(fname, ".MSCE")) {
-  SocialCalc.WorkBookControlLoad(decodeURIComponent(sheetnamemscedata))
+  loadWorkbookData(decodeURIComponent(sheetnamemscedata))
 } else {
-   SocialCalc.WorkBookControlLoad(document.getElementById("sheetdata").value)
+   loadWorkbookData(document.getElementById("sheetdata").value)
 }
 
 spreadsheet.DoOnResize();
 
 var sheetstr = document.getElementById("sheetdata").value;
+setDefaultInvoiceDate();
+document
+  .getElementById("invoiceMetadataForm")
+  .addEventListener("submit", addInvoiceMetadataHeader);
 
 // broadcast a snapshot after a delay
 
