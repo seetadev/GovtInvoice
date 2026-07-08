@@ -22,7 +22,7 @@ const Menu: React.FC<{
   const [showAlert4, setShowAlert4] = useState(false);
   const [showToast1, setShowToast1] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-  /* Utility functions */
+
   const _validateName = async (filename) => {
     filename = filename.trim();
     if (filename === "default" || filename === "Untitled") {
@@ -49,7 +49,6 @@ const Menu: React.FC<{
   };
 
   const _formatString = (filename) => {
-    /* Remove whitespaces */
     while (filename.indexOf(" ") !== -1) {
       filename = filename.replace(" ", "");
     }
@@ -62,39 +61,43 @@ const Menu: React.FC<{
       printer.print(AppGeneral.getCurrentHTMLContent());
     } else {
       const content = AppGeneral.getCurrentHTMLContent();
-      // useReactToPrint({ content: () => content });
       const printWindow = window.open("/printwindow", "Print Invoice");
       printWindow.document.write(content);
       printWindow.print();
     }
   };
-  const doSave = () => {
+
+  const doSave = async () => {
     if (props.file === "default") {
       setShowAlert1(true);
       return;
     }
+
     const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-    const data = props.store._getFile(props.file);
+
+    const existingData = await props.store._getFile(props.file);
+
+    
+    const createdTimestamp =
+      existingData?.created ?? new Date().toString();
+
     const file = new File(
-      (data as any).created,
-      new Date().toString(),
+      createdTimestamp,          
+      new Date().toString(),     
       content,
       props.file,
       props.bT
     );
+
     props.store._saveFile(file);
     props.updateSelectedFile(props.file);
     setShowAlert2(true);
   };
 
   const doSaveAs = async (filename) => {
-    // event.preventDefault();
     if (filename) {
-      // console.log(filename, _validateName(filename));
       if (await _validateName(filename)) {
-        // filename valid . go on save
         const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-        // console.log(content);
         const file = new File(
           new Date().toString(),
           new Date().toString(),
@@ -102,8 +105,6 @@ const Menu: React.FC<{
           filename,
           props.bT
         );
-        // const data = { created: file.created, modified: file.modified, content: file.content, password: file.password };
-        // console.log(JSON.stringify(data));
         props.store._saveFile(file);
         props.updateSelectedFile(filename);
         setShowAlert4(true);
@@ -117,7 +118,6 @@ const Menu: React.FC<{
     if (isPlatform("hybrid")) {
       const content = AppGeneral.getCurrentHTMLContent();
       const base64 = btoa(content);
-
       EmailComposer.open({
         to: ["jackdwell08@gmail.com"],
         cc: [],
@@ -128,7 +128,7 @@ const Menu: React.FC<{
         isHtml: true,
       });
     } else {
-      alert("This Functionality works on Anroid/IOS devices");
+      alert("This Functionality works on Android/iOS devices");
     }
   };
 
@@ -179,9 +179,7 @@ const Menu: React.FC<{
         isOpen={showAlert1}
         onDidDismiss={() => setShowAlert1(false)}
         header="Alert Message"
-        message={
-          "Cannot update <strong>" + getCurrentFileName() + "</strong> file!"
-        }
+        message={"Cannot update <strong>" + getCurrentFileName() + "</strong> file!"}
         buttons={["Ok"]}
       />
       <IonAlert
@@ -189,11 +187,7 @@ const Menu: React.FC<{
         isOpen={showAlert2}
         onDidDismiss={() => setShowAlert2(false)}
         header="Save"
-        message={
-          "File <strong>" +
-          getCurrentFileName() +
-          "</strong> updated successfully"
-        }
+        message={"File <strong>" + getCurrentFileName() + "</strong> updated successfully"}
         buttons={["Ok"]}
       />
       <IonAlert
@@ -201,9 +195,7 @@ const Menu: React.FC<{
         isOpen={showAlert3}
         onDidDismiss={() => setShowAlert3(false)}
         header="Save As"
-        inputs={[
-          { name: "filename", type: "text", placeholder: "Enter filename" },
-        ]}
+        inputs={[{ name: "filename", type: "text", placeholder: "Enter filename" }]}
         buttons={[
           {
             text: "Ok",
@@ -218,11 +210,7 @@ const Menu: React.FC<{
         isOpen={showAlert4}
         onDidDismiss={() => setShowAlert4(false)}
         header="Save As"
-        message={
-          "File <strong>" +
-          getCurrentFileName() +
-          "</strong> saved successfully"
-        }
+        message={"File <strong>" + getCurrentFileName() + "</strong> saved successfully"}
         buttons={["Ok"]}
       />
       <IonToast

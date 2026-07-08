@@ -12,20 +12,31 @@ const NewFile: React.FC<{
   billType: number;
 }> = (props) => {
   const [showAlertNewFileCreated, setShowAlertNewFileCreated] = useState(false);
-  const newFile = () => {
+
+  const newFile = async () => {
     if (props.file !== "default") {
       const content = encodeURIComponent(AppGeneral.getSpreadsheetContent());
-      const data = props.store._getFile(props.file);
-      const file = new File(
-        (data as any).created,
-        new Date().toString(),
-        content,
-        props.file,
-        props.billType
-      );
-      props.store._saveFile(file);
-      props.updateSelectedFile(props.file);
+
+      const existingData = await props.store._getFile(props.file);
+
+      if (existingData === null) {
+        console.warn(
+          `[NewFile] _getFile returned null for "${props.file}". Skipping persist.`
+        );
+      } else {
+        const file = new File(
+          existingData.created,   
+          new Date().toString(),  
+          content,
+          props.file,
+          props.billType
+        );
+
+        await props.store._saveFile(file);
+        props.updateSelectedFile(props.file);
+      }
     }
+
     const msc = DATA["home"][AppGeneral.getDeviceType()]["msc"];
     AppGeneral.viewFile("default", JSON.stringify(msc));
     props.updateSelectedFile("default");
@@ -41,7 +52,6 @@ const NewFile: React.FC<{
         size="large"
         onClick={() => {
           newFile();
-          // console.log("New file clicked");
         }}
       />
       <IonAlert
