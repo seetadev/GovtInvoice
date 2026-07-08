@@ -48,6 +48,8 @@ const uploadFileToCloud = async (
         ...fileData,
         owner: user.uid,
       });
+      if (onSuccess) onSuccess();
+      return;
     }
     await setDoc(doc(db, "invoices", `${user.uid}-${fileData.name}`), {
       ...fileData,
